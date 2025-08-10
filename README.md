@@ -42,7 +42,6 @@ Opens automatically at `http://localhost:3000`
 - `npm run preview` - Preview production build
 
 ## Customization
-
 - **Colors**: Edit CSS variables in `src/index.css`
 - **Content**: Update component files in `src/components/tabs/`
 - **Branding**: Replace assets in `attached_assets/`
