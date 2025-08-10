@@ -1,53 +1,31 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import LoadingScreen from "@/components/loading-screen";
-import AcknowledgmentPage from "@/components/acknowledgment-page";
-import MainBrochure from "@/components/main-brochure";
+"use client"
 
-type Stage = "loading" | "acknowledgment" | "brochure";
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import LoadingScreen from "@/components/loading-screen"
+import AcknowledgmentPage from "@/components/acknowledgment-page"
+import MainBrochure from "@/components/main-brochure"
 
-export default function Brochure() {
-  const [currentStage, setCurrentStage] = useState<Stage>("loading");
+type Stage = "loading" | "acknowledgment" | "brochure"
 
-  useEffect(() => {
-    // Auto-advance from loading to acknowledgment after 3.5 seconds
-    if (currentStage === "loading") {
-      const timer = setTimeout(() => {
-        setCurrentStage("acknowledgment");
-      }, 3500);
-      return () => clearTimeout(timer);
-    }
-  }, [currentStage]);
+export default function Page() {
+  const [currentStage, setCurrentStage] = useState<Stage>("loading")
 
-  const handleEnterBrochure = () => {
-    setCurrentStage("brochure");
-  };
+  const handleLoadingComplete = () => {
+    setCurrentStage("acknowledgment")
+  }
+
+  const handleAcknowledgmentComplete = () => {
+    setCurrentStage("brochure")
+  }
 
   return (
-    <div className="min-h-screen bg-[var(--deep-black)] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <AnimatePresence mode="wait">
-        {currentStage === "loading" && (
-          <motion.div
-            key="loading"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LoadingScreen />
-          </motion.div>
-        )}
+        {currentStage === "loading" && <LoadingScreen key="loading" onComplete={handleLoadingComplete} />}
 
         {currentStage === "acknowledgment" && (
-          <motion.div
-            key="acknowledgment"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.8 }}
-          >
-            <AcknowledgmentPage onEnterBrochure={handleEnterBrochure} />
-          </motion.div>
+          <AcknowledgmentPage key="acknowledgment" onEnterBrochure={handleAcknowledgmentComplete} />
         )}
 
         {currentStage === "brochure" && (
@@ -55,12 +33,13 @@ export default function Brochure() {
             key="brochure"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
           >
-          <MainBrochure />
+            <MainBrochure />
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }

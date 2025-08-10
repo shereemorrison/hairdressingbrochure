@@ -15,7 +15,7 @@ const teachers = [
 export default function TeachersTab() {
   return (
     <motion.div
-      className="relative min-h-screen bg-[var(--background-color)]"
+      className="relative"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
@@ -27,28 +27,24 @@ export default function TeachersTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          OUR <span className="text-[var(--border-color)]">TEACHERS</span>
+          OUR <span className="text-black">TEACHERS</span>
         </motion.h1>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {teachers.map((teacher, index) => (
             <motion.div
               key={teacher.name}
-              className="bg-[var(--lightest)] p-6 rounded-lg text-center border border-[var(--border-color)]/20"
+              className="glass-card p-6 rounded-lg text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
             >
-              <div className="w-24 h-24 bg-[var(--background-color)] border-2 border-[var(--border-color)] rounded-full mx-auto mb-4 flex items-center justify-center">
-                <User style={{ color: "hsl(8, 79%, 72%)" }} className="text-2xl" />
+              <div className="w-16 h-16 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 border-2 border-yellow-400/30 rounded-full mx-auto mb-4 flex items-center justify-center backdrop-blur-sm">
+                <User className="text-lg text-yellow-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: "hsl(8, 79%, 72%)" }}>
-                {teacher.name}
-              </h3>
-              <p className="text-[var(--border-color)] mb-2">{teacher.years}</p>
-              <p className="text-sm" style={{ color: "hsl(8, 79%, 72%)" }}>
-                {teacher.specialty}
-              </p>
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">{teacher.name}</h3>
+              <p className="text-yellow-300/80 mb-2 text-sm">{teacher.years}</p>
+              <p className="text-sm text-white/80">{teacher.specialty}</p>
             </motion.div>
           ))}
         </div>
@@ -59,11 +55,31 @@ export default function TeachersTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <p className="text-xl text-[var(--darkest)]/80 max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
             Our dedicated teaching staff has shaped generations of hairdressing professionals, bringing decades of
             industry experience and passion for education to every classroom.
           </p>
         </motion.div>
+
+        <div className="mt-16 space-y-8">
+          <motion.div
+            className="glass-card p-6 rounded-lg"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.6 }}
+          >
+
+          </motion.div>
+
+          <motion.div
+            className="glass-card p-6 rounded-lg"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+          >
+
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   )
