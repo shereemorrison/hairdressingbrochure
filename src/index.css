@@ -405,12 +405,6 @@
   }
 }
 
-/* Remove these lines that might interfere with responsiveness: */
-/*.card-content-container {
-  background: transparent !important;
-  min-height: 100vh !important;  // <- This line specifically
-}*/
-
 /* Override specific color styles */
 .card-content-container [style*="color: hsl(8, 79%, 72%)"] {
   color: rgba(255, 215, 0, 0.9) !important;

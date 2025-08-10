@@ -545,13 +545,15 @@ const MagicBento: React.FC<BentoProps> = ({
               padding: 1rem;
               max-width: 100%;
               margin: 0 auto;
+              min-height: 100vh;
+              padding-bottom: 2rem; /* Bottom padding for scrolling */
             }
 
             .mobile-card {
               display: flex;
               flex-direction: column;
               justify-content: space-between;
-              min-height: 120px;
+              min-height: 140px;
               padding: 1rem;
               border-radius: 1rem;
               border: 1px solid rgba(255, 215, 0, 0.3);
@@ -598,7 +600,7 @@ const MagicBento: React.FC<BentoProps> = ({
     )
   }
 
-  // Desktop version (existing complex layout)
+  // Desktop version
   return (
     <>
       <style>

@@ -123,7 +123,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
             style={{ color: "hsl(45, 60%, 60%)" }}
             initial={{
               scale: 0.05,
-              opacity: 1,
+              opacity: 0,
             }}
             animate={
               titleComplete
@@ -133,7 +133,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
                   }
                 : {
                     scale: 0.05,
-                    opacity: 1,
+                    opacity: 0,
                   }
             }
             transition={{
