@@ -493,19 +493,125 @@ const MagicBento: React.FC<BentoProps> = ({
   const isMobile = useMobileDetection()
   const shouldDisableAnimations = disableAnimations || isMobile
 
+  // Mobile-specific simple card component
+  const MobileCard: React.FC<{ card: BentoCardProps; index: number }> = ({ card, index }) => {
+    const Icon = card.icon
+
+    const handleClick = () => {
+      if (!card.locked && card.onClick) {
+        card.onClick()
+      }
+    }
+
+    return (
+      <div
+        className={`mobile-card ${card.locked ? "opacity-60" : "cursor-pointer hover:scale-105"}
+          transition-all duration-200 ease-out active:scale-95`}
+        onClick={handleClick}
+        style={{
+          backgroundColor: card.color || "rgba(0, 0, 0, 0.8)",
+          backgroundImage: card.backgroundImage ? `url(${card.backgroundImage})` : undefined,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundBlendMode: card.backgroundImage ? "overlay" : "normal",
+        }}
+      >
+        <div className="card__header flex justify-between items-center gap-3 relative text-white">
+          <span className="card__label text-xs font-medium opacity-80">{card.label}</span>
+          {Icon && <Icon className="w-6 h-6 text-white/80" />}
+          {card.locked && <div className="text-lg">🔒</div>}
+        </div>
+        <div className="card__content flex flex-col relative text-white">
+          <h3 className={`card__title font-semibold text-sm m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}>
+            {card.title}
+          </h3>
+          <p className={`card__description text-xs leading-relaxed opacity-90 ${textAutoHide ? "text-clamp-2" : ""}`}>
+            {card.description}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  if (isMobile) {
+    return (
+      <>
+        <style>
+          {`
+            .mobile-grid {
+              display: grid;
+              grid-template-columns: 1fr;
+              gap: 1rem;
+              padding: 1rem;
+              max-width: 100%;
+              margin: 0 auto;
+            }
+
+            .mobile-card {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              min-height: 120px;
+              padding: 1rem;
+              border-radius: 1rem;
+              border: 1px solid rgba(255, 215, 0, 0.3);
+              color: white;
+              position: relative;
+              overflow: hidden;
+              backdrop-filter: blur(10px);
+              -webkit-backdrop-filter: blur(10px);
+              touch-action: manipulation;
+              -webkit-tap-highlight-color: transparent;
+            }
+
+            .mobile-card:active {
+              background-color: rgba(255, 215, 0, 0.1) !important;
+            }
+
+            @media (min-width: 480px) {
+              .mobile-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1.5rem;
+              }
+
+              .mobile-card {
+                min-height: 140px;
+                padding: 1.5rem;
+              }
+            }
+
+            @media (min-width: 640px) {
+              .mobile-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+              }
+            }
+          `}
+        </style>
+        <div className="mobile-grid">
+          {cards.map((card, index) => (
+            <MobileCard key={index} card={card} index={index} />
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  // Desktop version (existing complex layout)
   return (
     <>
       <style>
         {`
           .bento-section {
-            --glow-color: 255, 215, 0; // Gold
-            --border-color: rgba(255, 215, 0, 0.3); // Gold borders
-            --background-dark: rgba(0, 0, 0, 0.8); // Darker black background
-            --white: hsl(45, 100%, 85%); // Warm gold-tinted white
-            --purple-primary: rgba(255, 215, 0, 1); // Gold primary
-            --purple-glow: rgba(255, 215, 0, 0.2); // Gold glow
-            --purple-border: rgba(255, 215, 0, 0.8); // Gold border
-            }
+            --glow-color: 255, 215, 0;
+            --border-color: rgba(255, 215, 0, 0.3);
+            --background-dark: rgba(0, 0, 0, 0.8);
+            --white: hsl(45, 100%, 85%);
+            --purple-primary: rgba(255, 215, 0, 1);
+            --purple-glow: rgba(255, 215, 0, 0.2);
+            --purple-border: rgba(255, 215, 0, 0.8);
+          }
 
           .card-responsive {
             display: grid;
@@ -585,84 +691,6 @@ const MagicBento: React.FC<BentoProps> = ({
             .card-responsive .card:nth-child(6) {
               grid-column: 1 / 4;
               grid-row: 4 / 5;
-            }
-          }
-
-          @media (max-width: 768px) {
-            .card-responsive {
-              grid-template-columns: repeat(2, 1fr);
-              grid-template-rows: repeat(6, 1fr);
-              height: 90vh;
-              min-height: 400px;
-              gap: 0.75rem;
-            }
-
-            .card-responsive .card:nth-child(1) {
-              grid-column: 1 / 2;
-              grid-row: 1 / 2;
-            }
-
-            .card-responsive .card:nth-child(2) {
-              grid-column: 2 / 3;
-              grid-row: 1 / 2;
-            }
-
-            .card-responsive .card:nth-child(3) {
-              grid-column: 1 / 3;
-              grid-row: 2 / 4;
-            }
-
-            .card-responsive .card:nth-child(4) {
-              grid-column: 1 / 3;
-              grid-row: 4 / 6;
-            }
-
-            .card-responsive .card:nth-child(5) {
-              grid-column: 1 / 2;
-              grid-row: 6 / 7;
-            }
-
-            .card-responsive .card:nth-child(6) {
-              grid-column: 2 / 3;
-              grid-row: 6 / 7;
-            }
-          }
-
-          @media (max-width: 480px) {
-            .card-responsive {
-              grid-template-columns: 1fr;
-              grid-template-rows: repeat(6, 1fr);
-              height: 95vh;
-              min-height: 350px;
-              gap: 0.5rem;
-            }
-
-            .card-responsive .card {
-              grid-column: 1;
-            }
-
-            .card-responsive .card:nth-child(1) {
-              grid-row: 1 / 2;
-            }
-
-            .card-responsive .card:nth-child(2) {
-              grid-row: 2 / 3;
-            }
-
-            .card-responsive .card:nth-child(3) {
-              grid-row: 3 / 4;
-            }
-
-            .card-responsive .card:nth-child(4) {
-              grid-row: 4 / 5;
-            }
-
-            .card-responsive .card:nth-child(5) {
-              grid-row: 5 / 6;
-            }
-
-            .card-responsive .card:nth-child(6) {
-              grid-row: 6 / 7;
             }
           }
 
