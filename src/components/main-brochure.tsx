@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Aurora from "./aurora"
@@ -16,6 +16,14 @@ import tafebuilding from "@/assets/tafebuilding.jpg"
 
 export default function MainBrochure() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   const iconSections = [
     {
@@ -69,7 +77,7 @@ export default function MainBrochure() {
       color: "rgba(0, 0, 0, 0.4)",
       component: MovieTab,
       locked: false,
-      onClick: () => {},
+      onClick: () => setActiveSection("food"),
     },
     {
       id: "movie",
@@ -80,7 +88,7 @@ export default function MainBrochure() {
       color: "rgba(0, 0, 0, 0.4)",
       component: MovieTab,
       locked: true,
-      onClick: () => {},
+      onClick: () => setActiveSection("movie"),
     },
   ]
 
@@ -91,7 +99,9 @@ export default function MainBrochure() {
   const activeComponent = iconSections.find((section) => section.id === activeSection)
 
   return (
-    <div className="min-h-screen max-h-screen relative overflow-hidden flex flex-col">
+    <div
+      className={`relative flex flex-col ${isMobile ? "min-h-screen" : "min-h-screen max-h-screen overflow-hidden"}`}
+    >
       {/* Aurora Background */}
       <div className="absolute inset-0 z-0">
         <Aurora colorStops={["#000000", "#FFD700", "#FFA225"]} blend={0.5} amplitude={1.0} speed={0.5} />
@@ -106,8 +116,10 @@ export default function MainBrochure() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 flex-1 flex items-center justify-center px-6 pb-6">
-        <div className="w-full h-full flex items-center justify-center">
+      <div
+        className={`relative z-20 flex-1 ${isMobile ? "flex flex-col" : "flex items-center justify-center px-6 pb-6"}`}
+      >
+        <div className={`w-full ${isMobile ? "flex-1" : "h-full flex items-center justify-center"}`}>
           <MagicBento
             textAutoHide={true}
             enableStars={true}
@@ -164,20 +176,6 @@ export default function MainBrochure() {
               {/* Subtle overlay for Card */}
               <div className="absolute inset-0 bg-black/40 z-10" />
 
-              {/* Floating Back Button */}
-              <motion.button
-                onClick={handleBackToLanding}
-                className="absolute top-4 left-4 z-[100002] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50 bg-black/60 backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span className="text-sm font-medium">Back</span>
-              </motion.button>
-
               {/* Card Content */}
               <motion.div
                 className="relative z-20 card-scroll-container card-content-container"
@@ -192,6 +190,20 @@ export default function MainBrochure() {
               >
                 <activeComponent.component />
               </motion.div>
+
+              {/* Floating Back Button */}
+              <motion.button
+                onClick={handleBackToLanding}
+                className="absolute top-4 right-4 z-[100002] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50 bg-black/60 backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <span className="text-sm font-medium">Back</span>
+                <ArrowLeft className="w-4 h-4" />
+              </motion.button>
             </motion.div>
           </motion.div>
         )}

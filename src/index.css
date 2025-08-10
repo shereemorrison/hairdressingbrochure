@@ -183,13 +183,20 @@
 
 /* Custom styled scrollbar for cards */
 .card-scroll-container {
-  height: 70vh !important;
-  max-height: 70vh !important;
-  overflow-y: scroll !important;
+  height: 80vh !important;
+  max-height: 80vh !important;
+  overflow-y: auto !important;
   overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 215, 0, 0.6) rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .card-scroll-container {
+    height: 70vh !important;
+    max-height: 70vh !important;
+  }
 }
 
 .card-scroll-container::-webkit-scrollbar {
@@ -228,7 +235,7 @@
 
 .card-content-container {
   background: transparent !important;
-  min-height: 100vh !important;
+  min-height: auto !important;
 }
 
 .card-content-container > div {
@@ -255,30 +262,30 @@
   min-height: auto !important;
 }
 
-/* Text styling in cards */
+/* Responsive text styling in cards */
 .card-content-container h1 {
-  font-size: 2.5rem !important;
+  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
   margin-bottom: 2rem !important;
   color: white !important;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
 .card-content-container h2 {
-  font-size: 1.8rem !important;
+  font-size: clamp(1.2rem, 3vw, 1.8rem) !important;
   margin-bottom: 1rem !important;
   color: rgba(255, 215, 0, 0.9) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
 .card-content-container h3 {
-  font-size: 1.2rem !important;
+  font-size: clamp(1rem, 2.5vw, 1.2rem) !important;
   margin-bottom: 0.5rem !important;
   color: rgba(255, 215, 0, 0.9) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
 .card-content-container p {
-  font-size: 0.9rem !important;
+  font-size: clamp(0.8rem, 2vw, 0.9rem) !important;
   margin-bottom: 1rem !important;
   color: rgba(255, 255, 255, 0.9) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
@@ -286,25 +293,25 @@
 
 .card-content-container .text-5xl,
 .card-content-container .text-7xl {
-  font-size: 2.5rem !important;
+  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
   color: white !important;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
 .card-content-container .text-4xl {
-  font-size: 1.8rem !important;
+  font-size: clamp(1.2rem, 3vw, 1.8rem) !important;
   color: rgba(255, 215, 0, 0.9) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
 .card-content-container .text-2xl {
-  font-size: 1.2rem !important;
+  font-size: clamp(1rem, 2.5vw, 1.2rem) !important;
   color: rgba(255, 215, 0, 0.9) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
 .card-content-container .text-xl {
-  font-size: 1rem !important;
+  font-size: clamp(0.9rem, 2vw, 1rem) !important;
   color: rgba(255, 255, 255, 0.9) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
@@ -319,38 +326,83 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
 
-.card-content-container .py-16 {
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
+/* Responsive spacing adjustments */
+@media (max-width: 768px) {
+  .card-content-container .py-16 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .card-content-container .py-32 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .card-content-container .mb-16 {
+    margin-bottom: 1rem !important;
+  }
+
+  .card-content-container .mb-8 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .card-content-container .gap-8 {
+    gap: 0.5rem !important;
+  }
+
+  .card-content-container .gap-16 {
+    gap: 1rem !important;
+  }
+
+  .card-content-container .p-6 {
+    padding: 0.75rem !important;
+  }
+
+  .card-content-container .p-8 {
+    padding: 1rem !important;
+  }
 }
 
-.card-content-container .py-32 {
-  padding-top: 4rem !important;
-  padding-bottom: 4rem !important;
+@media (max-width: 480px) {
+  .card-content-container .py-16 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  .card-content-container .py-32 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
 }
 
-.card-content-container .mb-16 {
-  margin-bottom: 2rem !important;
+/* Ensure bento grid responsiveness isn't overridden */
+.bento-section {
+  width: 100% !important;
+  max-width: none !important;
 }
 
-.card-content-container .mb-8 {
-  margin-bottom: 1rem !important;
+.bento-section .card-responsive {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 60vh !important;
 }
 
-.card-content-container .gap-8 {
-  gap: 1rem !important;
+@media (max-width: 1024px) {
+  .bento-section .card-responsive {
+    min-height: 70vh !important;
+  }
 }
 
-.card-content-container .gap-16 {
-  gap: 2rem !important;
+@media (max-width: 768px) {
+  .bento-section .card-responsive {
+    min-height: 80vh !important;
+  }
 }
 
-.card-content-container .p-6 {
-  padding: 1rem !important;
-}
-
-.card-content-container .p-8 {
-  padding: 1.5rem !important;
+@media (max-width: 480px) {
+  .bento-section .card-responsive {
+    min-height: 90vh !important;
+  }
 }
 
 /* Override specific color styles */
