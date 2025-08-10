@@ -9,7 +9,7 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": true,
@@ -23,6 +23,7 @@
   },
   "include": [
     "src",
+    "vite.config.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"],
