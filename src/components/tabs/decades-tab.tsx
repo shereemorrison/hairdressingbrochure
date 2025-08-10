@@ -115,9 +115,9 @@ export default function DecadesTab() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
         <motion.h1
-          className="text-5xl md:text-7xl font-black mb-16 text-center text-[var(--darkest)]"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 sm:mb-16 text-center text-[var(--darkest)]"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -127,7 +127,7 @@ export default function DecadesTab() {
 
         {/* Decade Navigation */}
         <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -136,7 +136,7 @@ export default function DecadesTab() {
             <Button
               key={decade.id}
               variant={selectedDecade === decade.id ? "default" : "outline"}
-              className={`px-4 py-2 text-sm font-bold transition-all duration-300 border border-yellow-400/50 backdrop-blur-sm ${
+              className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-bold transition-all duration-300 border border-yellow-400/50 backdrop-blur-sm ${
                 selectedDecade === decade.id
                   ? "bg-yellow-400/20 text-yellow-400 hover:bg-yellow-400/30"
                   : "bg-black/20 text-yellow-300 hover:bg-yellow-400/20 hover:text-yellow-400"
@@ -151,38 +151,49 @@ export default function DecadesTab() {
         {/* Decade Content */}
         <motion.div
           key={selectedDecade}
-          className="grid md:grid-cols-2 gap-8 items-start"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div>
-            <h2 className="text-3xl font-bold mb-4 text-yellow-400">{currentDecade.title}</h2>
-            <p className="text-lg text-white/80 mb-6">{currentDecade.description}</p>
-            <ul className="space-y-2 text-white/80 mb-6">
+          <div className="order-2 lg:order-1">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-yellow-400">{currentDecade.title}</h2>
+            <p className="text-sm sm:text-base lg:text-lg text-white/80 mb-4 sm:mb-6 leading-relaxed">
+              {currentDecade.description}
+            </p>
+            <ul className="space-y-2 text-white/80 mb-4 sm:mb-6">
               {currentDecade.features.map((feature, index) => (
-                <li key={index} className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-sm">{feature}</span>
+                <li key={index} className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full flex-shrink-0 mt-2"></div>
+                  <span className="text-xs sm:text-sm leading-relaxed">{feature}</span>
                 </li>
               ))}
             </ul>
 
+            {/* Details section for larger screens */}
+            <div className="hidden lg:block">
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">{currentDecade.details}</p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            {currentDecade.images.map((image, index) => (
-              <img
-                key={index}
-                src={image || "/placeholder.svg"}
-                alt={`${currentDecade.title} hairstyle ${index + 1}`}
-                className="rounded-lg w-full h-32 object-cover shadow-lg border border-yellow-400/20"
-              />
-            ))}
+          <div className="order-1 lg:order-2">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              {currentDecade.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image || "/placeholder.svg"}
+                  alt={`${currentDecade.title} hairstyle ${index + 1}`}
+                  className="rounded-lg w-full h-24 sm:h-32 lg:h-36 object-cover shadow-lg border border-yellow-400/20"
+                />
+              ))}
+            </div>
+
+            {/* Details section for mobile - shown below images */}
+            <div className="lg:hidden mt-4">
+              <p className="text-xs text-white/70 leading-relaxed">{currentDecade.details}</p>
+            </div>
           </div>
         </motion.div>
-
-
       </div>
     </motion.div>
   )

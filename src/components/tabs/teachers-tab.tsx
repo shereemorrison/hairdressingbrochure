@@ -20,9 +20,9 @@ export default function TeachersTab() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
         <motion.h1
-          className="text-5xl md:text-7xl font-black mb-16 text-center text-[var(--darkest)]"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 sm:mb-16 text-center text-[var(--darkest)]"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -30,21 +30,21 @@ export default function TeachersTab() {
           OUR <span className="text-black">TEACHERS</span>
         </motion.h1>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-16">
           {teachers.map((teacher, index) => (
             <motion.div
               key={teacher.name}
-              className="glass-card p-6 rounded-lg text-center"
+              className="glass-card p-4 sm:p-6 rounded-lg text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 border-2 border-yellow-400/30 rounded-full mx-auto mb-4 flex items-center justify-center backdrop-blur-sm">
-                <User className="text-lg text-yellow-400" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 border-2 border-yellow-400/30 rounded-full mx-auto mb-3 sm:mb-4 flex items-center justify-center backdrop-blur-sm">
+                <User className="text-base sm:text-lg text-yellow-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-yellow-400">{teacher.name}</h3>
-              <p className="text-yellow-300/80 mb-2 text-sm">{teacher.years}</p>
-              <p className="text-sm text-white/80">{teacher.specialty}</p>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 text-yellow-400">{teacher.name}</h3>
+              <p className="text-yellow-300/80 mb-2 text-xs sm:text-sm">{teacher.years}</p>
+              <p className="text-xs sm:text-sm text-white/80">{teacher.specialty}</p>
             </motion.div>
           ))}
         </div>
@@ -55,31 +55,11 @@ export default function TeachersTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto px-4">
             Our dedicated teaching staff has shaped generations of hairdressing professionals, bringing decades of
             industry experience and passion for education to every classroom.
           </p>
         </motion.div>
-
-        <div className="mt-16 space-y-8">
-          <motion.div
-            className="glass-card p-6 rounded-lg"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.6 }}
-          >
-
-          </motion.div>
-
-          <motion.div
-            className="glass-card p-6 rounded-lg"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-          >
-
-          </motion.div>
-        </div>
       </div>
     </motion.div>
   )

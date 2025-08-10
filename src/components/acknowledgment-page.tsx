@@ -57,12 +57,12 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
         }}
       >
         {/* Content */}
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <div className="mb-12">
-            <div className="flex justify-center space-x-8 mb-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+          <div className="mb-8 sm:mb-12">
+            <div className="flex justify-center space-x-4 sm:space-x-8 mb-6 sm:mb-8">
               {/* Aboriginal Flag */}
               <motion.div
-                className="w-32 h-20 rounded-lg overflow-hidden"
+                className="w-20 h-12 sm:w-32 sm:h-20 rounded-lg overflow-hidden"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -75,7 +75,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
 
               {/* Torres Strait Islander Flag */}
               <motion.div
-                className="w-32 h-20 rounded-lg bg-blue-600 relative overflow-hidden"
+                className="w-20 h-12 sm:w-32 sm:h-20 rounded-lg bg-blue-600 relative overflow-hidden"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
@@ -86,7 +86,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
                   <div className="h-1/3 bg-green-600"></div>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white text-xl">★</div>
+                  <div className="text-white text-sm sm:text-xl">★</div>
                 </div>
               </motion.div>
             </div>
@@ -94,7 +94,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
 
           {/* Title - ONLY Typewriter Effect */}
           <div
-            className="text-3xl md:text-xl font-bold mb-8 leading-tight"
+            className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 leading-tight px-2"
             style={{
               color: "hsl(45, 60%, 60%)",
             }}
@@ -105,7 +105,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
-                  delay: 0.8 + index * 0.08, // Small delay, then typewriter
+                  delay: 0.8 + index * 0.08,
                   duration: 0.1,
                 }}
                 style={{
@@ -119,7 +119,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
 
           {/* Main content - GROW Effect */}
           <motion.div
-            className="text-lg md:text-m leading-relaxed max-w-3xl mx-auto mb-12"
+            className="text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-12 px-2"
             style={{ color: "hsl(45, 60%, 60%)" }}
             initial={{
               scale: 0.05,
@@ -141,11 +141,11 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
               ease: "easeOut",
             }}
           >
-            <p className="mb-6">
+            <p className="mb-4 sm:mb-6">
               We acknowledge the Dja Dja Wurrung people as the Traditional Custodians of the lands and waters where
               Bendigo TAFE is located.
             </p>
-            <p className="mb-6">
+            <p className="mb-4 sm:mb-6">
               We pay our respects to Elders past and present, and extend that respect to all Aboriginal and Torres
               Strait Islander peoples.
             </p>
@@ -159,17 +159,17 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
           <motion.div
             initial={{
               scale: 0.05,
-              opacity: 0, // Start invisible
+              opacity: 0,
             }}
             animate={
               contentComplete
                 ? {
                     scale: 1,
-                    opacity: 1, // Become visible and grow
+                    opacity: 1,
                   }
                 : {
                     scale: 0.05,
-                    opacity: 0, // Stay invisible
+                    opacity: 0,
                   }
             }
             transition={{
@@ -179,7 +179,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
           >
             <Button
               onClick={onEnterBrochure}
-              className="bg-[#d6b85c] hover:bg-[#bf9b30] text-black font-bold py-4 px-12 text-xl rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="bg-[#d6b85c] hover:bg-[#bf9b30] text-black font-bold py-3 px-8 sm:py-4 sm:px-12 text-lg sm:text-xl rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               ENTER THE BROCHURE
             </Button>

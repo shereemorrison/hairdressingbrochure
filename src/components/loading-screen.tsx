@@ -19,7 +19,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       setTimeout(() => setPhase("birds-only"), 200)
     }
     if (phase === "birds-only") {
-      setTimeout(() => setPhase("lanyard-fall"), 2000)
+      setTimeout(() => setPhase("lanyard-fall"), 4000)
     }
     if (phase === "lanyard-fall") {
       setTimeout(() => setPhase("lanyard-interactive"), 1000)
@@ -66,7 +66,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             <VantaBirdsBackground className="absolute inset-0" />
 
             {/* Left side text */}
-            <div className="absolute inset-0 z-40 pointer-events-none">
+            <div className="absolute inset-0 z-50 pointer-events-none">
               <motion.div
                 className="absolute left-12 top-1/2 -translate-y-1/2"
                 initial={{ opacity: 0, x: -50 }}
@@ -92,7 +92,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             </div>
 
             {/* Right side text */}
-            <div className="absolute inset-0 z-40 pointer-events-none">
+            <div className="absolute inset-0 z-50 pointer-events-none">
               <motion.div
                 className="absolute top-16 right-8"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -120,7 +120,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             {showLanyard && (
               <motion.div
                 ref={lanyardRef}
-                className="absolute inset-0 z-50"
+                className="absolute inset-0 z-20"
                 initial={{ y: "-100%" }}
                 animate={
                   isExiting
