@@ -69,7 +69,7 @@ export default function MainBrochure() {
       color: "rgba(0, 0, 0, 0.4)",
       component: MovieTab,
       locked: false,
-      onClick: () => {},
+      onClick: () => setActiveSection("food"),
     },
     {
       id: "movie",
@@ -80,7 +80,7 @@ export default function MainBrochure() {
       color: "rgba(0, 0, 0, 0.4)",
       component: MovieTab,
       locked: true,
-      onClick: () => {},
+      onClick: () => setActiveSection("movie"),
     },
   ]
 

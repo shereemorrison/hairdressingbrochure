@@ -221,8 +221,8 @@ const ParticleCard: React.FC<{
       }
 
       if (enableMagnetism) {
-        const magnetX = (x - centerX) * 0.10
-        const magnetY = (y - centerY) * 0.10
+        const magnetX = (x - centerX) * 0.1
+        const magnetY = (y - centerY) * 0.1
         magnetismAnimationRef.current = gsap.to(element, {
           x: magnetX,
           y: magnetY,
@@ -511,12 +511,12 @@ const MagicBento: React.FC<BentoProps> = ({
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 1rem;                    // Spacing between cards
+            gap: 1rem;
             width: 100%;
-            max-width: 1000px;           // ← Overall box size
+            max-width: 1200px;
             margin: 0 auto;
-            height: 70vh;                // ← Overall height
-            min-height: 500px;           // ← Minimum height fallback
+            height: 75vh;
+            min-height: 600px;
           }
 
           .card-responsive .card:nth-child(1) {
@@ -544,11 +544,57 @@ const MagicBento: React.FC<BentoProps> = ({
             grid-row: 3 / 4;
           }
 
+          .card-responsive .card:nth-child(6) {
+            grid-column: 4 / 5;
+            grid-row: 3 / 4;
+          }
+
           @media (max-width: 1024px) {
             .card-responsive {
-              grid-template-columns: repeat(2, 1fr);
+              grid-template-columns: repeat(3, 1fr);
               grid-template-rows: repeat(4, 1fr);
               height: 80vh;
+              min-height: 500px;
+            }
+
+            .card-responsive .card:nth-child(1) {
+              grid-column: 1 / 2;
+              grid-row: 1 / 2;
+            }
+
+            .card-responsive .card:nth-child(2) {
+              grid-column: 2 / 3;
+              grid-row: 1 / 2;
+            }
+
+            .card-responsive .card:nth-child(3) {
+              grid-column: 3 / 4;
+              grid-row: 1 / 3;
+            }
+
+            .card-responsive .card:nth-child(4) {
+              grid-column: 1 / 3;
+              grid-row: 2 / 4;
+            }
+
+            .card-responsive .card:nth-child(5) {
+              grid-column: 3 / 4;
+              grid-row: 3 / 4;
+            }
+
+            .card-responsive .card:nth-child(6) {
+              grid-column: 1 / 4;
+              grid-row: 4 / 5;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .card-responsive {
+              grid-template-columns: repeat(2, 1fr);
+              grid-template-rows: repeat(6, 1fr);
+              height: 90vh;
+              min-height: 400px;
+              gap: 0.75rem;
             }
 
             .card-responsive .card:nth-child(1) {
@@ -563,25 +609,32 @@ const MagicBento: React.FC<BentoProps> = ({
 
             .card-responsive .card:nth-child(3) {
               grid-column: 1 / 3;
-              grid-row: 2 / 3;
+              grid-row: 2 / 4;
             }
 
             .card-responsive .card:nth-child(4) {
               grid-column: 1 / 3;
-              grid-row: 3 / 4;
+              grid-row: 4 / 6;
             }
 
             .card-responsive .card:nth-child(5) {
               grid-column: 1 / 2;
-              grid-row: 4 / 5;
+              grid-row: 6 / 7;
+            }
+
+            .card-responsive .card:nth-child(6) {
+              grid-column: 2 / 3;
+              grid-row: 6 / 7;
             }
           }
 
-          @media (max-width: 768px) {
+          @media (max-width: 480px) {
             .card-responsive {
               grid-template-columns: 1fr;
-              grid-template-rows: repeat(5, 1fr);
-              height: 90vh;
+              grid-template-rows: repeat(6, 1fr);
+              height: 95vh;
+              min-height: 350px;
+              gap: 0.5rem;
             }
 
             .card-responsive .card {
@@ -606,6 +659,10 @@ const MagicBento: React.FC<BentoProps> = ({
 
             .card-responsive .card:nth-child(5) {
               grid-row: 5 / 6;
+            }
+
+            .card-responsive .card:nth-child(6) {
+              grid-row: 6 / 7;
             }
           }
 
@@ -680,7 +737,7 @@ const MagicBento: React.FC<BentoProps> = ({
         <div className="card-responsive grid gap-4">
           {cards.map((card, index) => {
             const Icon = card.icon
-            const baseClassName = `card flex flex-col justify-between relative min-h-full w-full p-6 rounded-2xl border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-10 hover:shadow-2xl backdrop-blur-md ${
+            const baseClassName = `card flex flex-col justify-between relative min-h-full w-full p-4 sm:p-6 rounded-2xl border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl backdrop-blur-md ${
               enableBorderGlow ? "card--border-glow" : ""
             } ${card.locked ? "opacity-60 cursor-not-allowed" : "cursor-pointer"}`
 
@@ -691,7 +748,7 @@ const MagicBento: React.FC<BentoProps> = ({
               backgroundImage: card.backgroundImage ? `url(${card.backgroundImage})` : undefined,
               backgroundSize: "cover",
               backgroundPosition: "center",
-               // Blends the image with the background color
+              backgroundBlendMode: card.backgroundImage ? "overlay" : "normal",
               "--glow-x": "50%",
               "--glow-y": "50%",
               "--glow-intensity": "0",
@@ -713,16 +770,18 @@ const MagicBento: React.FC<BentoProps> = ({
                   onClick={card.onClick}
                 >
                   <div className="card__header flex justify-between items-center gap-3 relative text-white">
-                    <span className="card__label text-xs font-medium opacity-80">{card.label}</span>
-                    {Icon && <Icon className="w-8 h-8 text-white/80" />}
-                    {card.locked && <div className="text-xl">🔒</div>}
+                    <span className="card__label text-xs sm:text-sm font-medium opacity-80">{card.label}</span>
+                    {Icon && <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white/80" />}
+                    {card.locked && <div className="text-lg sm:text-xl">🔒</div>}
                   </div>
                   <div className="card__content flex flex-col relative text-white">
-                    <h3 className={`card__title font-semibold text-s m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}>
+                    <h3
+                      className={`card__title font-semibold text-sm sm:text-lg m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}
+                    >
                       {card.title}
                     </h3>
                     <p
-                      className={`card__description text-xs leading-relaxed opacity-90 ${
+                      className={`card__description text-xs sm:text-sm leading-relaxed opacity-90 ${
                         textAutoHide ? "text-clamp-2" : ""
                       }`}
                     >
@@ -741,16 +800,18 @@ const MagicBento: React.FC<BentoProps> = ({
                 onClick={card.locked ? undefined : card.onClick}
               >
                 <div className="card__header flex justify-between items-center gap-3 relative text-white">
-                  <span className="card__label text-sm font-medium opacity-80">{card.label}</span>
-                  {Icon && <Icon className="w-8 h-8 text-white/80" />}
-                  {card.locked && <div className="text-xl">🔒</div>}
+                  <span className="card__label text-xs sm:text-sm font-medium opacity-80">{card.label}</span>
+                  {Icon && <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white/80" />}
+                  {card.locked && <div className="text-lg sm:text-xl">🔒</div>}
                 </div>
                 <div className="card__content flex flex-col relative text-white">
-                  <h3 className={`card__title font-semibold text-lg m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}>
+                  <h3
+                    className={`card__title font-semibold text-sm sm:text-lg m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}
+                  >
                     {card.title}
                   </h3>
                   <p
-                    className={`card__description text-sm leading-relaxed opacity-90 ${
+                    className={`card__description text-xs sm:text-sm leading-relaxed opacity-90 ${
                       textAutoHide ? "text-clamp-2" : ""
                     }`}
                   >
