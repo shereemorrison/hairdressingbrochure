@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Lanyard from "@/blocks/Components/Lanyard/Lanyard"
 import VantaBirdsBackground from "@/components/VantaBirdsBackground"
+import bendigoLogo from "@/assets/bendigoLogo.png"
+
 
 interface LoadingScreenProps {
   onComplete?: () => void
@@ -79,6 +81,18 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 }
                 transition={isExiting ? { duration: 1.2, ease: "easeInOut" } : { duration: 0.8, delay: 1.2 }}
               >
+                <div className="flex justify-start mb-6">
+                  <img
+                    src={bendigoLogo || "/placeholder.svg"}
+                    alt="Bendigo TAFE"
+                    className="h-16 md:h-20 lg:h-24 drop-shadow-2xl brightness-110"
+                    onError={(e) => {
+                      console.log("Logo failed to load")
+                      e.currentTarget.src = "/placeholder.svg?height=100&width=200&text=Bendigo+TAFE"
+                    }}
+                    onLoad={() => console.log("Logo loaded successfully")}
+                  />
+                </div>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl">
                   Celebrate
                   <br />
