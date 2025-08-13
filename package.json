@@ -80,7 +80,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.4.17",
     "terser": "^5.43.1",
     "typescript": "^5.6.3",
     "vite": "^5.4.19"
@@ -89,13 +89,13 @@
   "main": "postcss.config.js",
   "repository": {
     "type": "git",
-    "url": "git+https://shereemorrison@github.com/shereemorrison/kanganbrochure.git"
+    "url": "git+https://shereemorrison@github.com/shereemorrison/hairdressingbrochure.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shereemorrison/kanganbrochure/issues"
+    "url": "https://github.com/shereemorrison/hairdressingbrochure/issues"
   },
-  "homepage": "https://github.com/shereemorrison/kanganbrochure#readme"
+  "homepage": "https://github.com/shereemorrison/hairdressingbrochure#readme"
 }
