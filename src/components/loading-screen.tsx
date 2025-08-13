@@ -3,8 +3,6 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Lanyard from "@/blocks/Components/Lanyard/Lanyard"
 import VantaBirdsBackground from "@/components/VantaBirdsBackground"
-import bendigoLogo from "@/assets/bendigoLogo.png"
-
 
 interface LoadingScreenProps {
   onComplete?: () => void
@@ -18,10 +16,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   // Phase transitions
   useEffect(() => {
     if (phase === "idle") {
-      setTimeout(() => setPhase("birds-only"), 200)
+      setTimeout(() => setPhase("birds-only"), 1000)
     }
     if (phase === "birds-only") {
-      setTimeout(() => setPhase("lanyard-fall"), 4000)
+      setTimeout(() => setPhase("lanyard-fall"), 5000)
     }
     if (phase === "lanyard-fall") {
       setTimeout(() => setPhase("lanyard-interactive"), 1000)
@@ -70,7 +68,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             {/* Left side text */}
             <div className="absolute inset-0 z-50 pointer-events-none">
               <motion.div
-                className="absolute left-12 top-1/2 -translate-y-1/2"
+                className="absolute left-4 sm:left-8 md:left-12 top-1/2 -translate-y-1/2"
                 initial={{ opacity: 0, x: -50 }}
                 animate={
                   isExiting
@@ -81,11 +79,11 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 }
                 transition={isExiting ? { duration: 1.2, ease: "easeInOut" } : { duration: 0.8, delay: 1.2 }}
               >
-                <div className="flex justify-start mb-6">
+                <div className="flex justify-start mb-4 sm:mb-6">
                   <img
-                    src={bendigoLogo || "/placeholder.svg"}
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/img-ilXRR2r7Ia3b6usQDpBjackc5L7nDs.png"
                     alt="Bendigo TAFE"
-                    className="h-16 md:h-20 lg:h-24 drop-shadow-2xl brightness-110"
+                    className="h-12 sm:h-16 md:h-20 lg:h-24 drop-shadow-2xl brightness-110"
                     onError={(e) => {
                       console.log("Logo failed to load")
                       e.currentTarget.src = "/placeholder.svg?height=100&width=200&text=Bendigo+TAFE"
@@ -93,7 +91,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                     onLoad={() => console.log("Logo loaded successfully")}
                   />
                 </div>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl">
+                <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl">
                   Celebrate
                   <br />
                   Hairdressing
@@ -108,7 +106,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             {/* Right side text */}
             <div className="absolute inset-0 z-50 pointer-events-none">
               <motion.div
-                className="absolute top-16 right-8"
+                className="absolute top-8 sm:top-12 md:top-16 right-4 sm:right-6 md:right-8"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={
                   isExiting
@@ -120,12 +118,12 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 transition={isExiting ? { duration: 1.2, ease: "easeInOut" } : { duration: 0.6, delay: 2.0 }}
               >
                 <div className="text-right">
-                  <p className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-2xl">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-2xl">
                     Click your ticket
                     <br />
                     To Enter
                   </p>
-                  <div className="w-16 h-0.5 bg-gradient-to-r from-yellow-400 to-pink-400 ml-auto"></div>
+                  <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-yellow-400 to-pink-400 ml-auto"></div>
                 </div>
               </motion.div>
             </div>
