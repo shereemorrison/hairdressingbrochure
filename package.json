@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "npm run preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
