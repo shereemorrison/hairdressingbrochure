@@ -127,15 +127,12 @@
 .scissors-animation {
   animation: scissorSnip 1.5s ease-in-out infinite;
 }
-
 .loading-progress {
   animation: loadingProgress 3s ease-in-out forwards;
 }
-
 .fade-in-up {
   animation: fadeInUp 0.8s ease-out;
 }
-
 .slide-in-right {
   animation: slideInRight 0.5s ease-out;
 }
@@ -157,7 +154,6 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -175,7 +171,6 @@
   transform: translateX(20px);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-
 .tab-content.active {
   opacity: 1;
   transform: translateX(0);
@@ -202,18 +197,15 @@
 .card-scroll-container::-webkit-scrollbar {
   width: 8px;
 }
-
 .card-scroll-container::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
-
 .card-scroll-container::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, rgba(255, 215, 0, 0.8), rgba(255, 162, 37, 0.8));
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
-
 .card-scroll-container::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, rgba(255, 215, 0, 1), rgba(255, 162, 37, 1));
 }
@@ -233,21 +225,13 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
 }
 
-.card-content-container {
-  background: transparent !important;
-  min-height: auto !important;
-}
-
-.card-content-container > div {
-  background: transparent !important;
-  min-height: auto !important;
-}
-
-.card-content-container .relative {
+/* Removed conflicting background rules that were forcing transparent backgrounds */
+/* Only apply transparent backgrounds to elements WITHOUT background images */
+.card-content-container > div:not([style*="background-image"]) {
   background: transparent !important;
 }
 
-.card-content-container [class*="bg-[var(--background-color)]"] {
+.card-content-container .relative:not([style*="background-image"]) {
   background: transparent !important;
 }
 
@@ -291,141 +275,6 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
 
-.card-content-container .text-5xl,
-.card-content-container .text-7xl {
-  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
-  color: white !important;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
-}
-
-.card-content-container .text-4xl {
-  font-size: clamp(1.2rem, 3vw, 1.8rem) !important;
-  color: rgba(255, 215, 0, 0.9) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-.card-content-container .text-2xl {
-  font-size: clamp(1rem, 2.5vw, 1.2rem) !important;
-  color: rgba(255, 215, 0, 0.9) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-.card-content-container .text-xl {
-  font-size: clamp(0.9rem, 2vw, 1rem) !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
-.card-content-container .text-lg {
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
-.card-content-container .text-sm {
-  color: rgba(255, 255, 255, 0.8) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Responsive spacing adjustments */
-@media (max-width: 768px) {
-  .card-content-container .py-16 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-
-  .card-content-container .py-32 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-  }
-
-  .card-content-container .mb-16 {
-    margin-bottom: 1rem !important;
-  }
-
-  .card-content-container .mb-8 {
-    margin-bottom: 0.5rem !important;
-  }
-
-  .card-content-container .gap-8 {
-    gap: 0.5rem !important;
-  }
-
-  .card-content-container .gap-16 {
-    gap: 1rem !important;
-  }
-
-  .card-content-container .p-6 {
-    padding: 0.75rem !important;
-  }
-
-  .card-content-container .p-8 {
-    padding: 1rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .card-content-container .py-16 {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-  }
-
-  .card-content-container .py-32 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-}
-
-/* Ensure bento grid responsiveness isn't overridden */
-.bento-section {
-  width: 100% !important;
-  max-width: none !important;
-}
-
-.bento-section .card-responsive {
-  width: 100% !important;
-  height: auto !important;
-  min-height: 60vh !important;
-}
-
-@media (max-width: 1024px) {
-  .bento-section .card-responsive {
-    min-height: 70vh !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .bento-section .card-responsive {
-    min-height: 80vh !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .bento-section .card-responsive {
-    min-height: 90vh !important;
-  }
-}
-
-/* Override specific color styles */
-.card-content-container [style*="color: hsl(8, 79%, 72%)"] {
-  color: rgba(255, 215, 0, 0.9) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-\
-.card-content-container .text-\[var$$--border-color$$\] {
-  color: rgba(255, 215, 0, 0.9) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-\
-.card-content-container .text-\[var$$--darkest$$\] {
-  color: white !important;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
-}
-\
-.card-content-container .text-\[var$$--text-on-white$$\] {
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
 /* Text glow effects */
 .text-glow-white {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4),
@@ -435,9 +284,4 @@
 .text-glow-yellow {
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4), 0 0
     40px rgba(255, 215, 0, 0.2);
-}
-
-.text-glow-gradient {
-  text-shadow: 0 0 10px rgba(255, 193, 7, 0.8), 0 0 20px rgba(255, 152, 0, 0.6), 0 0 30px rgba(255, 193, 7, 0.4), 0 0
-    40px rgba(255, 152, 0, 0.2);
 }
