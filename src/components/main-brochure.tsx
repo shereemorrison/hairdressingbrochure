@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils } from "lucide-react"
+import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Aurora from "./aurora"
 import MagicBento from "./magic-bento"
@@ -10,9 +10,15 @@ import CelebrateTab from "@/components/tabs/celebrate-tab"
 import AwardsTab from "@/components/tabs/awards-tab"
 import DecadesTab from "@/components/tabs/decades-tab"
 import MovieTab from "@/components/tabs/movie-tab"
+import GalleryTab from "@/components/tabs/gallery-tab"
 import bendigoLogo from "@/assets/bendigoLogo.png"
 import celebrate from "@/assets/celebrate.jpg"
 import tafebuilding from "@/assets/tafebuilding.jpg"
+import group1 from "@/assets/teachers/group1.jpg"
+import award from "@/assets/award.jpg"
+import food from "@/assets/food.jpg"
+import gallery from "@/assets/gallery.jpg"
+import RefereshmentsTab from "@/components/tabs/refreshments-tab"
 
 export default function MainBrochure() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
@@ -33,6 +39,7 @@ export default function MainBrochure() {
       description: "Meet our dedicated educators and staff members",
       label: "Educators",
       color: "rgba(0, 0, 0, 0.4)",
+      backgroundImage: group1, // Using group1 image as background
       component: TeachersTab,
       onClick: () => setActiveSection("teachers"),
     },
@@ -43,6 +50,7 @@ export default function MainBrochure() {
       description: "Recognition, achievements and accolades",
       label: "Recognition",
       color: "rgba(0, 0, 0, 0.4)",
+      backgroundImage: award,
       component: AwardsTab,
       onClick: () => setActiveSection("awards"),
     },
@@ -75,9 +83,21 @@ export default function MainBrochure() {
       description: "Catering details and menu options",
       label: "Food",
       color: "rgba(0, 0, 0, 0.4)",
-      component: MovieTab,
+      backgroundImage: food,
+      component: RefereshmentsTab,
       locked: false,
       onClick: () => setActiveSection("food"),
+    },
+    {
+      id: "gallery",
+      icon: Camera,
+      title: "GALLERY",
+      description: "Campus photos and building images",
+      label: "Gallery",
+      color: "rgba(0, 0, 0, 0.4)",
+      backgroundImage: gallery,
+      component: GalleryTab,
+      onClick: () => setActiveSection("gallery"),
     },
     {
       id: "movie",
@@ -178,7 +198,7 @@ export default function MainBrochure() {
 
               {/* Card Content */}
               <motion.div
-                className="relative z-20 card-scroll-container card-content-container"
+                className="relative z-20 card-scroll-container card-content-container pb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
