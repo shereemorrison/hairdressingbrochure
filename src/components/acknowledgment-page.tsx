@@ -10,7 +10,7 @@ interface AcknowledgmentPageProps {
 }
 
 // Custom typewriter hook
-function useTypewriter(text: string, speed = 80) {
+function useTypewriter(text: string, speed = 100) {
   const [displayText, setDisplayText] = useState("")
   const [isComplete, setIsComplete] = useState(false)
 
@@ -44,7 +44,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
       // Show content after title completes
       const contentTimer = setTimeout(() => setContentVisible(true), 500)
       // Show button after content animation
-      const buttonTimer = setTimeout(() => setButtonVisible(true), 3000)
+      const buttonTimer = setTimeout(() => setButtonVisible(true), 2000)
 
       return () => {
         clearTimeout(contentTimer)
