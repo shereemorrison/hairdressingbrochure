@@ -1,20 +1,23 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar, MapPin, Phone, Clock } from "lucide-react"
+import { Calendar, MapPin, Phone, Music } from "lucide-react"
 
 const eventHighlights = [
-  "Live hairdressing demonstrations",
-  "Alumni success stories",
-  "Industry networking opportunities",
-  "Student showcase presentations",
-  "Refreshments and entertainment",
+    //Maybe add more highlights once confirmed with Julie/Zeb
 ]
 
-const schedule = [
-  { time: "05:00 PM", event: "Welcome" },
-  { time: "6:00 PM", event: "Awards Ceremony" },
-  { time: "6:30 PM", event: "Video Presentation" },
+const entertainment = [
+  {
+    category: "Hair Models",
+    items: [
+      { performer: "Rikki Blake", era: "1970's" },
+      { performer: "Emily Eliades & Tia Webb", era: "1980's" },
+      { performer: "Julianne Shelton", era: "1990's" },
+    ],
+  },
+  { category: "Music", items: [{ performer: "TBC", era: "" }] },
+  { category: "Hair Apprentices", items: [{ performer: "TBA", era: "" }] },
 ]
 
 export default function CelebrateTab() {
@@ -37,10 +40,7 @@ export default function CelebrateTab() {
               <br />
               <span className="text-yellow-400">HAIRDRESSING</span>
             </h1>
-            <p className="text-sm sm:text-base lg:text-lg text-white/90 font-semibold mb-4 sm:mb-6 leading-relaxed drop-shadow-md">
-              At Bendigo TAFE, we've been shaping the future of hairdressing for decades. From traditional techniques to
-              cutting-edge trends, our program has evolved to meet the ever-changing demands of the beauty industry.
-            </p>
+
             <div className="space-y-2 sm:space-y-4">
               {eventHighlights.map((highlight, index) => (
                 <div key={index} className="flex items-center space-x-3">
@@ -90,14 +90,21 @@ export default function CelebrateTab() {
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           <div className="flex items-center mb-4">
-            <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
-            <h3 className="text-base sm:text-xl font-bold text-yellow-400">Event Schedule</h3>
+            <Music className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
+            <h3 className="text-base sm:text-xl font-bold text-yellow-400">Entertainment</h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
-            {schedule.map((item, index) => (
-              <div key={index} className="flex items-center space-x-3 py-2">
-                <span className="text-xs font-bold text-yellow-400 min-w-[60px]">{item.time}</span>
-                <span className="text-xs text-white/90">{item.event}</span>
+          <div className="space-y-4">
+            {entertainment.map((section, sectionIndex) => (
+              <div key={sectionIndex}>
+                <h4 className="text-sm font-bold text-yellow-400 mb-2">{section.category}</h4>
+                <div className="grid grid-cols-1 gap-2">
+                  {section.items.map((item, itemIndex) => (
+                    <div key={itemIndex} className="flex items-center justify-between py-1">
+                      <span className="text-xs text-white/90">{item.performer}</span>
+                      {item.era && <span className="text-xs text-yellow-400/70">{item.era}</span>}
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
