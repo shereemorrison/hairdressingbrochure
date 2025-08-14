@@ -11,17 +11,17 @@ export default function TeachersTab() {
 
   const groupPhotos = [
     {
-      src: "src/assets/teachers/staff1980.png",
+      src: "/assets/teachers/staff1980.png",
       alt: "Staff 1980s",
       names: ["Staff from the 1980s"],
     },
     {
-      src: "src/assets/teachers/group1.jpg",
+      src: "/assets/teachers/group1.jpg",
       alt: "",
       names: ["Julie M", "Alisha W", "Julie C", "Wendy", "Jacinta"],
     },
     {
-      src: "src/assets/teachers/group2.png",
+      src: "/assets/teachers/group2.png",
       alt: "",
       names: ["Sue", "Deb", "Julie", "Gayle"],
     },
@@ -50,7 +50,7 @@ export default function TeachersTab() {
     // Handle year ranges
     const getFirstYear = (year: string) => {
       const match = year.match(/^\d{4}/)
-      return match ? Number.parseInt(match[0]) : 9999 // Put non-numeric years at the end
+      return match ? Number.parseInt(match[0]) : 9999
     }
     return getFirstYear(a) - getFirstYear(b)
   })
