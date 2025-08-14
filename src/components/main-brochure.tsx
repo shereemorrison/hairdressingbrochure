@@ -17,6 +17,8 @@ import tafebuilding from "@/assets/tafebuilding.jpg"
 import group1 from "@/assets/teachers/group1.jpg"
 import award from "@/assets/award.jpg"
 import food from "@/assets/food.jpg"
+import gallery from "@/assets/gallery.jpg"
+import RefreshmentsTab from "@/components/tabs/refreshments-tab"
 
 export default function MainBrochure() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
@@ -82,17 +84,18 @@ export default function MainBrochure() {
       label: "Food",
       color: "rgba(0, 0, 0, 0.4)",
       backgroundImage: food,
-      component: MovieTab,
+      component: RefreshmentsTab,
       locked: false,
       onClick: () => setActiveSection("food"),
     },
     {
-      id: "gallery", // Adding new Gallery tab
+      id: "gallery",
       icon: Camera,
       title: "GALLERY",
       description: "Campus photos and building images",
       label: "Gallery",
       color: "rgba(0, 0, 0, 0.4)",
+      backgroundImage: gallery,
       component: GalleryTab,
       onClick: () => setActiveSection("gallery"),
     },
