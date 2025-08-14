@@ -1,19 +1,5 @@
-declare module "*.png" {
-    const content: any;
-    export default content;
-  }
-  
-  declare module "*.jpg" {
-    const content: any;
-    export default content;
-  }
-  
-  declare module "*.jpeg" {
-    const content: any;
-    export default content;
-  }
-  
-  declare module "*.svg" {
-    const content: any;
-    export default content;
-  }
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/pages/api-reference/config/typescript for more information.
