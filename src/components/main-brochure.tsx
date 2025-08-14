@@ -17,8 +17,6 @@ import tafebuilding from "@/assets/tafebuilding.jpg"
 import group1 from "@/assets/teachers/group1.jpg"
 import award from "@/assets/award.jpg"
 import food from "@/assets/food.jpg"
-import gallery from "@/assets/gallery.jpg"
-import RefereshmentsTab from "@/components/tabs/refreshments-tab"
 
 export default function MainBrochure() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
@@ -39,7 +37,7 @@ export default function MainBrochure() {
       description: "Meet our dedicated educators and staff members",
       label: "Educators",
       color: "rgba(0, 0, 0, 0.4)",
-      backgroundImage: group1, // Using group1 image as background
+      backgroundImage: group1,
       component: TeachersTab,
       onClick: () => setActiveSection("teachers"),
     },
@@ -84,18 +82,17 @@ export default function MainBrochure() {
       label: "Food",
       color: "rgba(0, 0, 0, 0.4)",
       backgroundImage: food,
-      component: RefereshmentsTab,
+      component: MovieTab,
       locked: false,
       onClick: () => setActiveSection("food"),
     },
     {
-      id: "gallery",
+      id: "gallery", // Adding new Gallery tab
       icon: Camera,
       title: "GALLERY",
       description: "Campus photos and building images",
       label: "Gallery",
       color: "rgba(0, 0, 0, 0.4)",
-      backgroundImage: gallery,
       component: GalleryTab,
       onClick: () => setActiveSection("gallery"),
     },
@@ -119,9 +116,7 @@ export default function MainBrochure() {
   const activeComponent = iconSections.find((section) => section.id === activeSection)
 
   return (
-    <div
-      className={`relative flex flex-col ${isMobile ? "min-h-screen" : "min-h-screen max-h-screen overflow-hidden"}`}
-    >
+    <div className={`relative flex flex-col min-h-screen`}>
       {/* Aurora Background */}
       <div className="absolute inset-0 z-0">
         <Aurora colorStops={["#000000", "#FFD700", "#FFA225"]} blend={0.5} amplitude={1.0} speed={0.5} />
@@ -136,10 +131,8 @@ export default function MainBrochure() {
       </div>
 
       {/* Main Content */}
-      <div
-        className={`relative z-20 flex-1 ${isMobile ? "flex flex-col" : "flex items-center justify-center px-6 pb-6"}`}
-      >
-        <div className={`w-full ${isMobile ? "flex-1" : "h-full flex items-center justify-center"}`}>
+      <div className="relative z-20 flex-1 flex items-center justify-center px-6 pb-6">
+        <div className="w-full flex items-center justify-center">
           <MagicBento
             textAutoHide={true}
             enableStars={true}
@@ -198,7 +191,7 @@ export default function MainBrochure() {
 
               {/* Card Content */}
               <motion.div
-                className="relative z-20 card-scroll-container card-content-container pb-8"
+                className="relative z-20 card-scroll-container card-content-container"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
