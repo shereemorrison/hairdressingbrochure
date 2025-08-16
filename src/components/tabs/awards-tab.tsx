@@ -1,13 +1,24 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Trophy } from "lucide-react"
+import { Trophy, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 import { students } from "../../data/students"
 import type { Student } from "../../types/student"
 
 export default function AwardsTab() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
   // Get featured students (those with photos)
   const featuredStudents = students.filter((student) => student.hasPhoto)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % featuredStudents.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + featuredStudents.length) % featuredStudents.length)
+  }
 
   // Group students by award category
   const groupedByAward = students.reduce(
@@ -43,51 +54,85 @@ export default function AwardsTab() {
           AWARD <span className="text-black">WINNERS</span>
         </motion.h1>
 
-        {/* Featured Students with Photos */}
         <motion.div
           className="mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-yellow-400 flex items-center gap-2">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-yellow-400 flex items-center justify-center gap-2">
             <Trophy className="w-5 h-5" />
-            Featured Award Winners
+            Award Winner Photo Gallery
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {featuredStudents.map((student, index) => (
-              <motion.div
-                key={student.id}
-                className="glass-card p-4 rounded-xl border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -2 }}
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div
-                    className="w-24 h-24 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-bold text-lg mb-3 shadow-lg"
-                    style={{
-                      backgroundImage: student.photoFilename
-                        ? `url(/assets/students/${student.photoFilename})`
-                        : undefined,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center top", // Focus on top portion to avoid cutting off heads
-                      backgroundRepeat: "no-repeat",
-                    }}
+
+          <div className="relative max-w-md mx-auto">
+            <div className="glass-card p-6 rounded-xl border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300">
+              <div className="relative">
+                {featuredStudents.length > 0 && (
+                  <motion.div
+                    key={currentSlide}
+                    className="flex flex-col items-center text-center"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    {!student.photoFilename &&
-                      student.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                  </div>
-                  <h3 className="font-bold text-white text-sm mb-1">{student.name}</h3>
-                  <p className="text-yellow-400 text-xs font-semibold mb-2">{student.year}</p>
-                  <p className="text-white/70 text-xs leading-relaxed">{student.award}</p>
+                    <div
+                      className="w-32 h-32 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg"
+                      style={{
+                        backgroundImage: featuredStudents[currentSlide].photoFilename
+                          ? `url(/assets/students/${featuredStudents[currentSlide].photoFilename})`
+                          : undefined,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center top",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    >
+                      {!featuredStudents[currentSlide].photoFilename &&
+                        featuredStudents[currentSlide].name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                    </div>
+                    <h3 className="font-bold text-white text-lg mb-2">{featuredStudents[currentSlide].name}</h3>
+                    <p className="text-yellow-400 text-sm font-semibold mb-3">{featuredStudents[currentSlide].year}</p>
+                    <p className="text-white/70 text-sm leading-relaxed">{featuredStudents[currentSlide].award}</p>
+                  </motion.div>
+                )}
+
+                {/* Navigation Arrows */}
+                {featuredStudents.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevSlide}
+                      className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={nextSlide}
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Dot Indicators */}
+              {featuredStudents.length > 1 && (
+                <div className="flex justify-center mt-4 space-x-2">
+                  {featuredStudents.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentSlide ? "bg-yellow-400" : "bg-white/30"
+                      }`}
+                    />
+                  ))}
                 </div>
-              </motion.div>
-            ))}
+              )}
+            </div>
           </div>
         </motion.div>
 

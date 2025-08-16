@@ -23,6 +23,7 @@ import RefreshmentsTab from "@/components/tabs/refreshments-tab"
 export default function MainBrochure() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768)
@@ -38,7 +39,7 @@ export default function MainBrochure() {
       title: "TEACHERS",
       description: "Meet our dedicated educators and staff members",
       label: "Educators",
-      color: "rgba(0, 0, 0, 0.4)",
+      color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: group1,
       component: TeachersTab,
       onClick: () => setActiveSection("teachers"),
@@ -49,7 +50,7 @@ export default function MainBrochure() {
       title: "AWARDS",
       description: "Recognition, achievements and accolades",
       label: "Recognition",
-      color: "rgba(0, 0, 0, 0.4)",
+      color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: award,
       component: AwardsTab,
       onClick: () => setActiveSection("awards"),
@@ -60,7 +61,7 @@ export default function MainBrochure() {
       title: "HISTORY OF HAIRDRESSING",
       description: "Journey through the decades of hairdressing",
       label: "History",
-      color: "rgba(0, 0, 0, 0.4)",
+      color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: tafebuilding,
       component: DecadesTab,
       onClick: () => setActiveSection("decades"),
@@ -71,7 +72,7 @@ export default function MainBrochure() {
       title: "EVENT DETAILS",
       description: "Main celebration content and event information",
       label: "Celebration",
-      color: "rgba(0, 0, 0, 0.4)",
+      color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: celebrate,
       component: CelebrateTab,
       onClick: () => setActiveSection("celebrate"),
@@ -82,7 +83,7 @@ export default function MainBrochure() {
       title: "REFRESHMENTS",
       description: "Catering details and menu options",
       label: "Food",
-      color: "rgba(0, 0, 0, 0.4)",
+      color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: food,
       component: RefreshmentsTab,
       locked: false,
@@ -94,7 +95,7 @@ export default function MainBrochure() {
       title: "GALLERY",
       description: "Campus photos and building images",
       label: "Gallery",
-      color: "rgba(0, 0, 0, 0.4)",
+      color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: gallery,
       component: GalleryTab,
       onClick: () => setActiveSection("gallery"),
@@ -114,6 +115,10 @@ export default function MainBrochure() {
 
   const handleBackToLanding = () => {
     setActiveSection(null)
+  }
+
+  const handleGalleryModalChange = (isOpen: boolean) => {
+    setIsGalleryModalOpen(isOpen)
   }
 
   const activeComponent = iconSections.find((section) => section.id === activeSection)
@@ -204,22 +209,28 @@ export default function MainBrochure() {
                   exit: { delay: 0, duration: 0.2 },
                 }}
               >
-                <activeComponent.component />
+                {activeSection === "gallery" ? (
+                  <GalleryTab onModalStateChange={handleGalleryModalChange} />
+                ) : (
+                  <activeComponent.component />
+                )}
               </motion.div>
 
-              {/* Floating Back Button */}
-              <motion.button
-                onClick={handleBackToLanding}
-                className="absolute top-4 right-4 z-[100002] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50 bg-black/60 backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <span className="text-sm font-medium">Back</span>
-                <ArrowLeft className="w-4 h-4" />
+              {/* Floating Back Button - Hide when gallery modal is open */}
+                {!isGalleryModalOpen && (
+                  <motion.button
+                    onClick={handleBackToLanding}
+                    className="absolute top-4 right-4 z-[99998] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50 bg-black/60 backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <span className="text-sm font-medium">Back</span>
+                    <ArrowLeft className="w-4 h-4" />
               </motion.button>
+              )}
             </motion.div>
           </motion.div>
         )}
