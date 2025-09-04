@@ -175,7 +175,7 @@ export const students: Student[] = [
   {
     id: "40",
     name: "Kate Berryman",
-    year: 2005,
+    year: 2002,
     award: "HBIA Apprentice of the Year",
     hasPhoto: true,
     photoFilename: "KateBerryman.png",
@@ -221,5 +221,13 @@ export const students: Student[] = [
     award: "TBA",
     hasPhoto: true,
     photoFilename: "emma.png",
+    },
+
+    { id: "45",
+    name: "Julie Bish",
+    year: 1975,
+    award: "Hairdressing Medal",
+    hasPhoto: true,
+    photoFilename: "JulieBishHairdressingMedal.jpg",
     },
 ]

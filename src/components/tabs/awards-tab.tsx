@@ -138,7 +138,11 @@ export default function AwardsTab() {
 
         {/* Award Categories */}
         <div className="space-y-6 sm:space-y-8">
-          {Object.entries(groupedByAward).map(([award, winners], categoryIndex) => (
+          {Object.entries(groupedByAward)
+            .filter(([award, winners]) =>
+              winners.some(winner => !featuredStudents.some(featured => featured.id === winner.id))
+            )
+            .map(([award, winners], categoryIndex) => (
             <motion.div
               key={award}
               className="glass-card p-4 sm:p-6 rounded-xl border border-white/10"
@@ -182,6 +186,17 @@ export default function AwardsTab() {
           ))}
         </div>
       </div>
+      <motion.div
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+              >
+                <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
+                  {" "}
+                 Photos were not available for all award winners
+                </p>
+              </motion.div>
     </motion.div>
   )
 }

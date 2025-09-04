@@ -3,9 +3,9 @@ import type { Teacher, TeachersByYear } from "../types/teachers"
 export const teachersData: Teacher[] = [
   // 1975
   { id: "1", name: "Peter Chamberlain", year: "1975", hasPhoto: false, role: "teacher" },
+  { id: "2", name: "Olwyn Coates", year: "1975", hasPhoto: false, role: "teacher" },
 
   // 1975-1985
-  { id: "2", name: "Olwyn Coates", year: "1975-1985", hasPhoto: false, role: "teacher" },
   { id: "3", name: "Kath Campbell", year: "1975-1985", hasPhoto: false, role: "teacher" },
   { id: "4", name: "Denise Dear", year: "1975-1985", hasPhoto: false, role: "teacher" },
   {
@@ -40,6 +40,7 @@ export const teachersData: Teacher[] = [
 
   // 2000
   { id: "14", name: "Deb Burch", year: "2000", hasPhoto: true, role: "teacher" },
+  { id: "42", name: "Julie Curnow", year: "2000 - current", hasPhoto: false, role: "teacher" },
 
   // 2004
   { id: "15", name: "Vicki Frisk", year: "2004", hasPhoto: true, role: "teacher" },
@@ -53,13 +54,15 @@ export const teachersData: Teacher[] = [
   { id: "21", name: "Autumn O'Connell", year: "2011", hasPhoto: false, role: "teacher" },
   { id: "22", name: "Andrea Forge", year: "2011", hasPhoto: false, role: "teacher" },
   { id: "23", name: "Barb Loader", year: "2011", hasPhoto: false, role: "teacher" },
+  { id: "25", name: "Grant McKinnon", year: "2014", hasPhoto: true, role: "teacher" },
 
   // 2016
   { id: "24", name: "Alisha Weekley", year: "2016", hasPhoto: true, role: "teacher" },
-  { id: "25", name: "Grant McKinnon", year: "2016", hasPhoto: true, role: "teacher" },
+
 
   // 2017
   { id: "26", name: "Brianna Giddings", year: "2017", hasPhoto: false, role: "teacher" },
+  { id: "43", name: "Kristie Weekley", year: "2017", hasPhoto: false, role: "teacher" },
 
   // 2018
   { id: "27", name: "Breanna Watson", year: "2018", hasPhoto: false, role: "teacher" },
@@ -78,6 +81,9 @@ export const teachersData: Teacher[] = [
 
   // 2023
   { id: "36", name: "Danica Orchard", year: "2023", hasPhoto: false, role: "teacher" },
+
+  // 2024
+  { id: "44", name: "Paige Wilson", year: "2024", hasPhoto: false, role: "teacher" },
 
   // 2025
   { id: "37", name: "Britt Whitten", year: "2025", hasPhoto: false, role: "teacher" },

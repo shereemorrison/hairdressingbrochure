@@ -15,6 +15,12 @@ export default function TeachersTab() {
       alt: "Staff 1980s",
       names: ["Staff from the 1980s"],
     },
+
+    { src: "/assets/teachers/hairstaff.jpg",
+    alt: "Our Staff Today",
+    names: ["Our Staff"],
+    },
+
     {
       src: "/assets/teachers/group1.jpg",
       alt: "",
@@ -188,10 +194,9 @@ export default function TeachersTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
             {" "}
-            Our dedicated teaching staff has shaped generations of hairdressing professionals, bringing decades of
-            industry experience and passion for education to every classroom.
+            Our dedicated teaching staff have shaped generations of hairdressing professionals, bringing decades of industry experience and passion for education to every salon classroom
           </p>
         </motion.div>
       </div>

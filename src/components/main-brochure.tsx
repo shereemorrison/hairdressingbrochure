@@ -220,14 +220,14 @@ export default function MainBrochure() {
                 {!isGalleryModalOpen && (
                   <motion.button
                     onClick={handleBackToLanding}
-                    className="absolute top-4 right-4 z-[99998] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50 bg-black/60 backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
+                    className="absolute top-4 right-4 z-[99998] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50  backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <span className="text-sm font-medium">Back</span>
+                    <span className="text-xs font-medium">Back</span>
                     <ArrowLeft className="w-4 h-4" />
               </motion.button>
               )}
