@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Lanyard from "@/blocks/Components/Lanyard/Lanyard"
 import VantaBirdsBackground from "@/components/VantaBirdsBackground"
+import logo from "@/assets/logo.png"
+
 
 interface LoadingScreenProps {
   onComplete?: () => void
@@ -81,7 +83,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               >
                 <div className="flex justify-start mb-4 sm:mb-6">
                   <img
-                    src="/assets/bendigoLogoNoWriting.png"
+                    src="/assets/logo.png"
                     alt="Bendigo TAFE"
                     className="h-12 sm:h-16 md:h-20 lg:h-24 drop-shadow-2xl brightness-110"
                     onError={(e) => {

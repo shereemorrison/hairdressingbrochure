@@ -63,7 +63,7 @@ export default function CelebrateTab() {
               <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
               <h3 className="text-base sm:text-lg font-bold text-yellow-400">When</h3>
             </div>
-            <p className="text-xs sm:text-sm text-white/90">October 2025</p>
+            <p className="text-xs sm:text-sm text-white/90">Friday 17 October 2025</p>
             <p className="text-xs mt-1 text-white/70">Save the date for this special celebration</p>
           </div>
           <div className="glass-card p-4 sm:p-6 rounded-lg">
@@ -71,7 +71,7 @@ export default function CelebrateTab() {
               <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
               <h3 className="text-base sm:text-lg font-bold text-yellow-400">Where</h3>
             </div>
-            <p className="text-xs sm:text-sm text-white/90">Building G, 154 Hargreaves Street Bendigo, VIC 3552</p>
+            <p className="text-xs sm:text-sm text-white/90">Bendigo TAFE Restaurant, <br /> Building E<br /> 154 Hargreaves Street <br /> Bendigo <br />VIC 3552</p>
           </div>
           <div className="glass-card p-4 sm:p-6 rounded-lg sm:col-span-2 lg:col-span-1">
             <div className="flex items-center mb-3">
