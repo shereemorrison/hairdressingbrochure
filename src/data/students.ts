@@ -216,7 +216,7 @@ export const students: Student[] = [
       photoFilename: "caitlingiddings.png",
     },
 { id: "44",
-    name: "Emma - confirm surname",
+    name: "Emma Musgrove",
     year: 2003,
     award: "TBA",
     hasPhoto: true,
@@ -230,4 +230,76 @@ export const students: Student[] = [
     hasPhoto: true,
     photoFilename: "JulieBishHairdressingMedal.jpg",
     },
-]
+
+{ id: "46",
+    name: "Awards Certifcates",
+    hasPhoto: true,
+    photoFilename: "awardcertificates.png"},
+
+{id: "47",
+    name: "Awards Winners Group Photo",
+    year: 2025,
+    hasPhoto: true,
+    photoFilename: "Awardscertificates2025.png"
+    },
+
+{id: "48",
+    name: "Award Winners Group Photo",
+    hasPhoto: true,
+    photoFilename: "awardwinners.png"
+    },
+
+    {id: "49",
+        name: "Award Winners Group Photo",
+        hasPhoto: true,
+        photoFilename: "awardwinners3.png"
+        },
+
+    {id: "50",
+        name: "Award Winners Group Photo",
+        hasPhoto: true,
+        photoFilename: "awardwinners6.png"
+        },
+
+    {id: "51",
+        name: "Award Winners Group Photo",
+        hasPhoto: true,
+        photoFilename: "awardwinners7.png"},
+
+        {id: "52",
+            name: "Award Winners Group Photo 1980",
+            year: 1980,
+            hasPhoto: true,
+            photoFilename: "awardwinners1980.png"},
+
+            { id: "53",
+                name: "Award Winners Group Photo 1999",
+               year: 1999,
+               hasPhoto: true,
+               photoFilename: "awardwinners1999.png"},
+
+              { id: "54",
+               name: "Nicole Street and Chanelle",
+               hasPhoto: true,
+                photoFilename: "nicolestreetandchanelle.png",
+                },
+
+            {id: "55",
+                name: "Historical Trophies",
+                hasPhoto: true,
+                photoFilename: "Perpetualtrophies.jpg"},
+
+                { id: "56",
+                    name: "Renee Alford",
+                    hasPhoto: true,
+                    photoFilename: "reneealford.png"},
+
+                    { id: "57",
+                        name: "Award Winners Group Photo",
+                        hasPhoto: true,
+                        photoFilename: "groupphoto.jpeg"},
+
+
+
+
+    ]

@@ -274,8 +274,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
                   animate={contentVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  We acknowledge the Dja Dja Wurrung and Taungurung Peoples of the Kulin Nation as the Traditional Custodians of the lands and waters where
-                  Bendigo TAFE is located.
+                  I would like to acknowledge our meeting/event/conference is being held on the lands of the Djaara people of the Dja Dja Wurrung and I wish to acknowledge them as the Traditional Owners.
                 </motion.p>
                 <motion.p
                   className="mb-4 sm:mb-6"
@@ -283,16 +282,14 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
                   animate={contentVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  We pay our respects to Elders past and present, and extend that respect to all Aboriginal and Torres
-                  Strait Islander peoples.
+                  I pay my respects to their Elders, past and present along with other Aboriginal and Torres Strait Islander people present today.
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  We recognize their continuing connection to country and culture, and their contribution to the life of
-                  this region.
+                 We recognise their continuing connection to land, waters and culture.
                 </motion.p>
               </motion.div>
 
