@@ -40,7 +40,7 @@ export const teachersData: Teacher[] = [
 
   // 2000
   { id: "14", name: "Deb Burch", year: "2000", hasPhoto: true, role: "teacher" },
-  { id: "42", name: "Julie Curnow", year: "2000 - current", hasPhoto: false, role: "teacher" },
+  { id: "42", name: "Julie Curnow", year: "2000", hasPhoto: false, role: "teacher" },
 
   // 2004
   { id: "15", name: "Vicki Frisk", year: "2004", hasPhoto: true, role: "teacher" },
