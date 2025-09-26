@@ -28,7 +28,7 @@ const UNLOCK_SCHEDULE = {
   awards: new Date('2025-01-03T10:00:00+11:00'), // 10am AEST
   decades: new Date('2025-01-04T10:00:00+11:00'), // 10am AEST
   gallery: new Date('2025-01-04T10:00:00+11:00'), // 10am AEST
-  movie: new Date('2025-10-17T21:00:00+11:00'), // 9pm AEST
+  movie: new Date('2025-01-17T21:00:00+11:00'), // 9pm AEST
 }
 
 export default function MainBrochure() {
