@@ -498,7 +498,10 @@ const MagicBento: React.FC<BentoProps> = ({
     const Icon = card.icon
 
     const handleClick = () => {
-      if (!card.locked && card.onClick) {
+      if (card.locked && card.specialBehavior !== "clickable-preview") {
+        return
+      }
+      if (card.onClick) {
         card.onClick()
       }
     }
