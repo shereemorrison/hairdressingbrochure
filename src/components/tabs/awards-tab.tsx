@@ -52,9 +52,9 @@ export default function AwardsTab() {
          transition={{ delay: 0.2, duration: 0.6 }}
        >
          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
-           CELEBRATING OUR AWARD
+           CELEBRATING OUR
            <br />
-           <span className="text-yellow-400">WINNERS</span>
+           <span className="text-yellow-400">AWARD WINNERS</span>
          </h1>
        </motion.div>
      </div>

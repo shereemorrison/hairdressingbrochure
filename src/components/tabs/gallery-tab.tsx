@@ -108,9 +108,9 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
       {/* Header */}
       <div className="mb-8">
        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
-         CAMPUS AND FACILITIES
+         CAMPUS AND
          <br />
-         <span className="text-yellow-400">PHOTO GALLERY</span>
+         <span className="text-yellow-400">FACILITIES GALLERY</span>
        </h1>
         <p className="text-lg text-white/80 max-w-2xl">
           Explore our beautiful campuses and facilities across different locations. Tap any image to see its description.
