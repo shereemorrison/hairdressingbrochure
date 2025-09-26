@@ -4,7 +4,7 @@ A modern, interactive React brochure for Bendigo TAFE's hairdressing program.
 
 ## Features
 
-- **Loading Screen**: Animated scissors with video background
+- **PreLoader Screen**: Animated scissors with video background
 - **Acknowledgment of Country**: Respectful Indigenous recognition with flags
 - **Interactive Tabs**: Celebrate, Teachers, Awards, Iconic Hair through the decades
 - **Modern Design**: Cheerful celbratory colours
