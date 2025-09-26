@@ -327,7 +327,7 @@ export default function MainBrochure() {
                   <MovieTab
                     isVideoReady={isTabUnlocked("movie")} // Automatically switches when unlocked
                     youtubeUrl="https://www.youtube.com/watch?v=D8XPNCAkjDw"
-                    videoTitle="Decades of Excellence: A Hairdressing Legacy"
+                    videoTitle="Decades of Excellence"
                   />
                 ) : (
                   <activeComponent.component />
