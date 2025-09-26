@@ -106,11 +106,13 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
   return (
     <div className="p-6 sm:p-8">
       {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 mb-4">
-          CAMPUS GALLERY
-        </h1>
-        <p className="text-lg text-white/80 max-w-2xl mx-auto">
+      <div className="mb-8">
+       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
+         CAMPUS AND FACILITIES
+         <br />
+         <span className="text-yellow-400">PHOTO GALLERY</span>
+       </h1>
+        <p className="text-lg text-white/80 max-w-2xl">
           Explore our beautiful campuses and facilities across different locations. Tap any image to see its description.
         </p>
       </div>

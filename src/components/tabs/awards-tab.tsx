@@ -44,15 +44,20 @@ export default function AwardsTab() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        <motion.h1
-          className="text-2xl sm:text-3xl md:text-4xl font-black mb-6 sm:mb-8 text-center text-[var(--darkest)]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          AWARD <span className="text-black">WINNERS</span>
-        </motion.h1>
+   <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+     <div className="grid grid-cols-1 gap-6 sm:gap-8 items-center">
+       <motion.div
+         initial={{ opacity: 0, y: 30 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ delay: 0.2, duration: 0.6 }}
+       >
+         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
+           CELEBRATING OUR AWARD
+           <br />
+           <span className="text-yellow-400">WINNERS</span>
+         </h1>
+       </motion.div>
+     </div>
 
         <motion.div
           className="mb-8 sm:mb-12"
@@ -60,10 +65,7 @@ export default function AwardsTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-yellow-400 flex items-center justify-center gap-2">
-            <Trophy className="w-5 h-5" />
-            Award Winner Photo Gallery
-          </h2>
+
                 <motion.div
                           className="text-center"
                           initial={{ opacity: 0, y: 0 }}

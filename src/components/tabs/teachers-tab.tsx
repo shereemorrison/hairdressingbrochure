@@ -68,16 +68,20 @@ export default function TeachersTab() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="relative z-10 max-w-4xl mx-auto px-4 py-6 sm:py-8">
-        {" "}
-        <motion.h1
-          className="text-2xl sm:text-3xl md:text-4xl font-black mb-6 sm:mb-8 text-center text-[var(--darkest)]" // Reduced font sizes and margins
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          OUR <span className="text-black">TEACHERS</span>
-        </motion.h1>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
+              CELEBRATING OUR TEACHING
+              <br />
+              <span className="text-yellow-400">STAFF</span>
+            </h1>
+          </motion.div>
+        </div>
            <motion.div
                   className="text-center"
                   initial={{ opacity: 0, y: 0 }}
