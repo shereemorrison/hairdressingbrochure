@@ -33,34 +33,19 @@ export default function RefreshmentsTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <div className="glass-card p-4 sm:p-6 rounded-lg">
-            <div className="flex items-center mb-3">
-              <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
-              <h3 className="text-base sm:text-lg font-bold text-yellow-400">Service Times</h3>
-            </div>
-            <p className="text-sm text-white/90 text-center py-4">TBA</p>
-          </div>
 
           <div className="glass-card p-4 sm:p-6 rounded-lg">
             <div className="flex items-center mb-3">
               <Utensils className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
               <h3 className="text-base sm:text-lg font-bold text-yellow-400">Menu</h3>
             </div>
-            <p className="text-sm text-white/90 text-center py-4">TBA</p>
+            <p className="text-sm text-white/90 text-center py-4">Finger food (options tbc)</p>
           </div>
 
           <div className="glass-card p-4 sm:p-6 rounded-lg">
             <div className="flex items-center mb-3">
               <Coffee className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
               <h3 className="text-base sm:text-lg font-bold text-yellow-400">Beverages</h3>
-            </div>
-            <p className="text-sm text-white/90 text-center py-4">TBA</p>
-          </div>
-
-          <div className="glass-card p-4 sm:p-6 rounded-lg">
-            <div className="flex items-center mb-3">
-              <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-400 flex-shrink-0" />
-              <h3 className="text-base sm:text-lg font-bold text-yellow-400">Dietary Options</h3>
             </div>
             <p className="text-sm text-white/90 text-center py-4">TBA</p>
           </div>

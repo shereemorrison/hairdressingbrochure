@@ -64,6 +64,17 @@ export default function AwardsTab() {
             <Trophy className="w-5 h-5" />
             Award Winner Photo Gallery
           </h2>
+                <motion.div
+                          className="text-center"
+                          initial={{ opacity: 0, y: 0 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.8, duration: 0.8 }}
+                        >
+                          <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
+                            {" "}
+                           Photos were not available for all award winners
+                          </p>
+                        </motion.div>
 
           <div className="relative max-w-md mx-auto">
             <div className="glass-card p-6 rounded-xl border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300">
@@ -186,17 +197,6 @@ export default function AwardsTab() {
           ))}
         </div>
       </div>
-      <motion.div
-                className="text-center"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-              >
-                <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
-                  {" "}
-                 Photos were not available for all award winners
-                </p>
-              </motion.div>
     </motion.div>
   )
 }

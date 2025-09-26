@@ -279,7 +279,7 @@ export const students: Student[] = [
                photoFilename: "awardwinners1999.png"},
 
               { id: "54",
-               name: "Nicole Street and Chanelle",
+               name: "Nicole Street and Chantelle Ackland",
                hasPhoto: true,
                 photoFilename: "nicolestreetandchanelle.png",
                 },

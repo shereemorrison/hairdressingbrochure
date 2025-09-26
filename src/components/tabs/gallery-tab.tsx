@@ -2,29 +2,106 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ZoomIn, MapPin } from "lucide-react"
+import { X, ZoomIn, MapPin, ChevronLeft, ChevronRight } from "lucide-react"
 import { imageGroups } from "../../data/gallery"
 
 interface GalleryTabProps {
   onModalStateChange?: (isOpen: boolean) => void
 }
 
+interface FlattenedSlide {
+  type: 'title' | 'image'
+  src?: string
+  description?: string
+  groupTitle: string
+  groupSubtitle?: string
+  groupIndex: number
+  imageIndex?: number
+}
+
 export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const [selectedGroupIndex, setSelectedGroupIndex] = useState<number | null>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null)
 
+  // Flatten all slides (title + images) for navigation
+  const flattenedSlides: FlattenedSlide[] = imageGroups.flatMap((group, groupIndex) => {
+    const titleSlide: FlattenedSlide = {
+      type: 'title',
+      groupTitle: group.title,
+      groupSubtitle: group.subtitle,
+      groupIndex
+    }
 
+    const imageSlides: FlattenedSlide[] = group.images.map((image, imageIndex) => ({
+      type: 'image',
+      src: image,
+      description: group.descriptions[imageIndex],
+      groupTitle: group.title,
+      groupIndex,
+      imageIndex
+    }))
+
+    return [titleSlide, ...imageSlides]
+  })
 
   useEffect(() => {
     onModalStateChange?.(selectedImage !== null)
   }, [selectedImage, onModalStateChange])
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (currentImageIndex !== null) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault()
+          navigateToPrevious()
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault()
+          navigateToNext()
+        } else if (e.key === 'Escape') {
+          e.preventDefault()
+          closeModal()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [currentImageIndex])
+
   const handleImageClick = (image: string, imageIndex: number, groupIndex: number) => {
+    // Find the flattened index for this image (skip title slides)
+    const slideIndex = flattenedSlides.findIndex(
+      slide => slide.type === 'image' && slide.groupIndex === groupIndex && slide.imageIndex === imageIndex
+    )
     setSelectedImage(image)
-    setSelectedIndex(imageIndex)
-    setSelectedGroupIndex(groupIndex)
+    setCurrentImageIndex(slideIndex)
   }
+
+  const navigateToNext = () => {
+    if (currentImageIndex !== null) {
+      const nextIndex = (currentImageIndex + 1) % flattenedSlides.length
+      setCurrentImageIndex(nextIndex)
+      const nextSlide = flattenedSlides[nextIndex]
+      setSelectedImage(nextSlide.type === 'image' ? nextSlide.src! : null)
+    }
+  }
+
+  const navigateToPrevious = () => {
+    if (currentImageIndex !== null) {
+      const prevIndex = currentImageIndex === 0 ? flattenedSlides.length - 1 : currentImageIndex - 1
+      setCurrentImageIndex(prevIndex)
+      const prevSlide = flattenedSlides[prevIndex]
+      setSelectedImage(prevSlide.type === 'image' ? prevSlide.src! : null)
+    }
+  }
+
+  const closeModal = () => {
+    setSelectedImage(null)
+    setCurrentImageIndex(null)
+  }
+
+  const currentSlide = currentImageIndex !== null ? flattenedSlides[currentImageIndex] : null
 
   return (
     <div className="p-6 sm:p-8">
@@ -111,55 +188,104 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
 
       {/* Lightbox Modal */}
       <AnimatePresence>
-        {selectedImage && selectedIndex !== null && selectedGroupIndex !== null && (
+        {currentImageIndex !== null && currentSlide && (
           <motion.div
             className="fixed inset-0 z-[100010] flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => {
-              setSelectedImage(null)
-              setSelectedIndex(null)
-              setSelectedGroupIndex(null)
-            }}
+            onClick={closeModal}
           >
             {/* Backdrop */}
             <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
 
-            {/* Image Container */}
+            {/* Navigation Button - Previous */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                navigateToPrevious()
+              }}
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            {/* Navigation Button - Next */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                navigateToNext()
+              }}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            {/* Slide Container */}
             <motion.div
-              className="relative max-w-4xl max-h-[85vh] rounded-xl overflow-hidden bg-black/50 m-4"
+              className="relative w-full max-w-4xl max-h-[85vh] rounded-xl overflow-hidden bg-black/50 mx-4 sm:m-4"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
-              <button
-                onClick={() => {
-                  setSelectedImage(null)
-                  setSelectedIndex(null)
-                  setSelectedGroupIndex(null)
-                }}
-                className="absolute top-2 right-2 z-10 p-1.5 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              <div className="p-4 pt-6">
-                <img
-                  src={selectedImage || "/placeholder.svg"}
-                  alt="Gallery image"
-                  className="w-full max-h-[55vh] object-contain rounded-lg"
-                />
+              {/* Header with close button and counter */}
+              <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-3 sm:p-4 bg-gradient-to-b from-black/70 to-transparent">
+                <div className="text-white/80 text-sm">
+                  {currentImageIndex + 1} of {flattenedSlides.length}
+                </div>
+                <button
+                  onClick={closeModal}
+                  className="p-1.5 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation"
+                  aria-label="Close modal"
+                >
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
               </div>
 
-              {/* Description Area */}
-              <div className="p-4 sm:p-6 bg-black/70 backdrop-blur-sm border-t border-yellow-400/20">
-                <p className="text-white/90 text-sm sm:text-base leading-relaxed text-center">
-                  {imageGroups[selectedGroupIndex].descriptions[selectedIndex]}
-                </p>
-              </div>
+              {currentSlide.type === 'title' ? (
+                /* Title Slide */
+                <div className="flex flex-col items-center justify-center min-h-[400px] sm:min-h-[500px] p-6 sm:p-8 text-center">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400" />
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+                      {currentSlide.groupTitle}
+                    </h2>
+                  </div>
+                  <p className="text-yellow-400/80 text-base sm:text-lg md:text-xl font-medium max-w-2xl">
+                    {currentSlide.groupSubtitle}
+                  </p>
+                  <div className="mt-8 text-white/60 text-sm">
+                    Swipe or use navigation arrows to explore this location
+                  </div>
+                </div>
+              ) : (
+                /* Image Slide */
+                <>
+                  <div className="p-3 sm:p-4 pt-12 sm:pt-16">
+                    <img
+                      key={currentImageIndex} // Force re-render for smooth transitions
+                      src={currentSlide.src || "/placeholder.svg"}
+                      alt="Gallery image"
+                      className="w-full max-h-[50vh] sm:max-h-[55vh] object-contain rounded-lg"
+                    />
+                  </div>
+
+                  {/* Description Area */}
+                  <div className="p-4 sm:p-6 bg-black/70 backdrop-blur-sm border-t border-yellow-400/20">
+                    <div className="text-center mb-2">
+                      <span className="text-yellow-400 text-sm font-medium">
+                        {currentSlide.groupTitle}
+                      </span>
+                    </div>
+                    <p className="text-white/90 text-sm sm:text-base leading-relaxed text-center">
+                      {currentSlide.description}
+                    </p>
+                  </div>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}

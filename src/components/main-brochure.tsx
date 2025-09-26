@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera } from "lucide-react"
+import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera, Lock } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Aurora from "./aurora"
 import MagicBento from "./magic-bento"
@@ -9,7 +9,7 @@ import TeachersTab from "@/components/tabs/teachers-tab"
 import CelebrateTab from "@/components/tabs/celebrate-tab"
 import AwardsTab from "@/components/tabs/awards-tab"
 import DecadesTab from "@/components/tabs/decades-tab"
-import MovieTab from "@/components/tabs/movie-tab"
+import MovieTab from "@/components/tabs/movie-tab" // Replace with enhanced-movie-tab when ready
 import GalleryTab from "@/components/tabs/gallery-tab"
 import bendigoLogo from "@/assets/bendigoLogo.png"
 import celebrate from "@/assets/celebrate.jpg"
@@ -20,10 +20,22 @@ import food from "@/assets/food.jpg"
 import gallery from "@/assets/gallery.jpg"
 import RefreshmentsTab from "@/components/tabs/refreshments-tab"
 
+// TODO: Confirm unlock schedule with Julie
+const UNLOCK_SCHEDULE = {
+  teachers: new Date('2025-01-01T10:00:00+11:00'), // Available immediately
+  celebrate: new Date('2025-01-02T10:00:00+11:00'), // 10am AEST
+  food: new Date('2025-10-10T10:00:00+11:00'), // 10am AEST
+  awards: new Date('2025-01-03T10:00:00+11:00'), // 10am AEST
+  decades: new Date('2025-01-04T10:00:00+11:00'), // 10am AEST
+  gallery: new Date('2025-01-04T10:00:00+11:00'), // 10am AEST
+  movie: new Date('2025-10-17T21:00:00+11:00'), // 9pm AEST
+}
+
 export default function MainBrochure() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
+  const [currentDate, setCurrentDate] = useState(new Date())
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768)
@@ -31,6 +43,67 @@ export default function MainBrochure() {
     window.addEventListener("resize", checkMobile)
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
+
+  // Update current date every minute to check for unlocks
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date())
+    }, 60000) // Check every minute
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // Function to check if a tab is unlocked
+  const isTabUnlocked = (tabId: string): boolean => {
+    const unlockDate = UNLOCK_SCHEDULE[tabId as keyof typeof UNLOCK_SCHEDULE]
+    if (!unlockDate) return true
+    return currentDate >= unlockDate
+  }
+
+  // Function to get time until unlock
+  const getTimeUntilUnlock = (tabId: string): string => {
+    const unlockDate = UNLOCK_SCHEDULE[tabId as keyof typeof UNLOCK_SCHEDULE]
+    if (!unlockDate || currentDate >= unlockDate) return ''
+
+    const diff = unlockDate.getTime() - currentDate.getTime()
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+
+    if (days > 0) return `Unlocks in ${days} day${days !== 1 ? 's' : ''}`
+    if (hours > 0) return `Unlocks in ${hours}h ${minutes}m`
+    return `Unlocks in ${minutes}m`
+  }
+
+  // Function to get the next unlock date
+  const getNextUnlockDate = (): Date | null => {
+    const futureDates = Object.values(UNLOCK_SCHEDULE)
+      .filter(date => date > currentDate)
+      .sort((a, b) => a.getTime() - b.getTime())
+
+    return futureDates.length > 0 ? futureDates[0] : null
+  }
+
+  // Function to format countdown to next unlock
+  const getNextUnlockCountdown = (): string => {
+    const nextUnlock = getNextUnlockDate()
+    if (!nextUnlock) return 'All unlocked!'
+
+    const diff = nextUnlock.getTime() - currentDate.getTime()
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+
+    if (days > 0) return `Next in ${days}d ${hours}h`
+    if (hours > 0) return `Next in ${hours}h ${minutes}m`
+    return `Next in ${minutes}m`
+  }
+
+  const handleTabClick = (tabId: string) => {
+    if (isTabUnlocked(tabId) || tabId === 'movie') {
+      setActiveSection(tabId)
+    }
+  }
 
   const iconSections = [
     {
@@ -42,74 +115,93 @@ export default function MainBrochure() {
       color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: group1,
       component: TeachersTab,
-      onClick: () => setActiveSection("teachers"),
+      locked: !isTabUnlocked("teachers"),
+      onClick: () => handleTabClick("teachers"),
     },
     {
       id: "awards",
       icon: Trophy,
       title: "AWARDS",
-      description: "Recognition, achievements and accolades",
+      description: isTabUnlocked("awards")
+        ? "Recognition, achievements and accolades"
+        : getTimeUntilUnlock("awards"),
       label: "Recognition",
-      color: "rgba(0, 0, 0, 0.1)",
+      color: isTabUnlocked("awards") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       backgroundImage: award,
       component: AwardsTab,
-      onClick: () => setActiveSection("awards"),
+      locked: !isTabUnlocked("awards"),
+      onClick: () => handleTabClick("awards"),
     },
     {
       id: "decades",
       icon: Clock,
       title: "HISTORY OF HAIRDRESSING",
-      description: "Journey through the decades of hairdressing",
+      description: isTabUnlocked("decades")
+        ? "Journey through the decades of hairdressing"
+        : getTimeUntilUnlock("decades"),
       label: "History",
-      color: "rgba(0, 0, 0, 0.1)",
+      color: isTabUnlocked("decades") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       backgroundImage: tafebuilding,
       component: DecadesTab,
-      onClick: () => setActiveSection("decades"),
+      locked: !isTabUnlocked("decades"),
+      onClick: () => handleTabClick("decades"),
     },
     {
       id: "celebrate",
       icon: Sparkles,
       title: "EVENT DETAILS",
-      description: "Main celebration content and event information",
+      description: isTabUnlocked("celebrate")
+        ? "Main celebration content and event information"
+        : getTimeUntilUnlock("celebrate"),
       label: "Celebration",
-      color: "rgba(0, 0, 0, 0.1)",
+      color: isTabUnlocked("celebrate") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       backgroundImage: celebrate,
       component: CelebrateTab,
-      onClick: () => setActiveSection("celebrate"),
+      locked: !isTabUnlocked("celebrate"),
+      onClick: () => handleTabClick("celebrate"),
     },
     {
       id: "food",
       icon: Utensils,
       title: "REFRESHMENTS",
-      description: "Catering details and menu options",
+      description: isTabUnlocked("food")
+        ? "Catering details and menu options"
+        : getTimeUntilUnlock("food"),
       label: "Food",
-      color: "rgba(0, 0, 0, 0.1)",
+      color: isTabUnlocked("food") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       backgroundImage: food,
       component: RefreshmentsTab,
-      locked: false,
-      onClick: () => setActiveSection("food"),
+      locked: !isTabUnlocked("food"),
+      onClick: () => handleTabClick("food"),
     },
     {
       id: "gallery",
       icon: Camera,
       title: "GALLERY",
-      description: "Campus photos and building images",
+      description: isTabUnlocked("gallery")
+        ? "Campus photos and building images"
+        : getTimeUntilUnlock("gallery"),
       label: "Gallery",
-      color: "rgba(0, 0, 0, 0.1)",
+      color: isTabUnlocked("gallery") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       backgroundImage: gallery,
       component: GalleryTab,
-      onClick: () => setActiveSection("gallery"),
+      locked: !isTabUnlocked("gallery"),
+      onClick: () => handleTabClick("gallery"),
     },
     {
       id: "movie",
-      icon: Film,
+      icon: Film, // Lock icon when locked, Film when unlocked
       title: "MOVIE",
-      description: "Coming soon - exclusive content",
+      description: isTabUnlocked("movie")
+        ? "Exclusive documentary content"
+        : `${getTimeUntilUnlock("movie")} • Click to preview`,
       label: "Documentary",
-      color: "rgba(0, 0, 0, 0.4)",
+      color: isTabUnlocked("movie") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       component: MovieTab,
-      locked: true,
-      onClick: () => setActiveSection("movie"),
+      locked: !isTabUnlocked("movie"),
+      specialBehavior: "clickable-preview", // Special flag for MagicBento to handle
+      isActuallyLocked: !isTabUnlocked("movie"), // Track real lock status for counter
+      onClick: () => handleTabClick("movie"),
     },
   ]
 
@@ -133,13 +225,33 @@ export default function MainBrochure() {
       {/* Subtle overlay */}
       <div className="absolute inset-0 bg-black/30 z-10" />
 
-      {/* Logo in top-right corner */}
+      {/* Header with Logo */}
       <div className="relative z-20 flex justify-end p-6">
         <img src={bendigoLogo || "/placeholder.svg"} alt="Bendigo TAFE" className="h-16 drop-shadow-lg" />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 flex-1 flex items-center justify-center px-6 pb-6">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-center px-4 sm:px-6">
+        {/* Unlock Status Banner - Centered above bento */}
+        <motion.div
+          className="mb-6 px-3 sm:px-4 py-2 rounded-full bg-black/50 backdrop-blur-md border border-yellow-500/30"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <div className="flex items-center gap-2 sm:gap-3 text-yellow-400 text-xs sm:text-sm font-medium">
+            <span>
+              {iconSections.filter(section =>
+                section.id === 'movie' ? !section.isActuallyLocked : !section.locked
+              ).length} of {iconSections.length} unlocked
+            </span>
+            <span className="text-yellow-400/60">•</span>
+            <span className="text-yellow-400/80">
+              {getNextUnlockCountdown()}
+            </span>
+          </div>
+        </motion.div>
+
         <div className="w-full flex items-center justify-center">
           <MagicBento
             textAutoHide={true}
@@ -211,6 +323,12 @@ export default function MainBrochure() {
               >
                 {activeSection === "gallery" ? (
                   <GalleryTab onModalStateChange={handleGalleryModalChange} />
+                ) : activeSection === "movie" ? (
+                  <MovieTab
+                    isVideoReady={isTabUnlocked("movie")} // Automatically switches when unlocked
+                    youtubeUrl="https://www.youtube.com/watch?v=D8XPNCAkjDw"
+                    videoTitle="Decades of Excellence: A Hairdressing Legacy"
+                  />
                 ) : (
                   <activeComponent.component />
                 )}

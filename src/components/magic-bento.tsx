@@ -848,7 +848,7 @@ const MagicBento: React.FC<BentoProps> = ({
             const Icon = card.icon
             const baseClassName = `card flex flex-col justify-between relative min-h-full w-full p-4 sm:p-6 rounded-2xl border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl backdrop-blur-md ${
               enableBorderGlow ? "card--border-glow" : ""
-            } ${card.locked ? "opacity-60 cursor-not-allowed" : "cursor-pointer"}`
+            }${card.locked && card.specialBehavior !== "clickable-preview" ? "opacity-60 cursor-not-allowed" : "cursor-pointer"}`
 
             const cardStyle = {
               backgroundColor: card.color || "var(--background-dark)",
@@ -857,7 +857,7 @@ const MagicBento: React.FC<BentoProps> = ({
               backgroundImage: card.backgroundImage ? `url(${card.backgroundImage})` : undefined,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              backgroundBlendMode: card.backgroundImage ? "overlay" : "normal",
+              backgroundBlendMode: card.backgroundImage && card.locked ? "overlay" : "normal",
               "--glow-x": "50%",
               "--glow-y": "50%",
               "--glow-intensity": "0",
@@ -906,7 +906,7 @@ const MagicBento: React.FC<BentoProps> = ({
                 key={index}
                 className={baseClassName}
                 style={cardStyle}
-                onClick={card.locked ? undefined : card.onClick}
+                onClick={card.locked && card.specialBehavior !== "clickable-preview" ? undefined : card.onClick}
               >
                 <div className="card__header flex justify-between items-center gap-3 relative text-white">
                   <span className="card__label text-xs sm:text-sm font-medium opacity-80">{card.label}</span>

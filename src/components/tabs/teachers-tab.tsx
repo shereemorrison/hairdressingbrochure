@@ -78,6 +78,17 @@ export default function TeachersTab() {
         >
           OUR <span className="text-black">TEACHERS</span>
         </motion.h1>
+           <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                >
+                  <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
+                    {" "}
+                    Our dedicated teaching staff have shaped generations of hairdressing professionals, bringing decades of industry experience and passion for education to every salon classroom
+                  </p>
+                </motion.div>
         <motion.div
           className="mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 30 }}
@@ -187,17 +198,6 @@ export default function TeachersTab() {
               </motion.div>
             ))}
           </div>
-        </motion.div>
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
-            {" "}
-            Our dedicated teaching staff have shaped generations of hairdressing professionals, bringing decades of industry experience and passion for education to every salon classroom
-          </p>
         </motion.div>
       </div>
     </motion.div>
