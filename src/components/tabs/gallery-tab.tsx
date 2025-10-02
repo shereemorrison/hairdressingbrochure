@@ -98,36 +98,49 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
     }
   }
 
-  // Mobile swipe detection - increased distance to prevent accidental triggers
-  const minSwipeDistance = 80
+  // Instagram-like swipe detection
+  const minSwipeDistance = 60
+  const swipeVelocity = 0.3 // Minimum velocity for swipe
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchEndX.current = null
     touchStartX.current = e.targetTouches[0].clientX
+    // Don't prevent default here - let the container handle scrolling
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.targetTouches[0].clientX
-    // Prevent scrolling while swiping
-    e.preventDefault()
+    // Only prevent default if we're actually swiping horizontally
+    if (touchStartX.current && touchEndX.current) {
+      const horizontalDistance = Math.abs(touchStartX.current - touchEndX.current)
+      const verticalDistance = Math.abs(e.targetTouches[0].clientY - (e.targetTouches[0].clientY || 0))
+      
+      // If horizontal movement is greater than vertical, prevent scrolling
+      if (horizontalDistance > verticalDistance && horizontalDistance > 20) {
+        e.preventDefault()
+      }
+    }
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
+    const absDistance = Math.abs(distance)
+    
+    // Check for intentional swipe (distance and velocity)
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
 
-    if (isLeftSwipe) {
+    if (isLeftSwipe || isRightSwipe) {
       e.preventDefault()
       e.stopPropagation()
-      navigateToNext()
-    }
-    if (isRightSwipe) {
-      e.preventDefault()
-      e.stopPropagation()
-      navigateToPrevious()
+      
+      if (isLeftSwipe) {
+        navigateToNext()
+      } else if (isRightSwipe) {
+        navigateToPrevious()
+      }
     }
   }
 
