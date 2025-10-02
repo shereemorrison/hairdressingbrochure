@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react"
 import { useState, useRef } from "react"
+import { createPortal } from "react-dom"
 import { students } from "../../data/students"
 import type { Student } from "../../types/student"
 
@@ -10,6 +11,7 @@ export default function AwardsTab() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const touchStartX = useRef<number | null>(null)
   const touchEndX = useRef<number | null>(null)
+  const touchStartY = useRef<number | null>(null)
 
   // Get featured students (those with photos) and organize by category
   const allStudentsWithPhotos = students.filter((student) => student.hasPhoto)
@@ -36,31 +38,34 @@ export default function AwardsTab() {
     setCurrentSlide((prev) => (prev - 1 + featuredStudents.length) % featuredStudents.length)
   }
 
+
   // Aggressive swipe isolation - prevents ALL background movement
   const minSwipeDistance = 50
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    // Always prevent default to stop any background scrolling/movement
-    e.preventDefault()
-    e.stopPropagation()
-    
     touchEndX.current = null
     touchStartX.current = e.targetTouches[0].clientX
+    touchStartY.current = e.targetTouches[0].clientY
+    // Don't prevent default here - let the container handle scrolling
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    // Always prevent default to stop any background scrolling/movement
-    e.preventDefault()
-    e.stopPropagation()
-    
     touchEndX.current = e.targetTouches[0].clientX
+    
+    // Only prevent default if we detect significant horizontal movement
+    if (touchStartX.current && touchEndX.current && touchStartY.current) {
+      const horizontalDistance = Math.abs(touchStartX.current - touchEndX.current)
+      const verticalDistance = Math.abs(e.targetTouches[0].clientY - touchStartY.current)
+      
+      // If horizontal movement is much greater than vertical, prevent scrolling
+      if (horizontalDistance > verticalDistance && horizontalDistance > 20) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    // Always prevent default to stop any background scrolling/movement
-    e.preventDefault()
-    e.stopPropagation()
-    
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
@@ -68,6 +73,9 @@ export default function AwardsTab() {
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe || isRightSwipe) {
+      e.preventDefault()
+      e.stopPropagation()
+      
       if (isLeftSwipe) {
         nextSlide()
       } else if (isRightSwipe) {
@@ -122,25 +130,6 @@ export default function AwardsTab() {
           </motion.div>
         </div>
 
-        {/* Navigation arrows - Fixed position relative to viewport - completely outside all containers */}
-        {featuredStudents.length > 1 && (
-          <>
-            <button
-              onClick={prevSlide}
-              className="fixed left-4 sm:left-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
-              aria-label="Previous student"
-            >
-              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="fixed right-4 sm:right-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
-              aria-label="Next student"
-            >
-              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-            </button>
-          </>
-        )}
 
         <motion.div
           className="mb-8 sm:mb-12"
@@ -159,7 +148,26 @@ export default function AwardsTab() {
             </p>
           </motion.div>
 
-          <div className="glass-card p-6 rounded-lg text-center max-w-xl mx-auto">
+          <div className="glass-card p-6 rounded-lg text-center max-w-xl mx-auto relative">
+            {/* Navigation arrows - positioned relative to carousel container */}
+            {featuredStudents.length > 1 && (
+              <>
+                <button
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors z-20"
+                  aria-label="Previous student"
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors z-20"
+                  aria-label="Next student"
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </button>
+              </>
+            )}
             <div className="relative">
               {featuredStudents.length > 0 && (
                 <motion.div

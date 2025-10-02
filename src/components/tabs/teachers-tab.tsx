@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+import { createPortal } from "react-dom"
 import { teachers } from "../../data/teachers"
 import type { Teacher } from "../../types/teacher"
 
@@ -10,6 +11,7 @@ export default function TeachersTab() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const touchStartX = useRef<number | null>(null)
   const touchEndX = useRef<number | null>(null)
+  const touchStartY = useRef<number | null>(null)
 
   const groupPhotos = [
     {
@@ -42,31 +44,34 @@ export default function TeachersTab() {
     setCurrentSlide((prev) => (prev - 1 + groupPhotos.length) % groupPhotos.length)
   }
 
+
   // Aggressive swipe isolation - prevents ALL background movement
   const minSwipeDistance = 50
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    // Always prevent default to stop any background scrolling/movement
-    e.preventDefault()
-    e.stopPropagation()
-    
     touchEndX.current = null
     touchStartX.current = e.targetTouches[0].clientX
+    touchStartY.current = e.targetTouches[0].clientY
+    // Don't prevent default here - let the container handle scrolling
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    // Always prevent default to stop any background scrolling/movement
-    e.preventDefault()
-    e.stopPropagation()
-    
     touchEndX.current = e.targetTouches[0].clientX
+    
+    // Only prevent default if we detect significant horizontal movement
+    if (touchStartX.current && touchEndX.current && touchStartY.current) {
+      const horizontalDistance = Math.abs(touchStartX.current - touchEndX.current)
+      const verticalDistance = Math.abs(e.targetTouches[0].clientY - touchStartY.current)
+      
+      // If horizontal movement is much greater than vertical, prevent scrolling
+      if (horizontalDistance > verticalDistance && horizontalDistance > 20) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    // Always prevent default to stop any background scrolling/movement
-    e.preventDefault()
-    e.stopPropagation()
-    
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
@@ -74,6 +79,9 @@ export default function TeachersTab() {
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe || isRightSwipe) {
+      e.preventDefault()
+      e.stopPropagation()
+      
       if (isLeftSwipe) {
         nextSlide()
       } else if (isRightSwipe) {
@@ -102,13 +110,8 @@ export default function TeachersTab() {
   })
 
   return (
-    <motion.div
-      className="relative"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+    <div className="relative">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
         <div className="grid grid-cols-1 gap-6 sm:gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -134,30 +137,24 @@ export default function TeachersTab() {
           </p>
         </motion.div>
 
-        {/* Navigation arrows - Fixed position relative to viewport - outside container */}
-        <button
-          onClick={prevSlide}
-          className="fixed left-4 sm:left-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
-          aria-label="Previous photo"
-        >
-          <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="fixed right-4 sm:right-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
-          aria-label="Next photo"
-        >
-          <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-        </button>
 
-        <motion.div
-          className="mb-6 sm:mb-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
+        <div className="mb-6 sm:mb-8">
           <div className="relative max-w-xl mx-auto">
-            <div className="glass-card p-6 rounded-lg text-center">
+            <div className="glass-card p-6 rounded-lg text-center relative">
+              {/* Simple chevrons */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white z-20"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white z-20"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+              
               <motion.div
                 className="relative"
                 key={currentSlide}
@@ -214,7 +211,7 @@ export default function TeachersTab() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         <motion.div
           className="mb-6 sm:mb-8"
@@ -270,6 +267,6 @@ export default function TeachersTab() {
           </div>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   )
 }

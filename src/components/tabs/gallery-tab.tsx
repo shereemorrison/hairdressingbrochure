@@ -240,14 +240,24 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
-            onTouchStart={(e) => e.stopPropagation()}
+            onTouchStart={(e) => {
+              // Only prevent propagation for swipes, not clicks
+              if (e.target === e.currentTarget) {
+                e.stopPropagation()
+              }
+            }}
             onTouchMove={(e) => e.stopPropagation()}
             onTouchEnd={(e) => e.stopPropagation()}
           >
             {/* Backdrop */}
             <div 
               className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-              onTouchStart={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                // Only prevent propagation for swipes, not clicks
+                if (e.target === e.currentTarget) {
+                  e.stopPropagation()
+                }
+              }}
               onTouchMove={(e) => e.stopPropagation()}
               onTouchEnd={(e) => e.stopPropagation()}
             />
