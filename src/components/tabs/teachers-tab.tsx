@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { teachers } from "../../data/teachers"
 import type { Teacher } from "../../types/teacher"
 
 export default function TeachersTab() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
 
   const groupPhotos = [
     {
@@ -38,6 +40,33 @@ export default function TeachersTab() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + groupPhotos.length) % groupPhotos.length)
+  }
+
+  // Mobile swipe detection
+  const minSwipeDistance = 50
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const distance = touchStartX.current - touchEndX.current
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      nextSlide()
+    }
+    if (isRightSwipe) {
+      prevSlide()
+    }
   }
 
   const groupedTeachers = (teachers as Teacher[]).reduce(
@@ -92,6 +121,22 @@ export default function TeachersTab() {
           </p>
         </motion.div>
 
+        {/* Navigation arrows - Fixed position relative to viewport - outside container */}
+        <button
+          onClick={prevSlide}
+          className="fixed left-4 sm:left-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
+          aria-label="Previous photo"
+        >
+          <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="fixed right-4 sm:right-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
+          aria-label="Next photo"
+        >
+          <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+        </button>
+
         <motion.div
           className="mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 30 }}
@@ -114,6 +159,9 @@ export default function TeachersTab() {
                     transform: `rotate(${(currentSlide * 7) % 5 - 2}deg)`,
                     maxWidth: groupPhotos[currentSlide].names.length > 1 ? 'clamp(250px, 85vw, 320px)' : 'clamp(220px, 80vw, 280px)',
                   }}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
                   <div className={`polaroid-photo transition-all duration-500 ${groupPhotos[currentSlide].names.length > 1 ? 'aspect-[4/3]' : 'aspect-square'}`}>
                     <img
@@ -136,22 +184,6 @@ export default function TeachersTab() {
                     </p>
                   </div>
                 </div>
-
-                {/* Navigation arrows */}
-                <button
-                  onClick={prevSlide}
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-12 text-white/60 hover:text-white transition-colors"
-                  aria-label="Previous photo"
-                >
-                  <ChevronLeft className="w-8 h-8" />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-12 text-white/60 hover:text-white transition-colors"
-                  aria-label="Next photo"
-                >
-                  <ChevronRight className="w-8 h-8" />
-                </button>
               </motion.div>
 
               {/* Dot indicators */}

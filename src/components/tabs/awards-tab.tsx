@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { students } from "../../data/students"
 import type { Student } from "../../types/student"
 
 export default function AwardsTab() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
 
   // Get featured students (those with photos) and organize by category
   const allStudentsWithPhotos = students.filter((student) => student.hasPhoto)
@@ -32,6 +34,33 @@ export default function AwardsTab() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + featuredStudents.length) % featuredStudents.length)
+  }
+
+  // Mobile swipe detection
+  const minSwipeDistance = 50
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const distance = touchStartX.current - touchEndX.current
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      nextSlide()
+    }
+    if (isRightSwipe) {
+      prevSlide()
+    }
   }
 
   // Group students by award category
@@ -80,6 +109,26 @@ export default function AwardsTab() {
           </motion.div>
         </div>
 
+        {/* Navigation arrows - Fixed position relative to viewport - completely outside all containers */}
+        {featuredStudents.length > 1 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="fixed left-4 sm:left-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
+              aria-label="Previous student"
+            >
+              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="fixed right-4 sm:right-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20 hidden sm:block"
+              aria-label="Next student"
+            >
+              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+            </button>
+          </>
+        )}
+
         <motion.div
           className="mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -97,36 +146,15 @@ export default function AwardsTab() {
             </p>
           </motion.div>
 
-          <div className="relative w-full">
-            {/* Navigation arrows - Fixed position relative to viewport */}
-            {featuredStudents.length > 1 && (
-              <>
-                <button
-                  onClick={prevSlide}
-                  className="fixed left-4 sm:left-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20"
-                  aria-label="Previous student"
+          <div className="glass-card p-6 rounded-lg text-center max-w-xl mx-auto">
+            <div className="relative">
+              {featuredStudents.length > 0 && (
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className="fixed right-4 sm:right-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20"
-                  aria-label="Next student"
-                >
-                  <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-                </button>
-              </>
-            )}
-
-            <div className="glass-card p-6 rounded-lg text-center max-w-xl mx-auto">
-              <div className="relative">
-                {featuredStudents.length > 0 && (
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
                     {/* Authentic Vintage Polaroid-style frame */}
                 <div 
                   className="polaroid-frame transform hover:rotate-0 transition-all duration-500 mx-auto w-full max-w-[280px] sm:max-w-[320px]"
@@ -134,6 +162,9 @@ export default function AwardsTab() {
                     transform: `rotate(${(currentSlide * 7) % 5 - 2}deg)`,
                     maxWidth: featuredStudents[currentSlide].name.toLowerCase().includes('group') ? 'clamp(250px, 85vw, 320px)' : 'clamp(220px, 80vw, 280px)',
                   }}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
                   <div className={`polaroid-photo transition-all duration-500 ${featuredStudents[currentSlide].name.toLowerCase().includes('group') ? 'aspect-[4/3]' : 'aspect-square'}`}>
                     <div
@@ -161,30 +192,29 @@ export default function AwardsTab() {
                           {featuredStudents[currentSlide].name}
                         </p>
                         <p className="polaroid-handwriting text-center text-xs relative z-10">
-                          {featuredStudents[currentSlide].award} - {featuredStudents[currentSlide].year}
+                          {featuredStudents[currentSlide].award}{featuredStudents[currentSlide].year ? ` - ${featuredStudents[currentSlide].year}` : ''}
                         </p>
                       </div>
                     </div>
-                  </motion.div>
-                )}
-              </div>
-
-              {/* Dot indicators */}
-              {featuredStudents.length > 1 && (
-                <div className="flex justify-center mt-4 space-x-2">
-                  {featuredStudents.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentSlide ? "bg-yellow-400" : "bg-white/30"
-                      }`}
-                      aria-label={`Go to student ${index + 1}`}
-                    />
-                  ))}
-                </div>
+                </motion.div>
               )}
             </div>
+
+            {/* Dot indicators */}
+            {featuredStudents.length > 1 && (
+              <div className="flex justify-center mt-4 space-x-2">
+                {featuredStudents.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentSlide ? "bg-yellow-400" : "bg-white/30"
+                    }`}
+                    aria-label={`Go to student ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </motion.div>
 

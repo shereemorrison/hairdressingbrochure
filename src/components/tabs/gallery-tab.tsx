@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ZoomIn, MapPin, ChevronLeft, ChevronRight } from "lucide-react"
 import { imageGroups } from "../../data/gallery"
@@ -22,6 +22,8 @@ interface FlattenedSlide {
 export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null)
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
 
   // Flatten all slides (title + images) for navigation
   const flattenedSlides: FlattenedSlide[] = imageGroups.flatMap((group, groupIndex) => {
@@ -93,6 +95,33 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
       setCurrentImageIndex(prevIndex)
       const prevSlide = flattenedSlides[prevIndex]
       setSelectedImage(prevSlide.type === 'image' ? prevSlide.src! : null)
+    }
+  }
+
+  // Mobile swipe detection
+  const minSwipeDistance = 50
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const distance = touchStartX.current - touchEndX.current
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      navigateToNext()
+    }
+    if (isRightSwipe) {
+      navigateToPrevious()
     }
   }
 
@@ -201,25 +230,25 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
             {/* Backdrop */}
             <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
 
-            {/* Navigation Button - Previous */}
+            {/* Navigation Button - Previous - hidden on mobile, visible on desktop */}
             <button
               onClick={(e) => {
                 e.stopPropagation()
                 navigateToPrevious()
               }}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation hidden sm:block"
               aria-label="Previous slide"
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
-            {/* Navigation Button - Next */}
+            {/* Navigation Button - Next - hidden on mobile, visible on desktop */}
             <button
               onClick={(e) => {
                 e.stopPropagation()
                 navigateToNext()
               }}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation hidden sm:block"
               aria-label="Next slide"
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -232,6 +261,9 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               {/* Header with close button and counter */}
               <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-3 sm:p-4 bg-gradient-to-b from-black/70 to-transparent">

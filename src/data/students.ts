@@ -149,16 +149,14 @@ export const students: Student[] = [
     name: "Kiara Dehne",
     year: 2002,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
-    hasPhoto: true,
-    photoFilename: "KiaraDehne.png",
+    hasPhoto: false,
   },
   {
     id: "20",
     name: "Alisha McPherson",
     year: 2001,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
-    hasPhoto: true,
-    photoFilename: "AlishaMcPherson.jpeg",
+    hasPhoto: false,
   },
 
   // Loddon Campaspe - College of TAFE
@@ -215,7 +213,7 @@ export const students: Student[] = [
   },
 
   // Outstanding 3rd Yr Apprentice Awards
-  { id: "57", name: "Kirsty McDonald", year: 2000, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: true, photoFilename: "KirstyMcDonald.png" },
+  { id: "57", name: "Kirsty McDonald", year: 2000, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
   { id: "58", name: "Cindy Hallywell", year: 2001, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
   { id: "59", name: "Kate Berryman", year: 2002, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
   { id: "60", name: "Emma Musgrove", year: 2003, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
