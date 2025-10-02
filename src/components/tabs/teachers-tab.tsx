@@ -42,41 +42,27 @@ export default function TeachersTab() {
     setCurrentSlide((prev) => (prev - 1 + groupPhotos.length) % groupPhotos.length)
   }
 
-  // Instagram-like swipe detection
-  const minSwipeDistance = 60
-  const swipeVelocity = 0.3 // Minimum velocity for swipe
+  // Simple swipe detection - only prevents default when swiping, doesn't interfere with tab navigation
+  const minSwipeDistance = 50
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchEndX.current = null
     touchStartX.current = e.targetTouches[0].clientX
-    // Don't prevent default here - let the container handle scrolling
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.targetTouches[0].clientX
-    // Only prevent default if we're actually swiping horizontally
-    if (touchStartX.current && touchEndX.current) {
-      const horizontalDistance = Math.abs(touchStartX.current - touchEndX.current)
-      const verticalDistance = Math.abs(e.targetTouches[0].clientY - (e.targetTouches[0].clientY || 0))
-      
-      // If horizontal movement is greater than vertical, prevent scrolling
-      if (horizontalDistance > verticalDistance && horizontalDistance > 20) {
-        e.preventDefault()
-      }
-    }
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
-    const absDistance = Math.abs(distance)
-    
-    // Check for intentional swipe (distance and velocity)
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe || isRightSwipe) {
+      // Only prevent default and stop propagation when we actually swipe
       e.preventDefault()
       e.stopPropagation()
       
