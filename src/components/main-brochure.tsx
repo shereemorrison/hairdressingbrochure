@@ -292,6 +292,9 @@ export default function MainBrochure() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            onTouchEnd={(e) => e.stopPropagation()}
           >
             {/* Backdrop */}
             <motion.div
@@ -300,6 +303,9 @@ export default function MainBrochure() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={handleBackToLanding}
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
             />
 
             {/* Card Container */}
@@ -314,6 +320,9 @@ export default function MainBrochure() {
                 stiffness: 300,
                 duration: 0.5,
               }}
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
             >
               {/* Aurora Background for Card */}
               <div className="absolute inset-0 z-0">
