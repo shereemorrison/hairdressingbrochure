@@ -93,13 +93,17 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                     onLoad={() => console.log("Logo loaded successfully")}
                   />
                 </div>
-                <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl">
-                  Celebrate
+                <h1 className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-white drop-shadow-2xl leading-relaxed">
+                  50 years of Hairdressing
                   <br />
-                  Hairdressing
+                  creative style at Bendigo TAFE
+                  <br />
+                  Honouring the hairdressing industry,
+                  <br />
+                  the hairshows, the apprentices,
                   <br />
                   <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-600 bg-clip-text text-transparent">
-                    with us
+                    and the educators that nurtured the talent.
                   </span>
                 </h1>
               </motion.div>
