@@ -268,7 +268,7 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
                 e.stopPropagation()
                 navigateToPrevious()
               }}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation hidden sm:block"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation block"
               aria-label="Previous slide"
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -280,7 +280,7 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
                 e.stopPropagation()
                 navigateToNext()
               }}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation hidden sm:block"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors touch-manipulation block"
               aria-label="Next slide"
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
