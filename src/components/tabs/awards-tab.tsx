@@ -97,8 +97,28 @@ export default function AwardsTab() {
             </p>
           </motion.div>
 
-          <div className="relative max-w-xl mx-auto">
-            <div className="glass-card p-6 rounded-lg text-center">
+          <div className="relative w-full">
+            {/* Navigation arrows - Fixed position relative to viewport */}
+            {featuredStudents.length > 1 && (
+              <>
+                <button
+                  onClick={prevSlide}
+                  className="fixed left-4 sm:left-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20"
+                  aria-label="Previous student"
+                >
+                  <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="fixed right-4 sm:right-8 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors z-20"
+                  aria-label="Next student"
+                >
+                  <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+                </button>
+              </>
+            )}
+
+            <div className="glass-card p-6 rounded-lg text-center max-w-xl mx-auto">
               <div className="relative">
                 {featuredStudents.length > 0 && (
                   <motion.div
@@ -146,26 +166,6 @@ export default function AwardsTab() {
                       </div>
                     </div>
                   </motion.div>
-                )}
-
-                {/* Navigation arrows */}
-                {featuredStudents.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevSlide}
-                      className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-12 text-white/60 hover:text-white transition-colors"
-                      aria-label="Previous student"
-                    >
-                      <ChevronLeft className="w-8 h-8" />
-                    </button>
-                    <button
-                      onClick={nextSlide}
-                      className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-12 text-white/60 hover:text-white transition-colors"
-                      aria-label="Next student"
-                    >
-                      <ChevronRight className="w-8 h-8" />
-                    </button>
-                  </>
                 )}
               </div>
 

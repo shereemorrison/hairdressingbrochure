@@ -47,10 +47,17 @@ export const students: Student[] = [
   {
     id: "7",
     name: "Julie Panozzo",
-    year: 1990,
+    year: 1989,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
     hasPhoto: true,
     photoFilename: "JuliePanazzo.jpg",
+  },
+  {
+    id: "7b",
+    name: "Julie Panozzo",
+    year: 1990,
+    award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
+    hasPhoto: false,
   },
   {
     id: "8",
@@ -125,17 +132,25 @@ export const students: Student[] = [
   },
   {
     id: "18",
-    name: "Blanca Walker",
+    name: "Bianca Walker",
     year: 1999,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
     hasPhoto: false,
   },
   {
     id: "19",
-    name: "Tash Aoue",
+    name: "Tash Jobe",
     year: 2000,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
     hasPhoto: false,
+  },
+  {
+    id: "19b",
+    name: "Kiara Dehne",
+    year: 2002,
+    award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
+    hasPhoto: true,
+    photoFilename: "KiaraDehne.png",
   },
   {
     id: "20",
@@ -147,6 +162,13 @@ export const students: Student[] = [
   },
 
   // Loddon Campaspe - College of TAFE
+  {
+    id: "21",
+    name: "Julie Panozzo",
+    year: 1990,
+    award: "Loddon Campaspe - College of TAFE",
+    hasPhoto: false,
+  },
 
   // Dedication & Attitude to the Industry
   { id: "22", name: "Melissa Bennet", year: 1989, award: "Dedication & Attitude to the Industry", hasPhoto: false },
@@ -155,21 +177,30 @@ export const students: Student[] = [
   { id: "25", name: "Vicki Jubber", year: 1992, award: "Dedication & Attitude to the Industry", hasPhoto: false },
   { id: "26", name: "Virginia Hyland", year: 1993, award: "Dedication & Attitude to the Industry", hasPhoto: false },
   { id: "27", name: "Virginia Hyland", year: 1994, award: "Dedication & Attitude to the Industry", hasPhoto: false },
+  { id: "27b", name: "Anne Stubbs", year: 1996, award: "Dedication & Attitude to the Industry", hasPhoto: false },
 
   // Worldskills Australian - National winner
   {
     id: "42",
     name: "Alisha McPherson",
-    year: 2001,
+    year: 2002,
     award: "Worldskills Australian - National winner",
-    hasPhoto: false,
+    hasPhoto: true,
+    photoFilename: "AlishaMcPherson.jpeg",
     },
 
   // HBIA Apprentice of the Year
   {
     id: "29",
+    name: "Julie Panozzo",
+    year: 1990,
+    award: "HBIA Apprentice of the Year",
+    hasPhoto: false,
+  },
+  {
+    id: "29b",
     name: "Simone Richardson",
-    year: 2024,
+    year: 2004,
     award: "HBIA Apprentice of the Year",
     hasPhoto: true,
     photoFilename: "simonerichardson.png",
@@ -182,6 +213,12 @@ export const students: Student[] = [
     hasPhoto: true,
     photoFilename: "KateBerryman.png",
   },
+
+  // Outstanding 3rd Yr Apprentice Awards
+  { id: "57", name: "Kirsty McDonald", year: 2000, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: true, photoFilename: "KirstyMcDonald.png" },
+  { id: "58", name: "Cindy Hallywell", year: 2001, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
+  { id: "59", name: "Kate Berryman", year: 2002, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
+  { id: "60", name: "Emma Musgrove", year: 2003, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
 
   // Bendigo TAFE - Perpetual Trophy
   { id: "30", name: "Jourdan Oliver", year: 2015, award: "Bendigo TAFE - Perpetual Trophy", hasPhoto: false },
