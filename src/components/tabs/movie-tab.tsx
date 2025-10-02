@@ -3,14 +3,7 @@
 import { motion } from "framer-motion"
 import { Lock, Film, Calendar, Star, Play, ExternalLink } from "lucide-react"
 
-const comingSoonFeatures = [
-  "Exclusive behind-the-scenes footage",
-  "Interviews with legendary stylists",
-  "Historical archive materials",
-  "Student success stories",
-  "Industry evolution timeline",
-  "Special guest appearances",
-]
+const comingSoonFeatures = []
 
 interface MovieTabProps {
   // Automatically controlled by unlock schedule
@@ -60,7 +53,7 @@ export default function MovieTab({
               </h1>
             </div>
             <p className="text-sm sm:text-base text-white/80 max-w-2xl mx-auto">
-              Watch our exclusive documentary celebrating decades of hairdressing excellence at Bendigo TAFE
+              Movie - produced by Jack Coyne with photos from Bendigo TAFE archives
             </p>
           </motion.div>
 
@@ -106,7 +99,7 @@ export default function MovieTab({
               <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mb-3 sm:mb-4">Watch Options</h3>
               <div className="space-y-3 sm:space-y-4">
                 <p className="text-xs sm:text-sm text-white/80">
-                  Experience this documentary in full HD quality, showcasing the rich history and evolution of hairdressing education.
+                  Experience this movie in full HD quality, showcasing the rich history and evolution of hairdressing education.
                 </p>
                 <a
                   href={youtubeUrl}
@@ -149,17 +142,23 @@ export default function MovieTab({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          DOCUMENTARY<br /><span className="text-yellow-400">COMING SOON</span>
+          MOVIE<br /><span className="text-yellow-400">COMING SOON</span>
         </motion.h1>
 
-        <motion.p
-          className="text-base sm:text-lg mb-6 sm:mb-8 text-white/80"
+        <motion.div
+          className="glass-card p-4 sm:p-6 rounded-lg mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          This exclusive content will be available after the celebration event
-        </motion.p>
+          <div className="text-center">
+            <Star className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-yellow-400" />
+            <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mb-2">Credits</h3>
+            <p className="text-sm sm:text-base text-white/90">
+              <strong>Produced by Jack Coyne with photos from Bendigo TAFE archives</strong>
+            </p>
+          </div>
+        </motion.div>
 
         <motion.div
           className="glass-card p-4 sm:p-6 rounded-lg mb-6 sm:mb-8"
@@ -167,18 +166,14 @@ export default function MovieTab({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <div className="flex items-center justify-center mb-4">
-            <Film className="w-5 h-5 sm:w-6 sm:h-6 mr-2 text-yellow-400" />
+          <div className="text-center mb-4">
+            <Film className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-yellow-400" />
             <h3 className="text-lg sm:text-xl font-bold text-yellow-400">What to Expect</h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {comingSoonFeatures.map((feature, index) => (
-              <div key={index} className="flex items-center space-x-3">
-                <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 flex-shrink-0" />
-                <span className="text-xs sm:text-sm text-white/80">{feature}</span>
-              </div>
-            ))}
-          </div>
+          <p className="text-xs sm:text-sm text-white/80">
+            Our movie celebrating decades of hairdressing excellence will premiere during the October 2025 celebration event.
+            Attendees will be the first to experience this exclusive look at the evolution of hairdressing education at Bendigo TAFE.
+          </p>
         </motion.div>
 
         <motion.div
@@ -187,17 +182,15 @@ export default function MovieTab({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0, duration: 0.6 }}
         >
-          <div className="flex items-center justify-center mb-4">
-            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-2 text-yellow-400" />
+          <div className="text-center mb-4">
+            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-yellow-400" />
             <h3 className="text-lg sm:text-xl font-bold text-yellow-400">Release Information</h3>
           </div>
           <p className="text-xs sm:text-sm mb-3 sm:mb-4 text-white/80">
-            Our documentary celebrating decades of hairdressing excellence will premiere during the October 2025
-            celebration event.
+            <strong>To be closed until after the Event</strong>
           </p>
-          <p className="text-xs sm:text-sm text-white/80">
-            Attendees will be the first to experience this exclusive look at the evolution of hairdressing education at
-            Bendigo TAFE.
+          <p className="text-xs sm:text-sm text-yellow-400">
+            <strong>Opening Date: Friday 17 October at 10.00pm</strong>
           </p>
         </motion.div>
       </div>

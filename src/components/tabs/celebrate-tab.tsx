@@ -9,15 +9,25 @@ const eventHighlights = [
 
 const entertainment = [
   {
-    category: "Hair Models",
+    category: "Music",
+    items: [
+      { performer: "Luke Owens", era: "Guitar & Vocals" },
+    ],
+  },
+  {
+    category: "Hair Show - 8.30pm - 8.45pm",
     items: [
       { performer: "Rikki Blake", era: "1970's" },
       { performer: "Emily Eliades & Tia Webb", era: "1980's" },
       { performer: "Julianne Shelton", era: "1990's" },
     ],
   },
-  { category: "Music", items: [{ performer: "TBC", era: "" }] },
-  { category: "Hair Apprentices", items: [{ performer: "TBA", era: "" }] },
+  {
+    category: "Hairdressers of the Future",
+    items: [
+      { performer: "Bella Mills & Ellie West", era: "The Future (Mentored by Lauren McIlrath)" },
+    ],
+  },
 ]
 
 export default function CelebrateTab() {
