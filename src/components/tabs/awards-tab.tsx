@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Heart } from "lucide-react"
 import { useState } from "react"
 import { students } from "../../data/students"
 import type { Student } from "../../types/student"
@@ -49,6 +49,13 @@ export default function AwardsTab() {
   // Sort students within each award by year
   Object.keys(groupedByAward).forEach((award) => {
     groupedByAward[award].sort((a, b) => a.year - b.year)
+  })
+
+  // Sort award categories by earliest year in each category
+  const sortedAwardEntries = Object.entries(groupedByAward).sort(([, a], [, b]) => {
+    const earliestYearA = Math.min(...a.map(student => student.year || Infinity))
+    const earliestYearB = Math.min(...b.map(student => student.year || Infinity))
+    return earliestYearA - earliestYearB
   })
 
   return (
@@ -181,9 +188,26 @@ export default function AwardsTab() {
           </div>
         </motion.div>
 
+        {/* Memorial Tribute */}
+        <motion.div
+          className="mb-8 sm:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+        >
+          <div className="glass-card p-4 sm:p-6 rounded-lg">
+            <div className="text-center">
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-3 text-red-400" />
+              <p className="text-xs sm:text-sm text-white/80 max-w-2xl mx-auto leading-relaxed">
+                The Christine Mitchell Julie -Arthur perpetual trophy commemorates two young hairdressers who died in a car accident. Their families donated the award in their memory.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Award Categories */}
         <div className="space-y-6 sm:space-y-8">
-          {Object.entries(groupedByAward)
+          {sortedAwardEntries
             .filter(([award, winners]) =>
               winners.some(winner => !featuredStudents.some(featured => featured.id === winner.id))
             )
