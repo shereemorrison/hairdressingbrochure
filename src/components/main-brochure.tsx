@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera, Lock } from "lucide-react"
+import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Aurora from "./aurora"
 import MagicBento from "./magic-bento"
