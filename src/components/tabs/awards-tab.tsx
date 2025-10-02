@@ -36,19 +36,31 @@ export default function AwardsTab() {
     setCurrentSlide((prev) => (prev - 1 + featuredStudents.length) % featuredStudents.length)
   }
 
-  // Simple swipe detection - only prevents default when swiping, doesn't interfere with tab navigation
+  // Aggressive swipe isolation - prevents ALL background movement
   const minSwipeDistance = 50
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    // Always prevent default to stop any background scrolling/movement
+    e.preventDefault()
+    e.stopPropagation()
+    
     touchEndX.current = null
     touchStartX.current = e.targetTouches[0].clientX
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    // Always prevent default to stop any background scrolling/movement
+    e.preventDefault()
+    e.stopPropagation()
+    
     touchEndX.current = e.targetTouches[0].clientX
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    // Always prevent default to stop any background scrolling/movement
+    e.preventDefault()
+    e.stopPropagation()
+    
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
@@ -56,10 +68,6 @@ export default function AwardsTab() {
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe || isRightSwipe) {
-      // Only prevent default and stop propagation when we actually swipe
-      e.preventDefault()
-      e.stopPropagation()
-      
       if (isLeftSwipe) {
         nextSlide()
       } else if (isRightSwipe) {
@@ -193,10 +201,10 @@ export default function AwardsTab() {
                       
                       {/* Polaroid writing area */}
                       <div className="polaroid-writing-area min-h-[60px] flex flex-col items-center justify-center">
-                        <p className="polaroid-handwriting text-center text-sm italic mb-1 relative z-10">
+                        <p className="polaroid-handwriting text-center text-sm italic font-bold mb-1 relative z-10">
                           {featuredStudents[currentSlide].name}
                         </p>
-                        <p className="polaroid-handwriting text-center text-xs relative z-10">
+                        <p className="polaroid-handwriting text-center text-xs font-bold relative z-10">
                           {featuredStudents[currentSlide].award}{featuredStudents[currentSlide].year ? ` - ${featuredStudents[currentSlide].year}` : ''}
                         </p>
                       </div>

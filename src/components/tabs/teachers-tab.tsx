@@ -42,19 +42,31 @@ export default function TeachersTab() {
     setCurrentSlide((prev) => (prev - 1 + groupPhotos.length) % groupPhotos.length)
   }
 
-  // Simple swipe detection - only prevents default when swiping, doesn't interfere with tab navigation
+  // Aggressive swipe isolation - prevents ALL background movement
   const minSwipeDistance = 50
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    // Always prevent default to stop any background scrolling/movement
+    e.preventDefault()
+    e.stopPropagation()
+    
     touchEndX.current = null
     touchStartX.current = e.targetTouches[0].clientX
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    // Always prevent default to stop any background scrolling/movement
+    e.preventDefault()
+    e.stopPropagation()
+    
     touchEndX.current = e.targetTouches[0].clientX
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    // Always prevent default to stop any background scrolling/movement
+    e.preventDefault()
+    e.stopPropagation()
+    
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
@@ -62,10 +74,6 @@ export default function TeachersTab() {
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe || isRightSwipe) {
-      // Only prevent default and stop propagation when we actually swipe
-      e.preventDefault()
-      e.stopPropagation()
-      
       if (isLeftSwipe) {
         nextSlide()
       } else if (isRightSwipe) {
@@ -184,7 +192,7 @@ export default function TeachersTab() {
                   
                   {/* Polaroid writing area */}
                   <div className="polaroid-writing-area min-h-[60px] flex items-center justify-center">
-                    <p className="polaroid-handwriting text-center text-sm italic relative z-10">
+                    <p className="polaroid-handwriting text-center text-sm italic font-bold relative z-10">
                       {groupPhotos[currentSlide].names.join(", ")}
                     </p>
                   </div>
