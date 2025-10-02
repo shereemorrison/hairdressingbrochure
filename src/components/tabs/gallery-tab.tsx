@@ -103,7 +103,11 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
   const minSwipeDistance = 50
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    // Always prevent default and stop propagation in modal to isolate from background
+    // Don't prevent default on buttons - let them work normally
+    if ((e.target as HTMLElement).closest('button')) {
+      return
+    }
+    
     e.preventDefault()
     e.stopPropagation()
     
@@ -112,7 +116,11 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    // Always prevent default and stop propagation in modal to isolate from background
+    // Don't prevent default on buttons - let them work normally
+    if ((e.target as HTMLElement).closest('button')) {
+      return
+    }
+    
     e.preventDefault()
     e.stopPropagation()
     
@@ -120,7 +128,11 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    // Always prevent default and stop propagation in modal to isolate from background
+    // Don't prevent default on buttons - let them work normally
+    if ((e.target as HTMLElement).closest('button')) {
+      return
+    }
+    
     e.preventDefault()
     e.stopPropagation()
     
