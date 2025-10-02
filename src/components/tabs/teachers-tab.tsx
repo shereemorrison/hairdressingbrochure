@@ -15,12 +15,11 @@ export default function TeachersTab() {
       alt: "Staff 1980s",
       names: ["Staff from the 1980s"],
     },
-
-    { src: "/assets/teachers/hairstaff.jpg",
-    alt: "Our Staff Today",
-    names: ["Our Staff"],
+    { 
+      src: "/assets/teachers/hairstaff.jpg",
+      alt: "Our Staff Today",
+      names: ["Our Staff"],
     },
-
     {
       src: "/assets/teachers/group1.jpg",
       alt: "",
@@ -53,7 +52,6 @@ export default function TeachersTab() {
   )
 
   const sortedYears = Object.keys(groupedTeachers).sort((a, b) => {
-    // Handle year ranges
     const getFirstYear = (year: string) => {
       const match = year.match(/^\d{4}/)
       return match ? Number.parseInt(match[0]) : 9999
@@ -82,17 +80,18 @@ export default function TeachersTab() {
             </h1>
           </motion.div>
         </div>
-           <motion.div
-                  className="text-center"
-                  initial={{ opacity: 0, y: 0 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                >
-                  <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
-                    {" "}
-                    Our dedicated teaching staff have shaped generations of hairdressing professionals, bringing decades of industry experience and passion for education to every salon classroom
-                  </p>
-                </motion.div>
+
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
+          <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
+            Our dedicated teaching staff have shaped generations of hairdressing professionals, bringing decades of industry experience and passion for education to every salon classroom
+          </p>
+        </motion.div>
+
         <motion.div
           className="mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 30 }}
@@ -100,43 +99,63 @@ export default function TeachersTab() {
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           <div className="relative max-w-xl mx-auto">
-            {" "}
-            <div className="glass-card p-4 rounded-lg text-center">
-              {" "}
-              <div className="relative overflow-hidden rounded-lg mb-3 bg-black/20">
-                {" "}
-                <img
-                  src={groupPhotos[currentSlide].src || "/placeholder.svg"}
-                  alt={groupPhotos[currentSlide].alt}
-                  className="w-full h-48 sm:h-56 object-contain" // Reduced height
-                />
+            <div className="glass-card p-6 rounded-lg text-center">
+              <motion.div
+                className="relative"
+                key={currentSlide}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Authentic Vintage Polaroid-style frame */}
+                <div 
+                  className="polaroid-frame transform hover:rotate-0 transition-all duration-500 mx-auto w-full max-w-[280px] sm:max-w-[320px]"
+                  style={{
+                    transform: `rotate(${(currentSlide * 7) % 5 - 2}deg)`,
+                    maxWidth: groupPhotos[currentSlide].names.length > 1 ? 'clamp(250px, 85vw, 320px)' : 'clamp(220px, 80vw, 280px)',
+                  }}
+                >
+                  <div className={`polaroid-photo transition-all duration-500 ${groupPhotos[currentSlide].names.length > 1 ? 'aspect-[4/3]' : 'aspect-square'}`}>
+                    <img
+                      src={groupPhotos[currentSlide].src}
+                      alt={groupPhotos[currentSlide].alt}
+                      className="w-full h-full brightness-110 sepia-[0.2] contrast-110 saturate-80"
+                      style={{
+                        objectPosition: groupPhotos[currentSlide].names.length > 1 ? 'center center' : 'center top',
+                        objectFit: groupPhotos[currentSlide].names.length > 1 ? 'contain' : 'cover',
+                        width: '100%',
+                        height: '100%'
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Polaroid writing area */}
+                  <div className="polaroid-writing-area min-h-[60px] flex items-center justify-center">
+                    <p className="polaroid-handwriting text-center text-sm italic relative z-10">
+                      {groupPhotos[currentSlide].names.join(", ")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Navigation arrows */}
                 <button
                   onClick={prevSlide}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-12 text-white/60 hover:text-white transition-colors"
+                  aria-label="Previous photo"
                 >
-                  <ChevronLeft className="w-4 h-4" /> {/* Reduced icon size */}
+                  <ChevronLeft className="w-8 h-8" />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-12 text-white/60 hover:text-white transition-colors"
+                  aria-label="Next photo"
                 >
-                  <ChevronRight className="w-4 h-4" /> {/* Reduced icon size */}
+                  <ChevronRight className="w-8 h-8" />
                 </button>
-              </div>
-              <div className="text-yellow-400">
-                <h3 className="text-base sm:text-lg font-bold mb-2">{groupPhotos[currentSlide].alt}</h3>{" "}
-                <div className="flex flex-wrap justify-center gap-2">
-                  {groupPhotos[currentSlide].names.map((name, index) => (
-                    <span key={index} className="text-xs sm:text-sm text-white/90">
-                      {" "}
-                      {name}
-                      {index < groupPhotos[currentSlide].names.length - 1 && ","}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="flex justify-center mt-3 space-x-2">
-                {" "}
+              </motion.div>
+
+              {/* Dot indicators */}
+              <div className="flex justify-center mt-4 space-x-2">
                 {groupPhotos.map((_, index) => (
                   <button
                     key={index}
@@ -144,12 +163,14 @@ export default function TeachersTab() {
                     className={`w-2 h-2 rounded-full transition-colors ${
                       index === currentSlide ? "bg-yellow-400" : "bg-white/30"
                     }`}
+                    aria-label={`Go to photo ${index + 1}`}
                   />
                 ))}
               </div>
             </div>
           </div>
         </motion.div>
+
         <motion.div
           className="mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 30 }}

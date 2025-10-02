@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Trophy, ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { students } from "../../data/students"
 import type { Student } from "../../types/student"
@@ -9,8 +9,22 @@ import type { Student } from "../../types/student"
 export default function AwardsTab() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  // Get featured students (those with photos)
-  const featuredStudents = students.filter((student) => student.hasPhoto)
+  // Get featured students (those with photos) and organize by category
+  const allStudentsWithPhotos = students.filter((student) => student.hasPhoto)
+  
+  // Separate medals/historical items from regular awards
+  const medalsAndHistorical = allStudentsWithPhotos.filter((student) => 
+    student.award === "Hairdressing Medal" || 
+    student.name === "Historical Trophies"
+  )
+  
+  const regularAwards = allStudentsWithPhotos.filter((student) => 
+    student.award !== "Hairdressing Medal" && 
+    student.name !== "Historical Trophies"
+  ).sort((a, b) => a.year - b.year) // Sort regular awards chronologically
+  
+  // Combine: regular awards first, then medals/historical last
+  const featuredStudents = [...regularAwards, ...medalsAndHistorical]
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % featuredStudents.length)
@@ -44,20 +58,20 @@ export default function AwardsTab() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-   <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
-     <div className="grid grid-cols-1 gap-6 sm:gap-8 items-center">
-       <motion.div
-         initial={{ opacity: 0, y: 30 }}
-         animate={{ opacity: 1, y: 0 }}
-         transition={{ delay: 0.2, duration: 0.6 }}
-       >
-         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
-           CELEBRATING OUR
-           <br />
-           <span className="text-yellow-400">AWARD WINNERS</span>
-         </h1>
-       </motion.div>
-     </div>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
+              CELEBRATING OUR
+              <br />
+              <span className="text-yellow-400">AWARD WINNERS</span>
+            </h1>
+          </motion.div>
+        </div>
 
         <motion.div
           className="mb-8 sm:mb-12"
@@ -65,73 +79,90 @@ export default function AwardsTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
+          <motion.div
+            className="text-center mb-6"
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
+              Photos were not available for all award winners
+            </p>
+          </motion.div>
 
-                <motion.div
-                          className="text-center"
-                          initial={{ opacity: 0, y: 0 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.8, duration: 0.8 }}
-                        >
-                          <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
-                            {" "}
-                           Photos were not available for all award winners
-                          </p>
-                        </motion.div>
-
-          <div className="relative max-w-md mx-auto">
-            <div className="glass-card p-6 rounded-xl border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300">
+          <div className="relative max-w-xl mx-auto">
+            <div className="glass-card p-6 rounded-lg text-center">
               <div className="relative">
                 {featuredStudents.length > 0 && (
                   <motion.div
                     key={currentSlide}
-                    className="flex flex-col items-center text-center"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
                   >
+                    {/* Authentic Vintage Polaroid-style frame */}
+                <div 
+                  className="polaroid-frame transform hover:rotate-0 transition-all duration-500 mx-auto w-full max-w-[280px] sm:max-w-[320px]"
+                  style={{
+                    transform: `rotate(${(currentSlide * 7) % 5 - 2}deg)`,
+                    maxWidth: featuredStudents[currentSlide].name.toLowerCase().includes('group') ? 'clamp(250px, 85vw, 320px)' : 'clamp(220px, 80vw, 280px)',
+                  }}
+                >
+                  <div className={`polaroid-photo transition-all duration-500 ${featuredStudents[currentSlide].name.toLowerCase().includes('group') ? 'aspect-[4/3]' : 'aspect-square'}`}>
                     <div
-                      className="w-32 h-32 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg"
+                      className="w-full h-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-bold text-4xl brightness-110 sepia-[0.2] contrast-110 saturate-80"
                       style={{
                         backgroundImage: featuredStudents[currentSlide].photoFilename
                           ? `url(/assets/students/${featuredStudents[currentSlide].photoFilename})`
                           : undefined,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center top",
+                        backgroundSize: featuredStudents[currentSlide].name.toLowerCase().includes('group') ? "contain" : "cover",
+                        backgroundPosition: featuredStudents[currentSlide].name.toLowerCase().includes('group') ? "center center" : "center top",
                         backgroundRepeat: "no-repeat",
                       }}
                     >
-                      {!featuredStudents[currentSlide].photoFilename &&
-                        featuredStudents[currentSlide].name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
+                          {!featuredStudents[currentSlide].photoFilename &&
+                            featuredStudents[currentSlide].name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}
+                        </div>
+                      </div>
+                      
+                      {/* Polaroid writing area */}
+                      <div className="polaroid-writing-area min-h-[60px] flex flex-col items-center justify-center">
+                        <p className="polaroid-handwriting text-center text-sm italic mb-1 relative z-10">
+                          {featuredStudents[currentSlide].name}
+                        </p>
+                        <p className="polaroid-handwriting text-center text-xs relative z-10">
+                          {featuredStudents[currentSlide].award} - {featuredStudents[currentSlide].year}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="font-bold text-white text-lg mb-2">{featuredStudents[currentSlide].name}</h3>
-                    <p className="text-yellow-400 text-sm font-semibold mb-3">{featuredStudents[currentSlide].year}</p>
-                    <p className="text-white/70 text-sm leading-relaxed">{featuredStudents[currentSlide].award}</p>
                   </motion.div>
                 )}
 
-                {/* Navigation Arrows */}
+                {/* Navigation arrows */}
                 {featuredStudents.length > 1 && (
                   <>
                     <button
                       onClick={prevSlide}
-                      className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                      className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-12 text-white/60 hover:text-white transition-colors"
+                      aria-label="Previous student"
                     >
-                      <ChevronLeft className="w-4 h-4" />
+                      <ChevronLeft className="w-8 h-8" />
                     </button>
                     <button
                       onClick={nextSlide}
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                      className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-12 text-white/60 hover:text-white transition-colors"
+                      aria-label="Next student"
                     >
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-8 h-8" />
                     </button>
                   </>
                 )}
               </div>
 
-              {/* Dot Indicators */}
+              {/* Dot indicators */}
               {featuredStudents.length > 1 && (
                 <div className="flex justify-center mt-4 space-x-2">
                   {featuredStudents.map((_, index) => (
@@ -141,6 +172,7 @@ export default function AwardsTab() {
                       className={`w-2 h-2 rounded-full transition-colors ${
                         index === currentSlide ? "bg-yellow-400" : "bg-white/30"
                       }`}
+                      aria-label={`Go to student ${index + 1}`}
                     />
                   ))}
                 </div>
@@ -172,7 +204,7 @@ export default function AwardsTab() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
                 {winners
-                  .filter((winner) => !featuredStudents.some((featured) => featured.id === winner.id)) // Filter out duplicates
+                  .filter((winner) => !featuredStudents.some((featured) => featured.id === winner.id))
                   .map((winner, index) => (
                     <motion.div
                       key={winner.id}

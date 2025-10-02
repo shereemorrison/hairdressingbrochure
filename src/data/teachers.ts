@@ -73,7 +73,10 @@ export const teachersData: Teacher[] = [
   { id: "32", name: "Ange Richards", year: "2018", hasPhoto: false, role: "teacher" },
 
   // 2015
-  { id: "33", name: "Julie Mott", year: "2015", hasPhoto: true, role: "teacher" },
+  { id: "33", name: "Julie Mott", year: "2013", hasPhoto: false, role: "teacher" },
+
+  // 2020
+  { id: "37", name: "Ange Richards", year: "2020", hasPhoto: false, role: "teacher" },
 
   // 2022
   { id: "34", name: "Kiera Gwin", year: "2022", hasPhoto: false, role: "teacher" },
@@ -156,6 +159,10 @@ export const getGroupedTeachersData = () => {
     {
       period: "2019",
       teachers: teachersData.filter((t) => t.year === "2019"),
+    },
+    {
+      period: "2020",
+      teachers: teachersData.filter((t) => t.year === "2020"),
     },
     {
       period: "2022",

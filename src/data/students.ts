@@ -106,7 +106,8 @@ export const students: Student[] = [
     name: "Renee Alford",
     year: 1996,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy",
-    hasPhoto: false,
+    hasPhoto: true,
+    photoFilename: "reneealford.png"
   },
   {
     id: "16",
@@ -168,9 +169,10 @@ export const students: Student[] = [
   {
     id: "29",
     name: "Simone Richardson",
-    year: 2004,
+    year: 2024,
     award: "HBIA Apprentice of the Year",
-    hasPhoto: false,
+    hasPhoto: true,
+    photoFilename: "simonerichardson.png",
   },
   {
     id: "40",
@@ -267,13 +269,13 @@ export const students: Student[] = [
         photoFilename: "awardwinners7.png"},
 
         {id: "52",
-            name: "Award Winners Group Photo 1980",
+            name: "Award Winners Group Photo",
             year: 1980,
             hasPhoto: true,
             photoFilename: "awardwinners1980.png"},
 
             { id: "53",
-                name: "Award Winners Group Photo 1999",
+                name: "Award Winners Group Photo",
                year: 1999,
                hasPhoto: true,
                photoFilename: "awardwinners1999.png"},
@@ -289,15 +291,6 @@ export const students: Student[] = [
                 hasPhoto: true,
                 photoFilename: "Perpetualtrophies.jpg"},
 
-                { id: "56",
-                    name: "Renee Alford",
-                    hasPhoto: true,
-                    photoFilename: "reneealford.png"},
-
-                    { id: "57",
-                        name: "Award Winners Group Photo",
-                        hasPhoto: true,
-                        photoFilename: "groupphoto.jpeg"},
 
 
 
