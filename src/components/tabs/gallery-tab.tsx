@@ -99,19 +99,31 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
   }
 
   // swipe detection
-  // Simple swipe detection - only prevents default when swiping, doesn't interfere with tab navigation
+  // Modal-isolated swipe detection - prevents all background interference
   const minSwipeDistance = 50
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    // Always prevent default and stop propagation in modal to isolate from background
+    e.preventDefault()
+    e.stopPropagation()
+    
     touchEndX.current = null
     touchStartX.current = e.targetTouches[0].clientX
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    // Always prevent default and stop propagation in modal to isolate from background
+    e.preventDefault()
+    e.stopPropagation()
+    
     touchEndX.current = e.targetTouches[0].clientX
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    // Always prevent default and stop propagation in modal to isolate from background
+    e.preventDefault()
+    e.stopPropagation()
+    
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
@@ -119,10 +131,6 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe || isRightSwipe) {
-      // Only prevent default and stop propagation when we actually swipe
-      e.preventDefault()
-      e.stopPropagation()
-      
       if (isLeftSwipe) {
         navigateToNext()
       } else if (isRightSwipe) {
@@ -232,9 +240,17 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            onTouchEnd={(e) => e.stopPropagation()}
           >
             {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+            <div 
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
+            />
 
             {/* Navigation Button - Previous - hidden on mobile, visible on desktop */}
             <button
