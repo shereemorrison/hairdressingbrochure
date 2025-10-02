@@ -98,8 +98,8 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
     }
   }
 
-  // Mobile swipe detection
-  const minSwipeDistance = 50
+  // Mobile swipe detection - increased distance to prevent accidental triggers
+  const minSwipeDistance = 80
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchEndX.current = null
@@ -108,9 +108,11 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.targetTouches[0].clientX
+    // Prevent scrolling while swiping
+    e.preventDefault()
   }
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartX.current || !touchEndX.current) return
     
     const distance = touchStartX.current - touchEndX.current
@@ -118,9 +120,13 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
     const isRightSwipe = distance < -minSwipeDistance
 
     if (isLeftSwipe) {
+      e.preventDefault()
+      e.stopPropagation()
       navigateToNext()
     }
     if (isRightSwipe) {
+      e.preventDefault()
+      e.stopPropagation()
       navigateToPrevious()
     }
   }
