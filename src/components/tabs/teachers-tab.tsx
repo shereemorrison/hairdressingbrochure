@@ -38,11 +38,6 @@ export default function TeachersTab() {
       src: "/assets/teachers/danicaorchard.jpg",
       alt: "",
       names: ["Danica Orchard"],
-    },
-    {
-      src: "/assets/teachers/group3.jpg",
-      alt: "",
-      names: ["Group Photo"],
     }
   ]
 
