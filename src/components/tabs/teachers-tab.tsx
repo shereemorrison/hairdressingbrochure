@@ -42,6 +42,7 @@ export default function TeachersTab() {
     {
       src: "/assets/teachers/group3.jpg",
       alt: "",
+      names: ["Group Photo"],
     }
   ]
 
@@ -176,20 +177,20 @@ export default function TeachersTab() {
                   className="polaroid-frame transform hover:rotate-0 transition-all duration-500 mx-auto w-full max-w-[280px] sm:max-w-[320px]"
                   style={{
                     transform: `rotate(${(currentSlide * 7) % 5 - 2}deg)`,
-                    maxWidth: groupPhotos[currentSlide].names.length > 1 ? 'clamp(250px, 85vw, 320px)' : 'clamp(220px, 80vw, 280px)',
+                    maxWidth: (groupPhotos[currentSlide].names?.length || 1) > 1 ? 'clamp(250px, 85vw, 320px)' : 'clamp(220px, 80vw, 280px)',
                   }}
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                 >
-                  <div className={`polaroid-photo transition-all duration-500 ${groupPhotos[currentSlide].names.length > 1 ? 'aspect-[4/3]' : 'aspect-square'}`}>
+                  <div className={`polaroid-photo transition-all duration-500 ${(groupPhotos[currentSlide].names?.length || 1) > 1 ? 'aspect-[4/3]' : 'aspect-square'}`}>
                     <img
                       src={groupPhotos[currentSlide].src}
                       alt={groupPhotos[currentSlide].alt}
                       className="w-full h-full brightness-110 sepia-[0.2] contrast-110 saturate-80"
                       style={{
-                        objectPosition: groupPhotos[currentSlide].names.length > 1 ? 'center center' : 'center top',
-                        objectFit: groupPhotos[currentSlide].names.length > 1 ? 'contain' : 'cover',
+                        objectPosition: (groupPhotos[currentSlide].names?.length || 1) > 1 ? 'center center' : 'center top',
+                        objectFit: (groupPhotos[currentSlide].names?.length || 1) > 1 ? 'contain' : 'cover',
                         width: '100%',
                         height: '100%'
                       }}
@@ -199,7 +200,7 @@ export default function TeachersTab() {
                   {/* Polaroid writing area */}
                   <div className="polaroid-writing-area min-h-[60px] flex items-center justify-center">
                     <p className="polaroid-handwriting text-center text-sm italic font-bold relative z-10">
-                      {groupPhotos[currentSlide].names.join(", ")}
+                      {groupPhotos[currentSlide].names?.join(", ") || "Group Photo"}
                     </p>
                   </div>
                 </div>
