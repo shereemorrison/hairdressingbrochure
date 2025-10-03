@@ -36,7 +36,7 @@ export const teachersData: Teacher[] = [
   { id: "12", name: "Sue Hawkey", year: "1975-1985", hasPhoto: true, role: "teacher" },
 
   // 2000-current
-//   { id: "13", name: "Julie Curnow", year: "2000-current", hasPhoto: true, role: "teacher" },
+  //   { id: "13", name: "Julie Curnow", year: "2000-current", hasPhoto: true, role: "teacher" },
 
   // 2000
   { id: "14", name: "Deb Burch", year: "2000", hasPhoto: true, role: "teacher" },
@@ -83,7 +83,7 @@ export const teachersData: Teacher[] = [
   { id: "35", name: "Lauren McIlrath", year: "2022", hasPhoto: false, role: "teacher" },
 
   // 2023
-  { id: "36", name: "Danica Orchard", year: "2023", hasPhoto: false, role: "teacher" },
+  { id: "36", name: "Danica Orchard", year: "2023", hasPhoto: true, role: "teacher" },
 
   // 2024
   { id: "44", name: "Paige Wilson", year: "2024", hasPhoto: false, role: "teacher" },

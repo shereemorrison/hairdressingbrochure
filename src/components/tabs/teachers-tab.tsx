@@ -34,6 +34,15 @@ export default function TeachersTab() {
       alt: "",
       names: ["Sue", "Deb", "Julie", "Gayle"],
     },
+    {
+      src: "/assets/teachers/danicaorchard.jpg",
+      alt: "",
+      names: ["Danica Orchard"],
+    },
+    {
+      src: "/assets/teachers/group3.jpg",
+      alt: "",
+    }
   ]
 
   const nextSlide = () => {

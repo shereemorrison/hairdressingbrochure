@@ -1,13 +1,13 @@
 # Celebrate Hairdressing - Digital Brochure
 
-An interactive React brochure for Bendigo TAFE's hairdressing celebration.  Complete front end project
+Am interactive React brochure for Bendigo TAFE's hairdressing celebration.  Complete front end project
 
 ## Features
 
 ### Preloader Screen
-- Animated scissors with video background
+- Animated scissors
 - Loading progress indication
-- Smooth transition to main content
+- Opening transition to content
 
 ### Acknowledgment of Country
 - Respectful Indigenous recognition with flags
@@ -16,16 +16,17 @@ An interactive React brochure for Bendigo TAFE's hairdressing celebration.  Comp
 ### Loading Screen
 - Vanta Birds Background - Animated 3D bird flock with Three.js
 - Interactive Lanyard - 3D ticket that falls and becomes clickable
-- 50-year celebration messaging for industry, hairshows, apprentices, and educators
-- Smooth transitions between loading phases
 
 ### Tabs
 - **Gallery Tab** - Historical photo journey through campus locations (1975-present)
-- **Teachers Tab** - Vintage polaroid-style photo carousel with aging effects
-- **Awards Tab** - Comprehensive award winners database with chronological ordering
+- **Teachers Tab** - Vintage polaroid-style photo carousel with aging effects and a list of teachers
+- **Awards Tab** - Award winners polaroid-style photo carousel and list of award winners
 - **Refreshments Tab** - Event menu presentation with beverages section
-- **Entertainment Tab** - Event details with music, hair show, and future talent
-- **Movie Tab** - Exclusive documentary premiere with producer credits
+- **Entertainment Tab** - Event details
+- **Movie Tab** - Youtube video to be released after the event - preview content prior to this
+
+Other features
+- Timed release of tabs and counter to count down to next section release
 
 
 ## Quick Start

@@ -17,18 +17,22 @@ export default function AwardsTab() {
   const allStudentsWithPhotos = students.filter((student) => student.hasPhoto)
   
   // Separate medals/historical items from regular awards
-  const medalsAndHistorical = allStudentsWithPhotos.filter((student) => 
-    student.award === "Hairdressing Medal" || 
-    student.name === "Historical Trophies"
+  const perpetualTrophy = allStudentsWithPhotos.filter((student) => 
+    student.name === "Perpetual Trophies"
+  )
+  
+  const medalsAndOtherHistorical = allStudentsWithPhotos.filter((student) => 
+    student.award === "Hairdressing Medal" && 
+    student.name !== "Perpetual Trophies"
   )
   
   const regularAwards = allStudentsWithPhotos.filter((student) => 
     student.award !== "Hairdressing Medal" && 
-    student.name !== "Historical Trophies"
+    student.name !== "Perpetual Trophies"
   ).sort((a, b) => a.year - b.year) // Sort regular awards chronologically
   
-  // Combine: regular awards first, then medals/historical last
-  const featuredStudents = [...regularAwards, ...medalsAndHistorical]
+  // Combine: perpetual trophy first, then regular awards, then other medals/historical last
+  const featuredStudents = [...perpetualTrophy, ...regularAwards, ...medalsAndOtherHistorical]
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % featuredStudents.length)

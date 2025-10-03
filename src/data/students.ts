@@ -1,7 +1,6 @@
 import type { Student } from "../types/student"
 
 export const students: Student[] = [
-  // Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing
   {
     id: "1",
     name: "Julie Williams",
@@ -185,7 +184,7 @@ export const students: Student[] = [
     award: "Worldskills Australian - National winner",
     hasPhoto: true,
     photoFilename: "AlishaMcPherson.jpeg",
-    },
+  },
 
   // HBIA Apprentice of the Year
   {
@@ -214,7 +213,6 @@ export const students: Student[] = [
 
   // Outstanding 3rd Yr Apprentice Awards
   { id: "57", name: "Kirsty McDonald", year: 2000, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
-  { id: "58", name: "Cindy Hallywell", year: 2001, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
   { id: "59", name: "Kate Berryman", year: 2002, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
   { id: "60", name: "Emma Musgrove", year: 2003, award: "Outstanding 3rd Yr Apprentice Awards", hasPhoto: false },
 
@@ -240,108 +238,146 @@ export const students: Student[] = [
     id: "41",
     name: "Cindy Hallywell",
     year: 2003,
-    award: "TBA",
+    award: "Outstanding Achievement",
     hasPhoto: true,
     photoFilename: "CindyHallywell.jpeg",
   },
 
-  { id: "43",
-      name: "Caitlin Giddings",
-      year: 2003,
-      award: "TBA",
-      hasPhoto: true,
-      photoFilename: "caitlingiddings.png",
-    },
-{ id: "44",
+  {
+    id: "43",
+    name: "Caitlin Giddings",
+    year: 2003,
+    award: "",
+    hasPhoto: true,
+    photoFilename: "caitlingiddings.png",
+  },
+  {
+    id: "44",
     name: "Emma Musgrove",
     year: 2003,
-    award: "TBA",
+    award: "",
     hasPhoto: true,
     photoFilename: "emma.png",
-    },
+  },
 
-    { id: "45",
+  {
+    id: "45",
     name: "Christine McIntyre",
     year: 1975,
     award: "2nd Year Apprentice Award",
     hasPhoto: false,
-    },
+  },
 
-    { id: "46",
+  {
+    id: "46",
     name: "Christine McIntyre",
     year: 1976,
     award: "3rd Year Apprentice Award",
     hasPhoto: false,
-    },
+  },
 
-    { id: "47",
-    name: "Julie Bish",
-    year: 1975,
-    award: "Hairdressing Medal",
+  {
+    id: "47",
+    name: "Julie Bish Hairdressing Medal",
+    year: "",
+    award: "",
     hasPhoto: true,
     photoFilename: "JulieBishHairdressingMedal.jpg",
-    },
+  },
 
-{ id: "48",
+  {
+    id: "47b",
+    name: "Julie Bish",
+    year: 1975,
+    award: "Julie Bish Hairdressing Medal",
+    hasPhoto: false,
+  },
+
+  {
+    id: "48",
     name: "Awards Certifcates",
     hasPhoto: true,
-    photoFilename: "awardcertificates.png"},
+    photoFilename: "awardcertificates.png"
+  },
 
-{id: "49",
+  {
+    id: "49",
     name: "Awards Winners Group Photo",
     year: 2025,
     hasPhoto: true,
     photoFilename: "Awardscertificates2025.png"
-    },
+  },
 
-{id: "50",
+  {
+    id: "50",
     name: "Award Winners Group Photo",
     hasPhoto: true,
     photoFilename: "awardwinners.png"
-    },
+  },
 
-    {id: "51",
-        name: "Award Winners Group Photo",
-        hasPhoto: true,
-        photoFilename: "awardwinners3.png"
-        },
+  {
+    id: "51",
+    name: "Award Winners Group Photo",
+    hasPhoto: true,
+    photoFilename: "awardwinners3.png"
+  },
 
-    {id: "52",
-        name: "Award Winners Group Photo",
-        hasPhoto: true,
-        photoFilename: "awardwinners6.png"
-        },
+  {
+    id: "52",
+    name: "Award Winners Group Photo",
+    hasPhoto: true,
+    photoFilename: "awardwinners6.png"
+  },
 
-    {id: "53",
-        name: "Award Winners Group Photo",
-        hasPhoto: true,
-        photoFilename: "awardwinners7.png"},
+  {
+    id: "53",
+    name: "Award Winners Group Photo",
+    hasPhoto: true,
+    photoFilename: "awardwinners7.png"
+  },
 
-        {id: "54",
-            name: "Award Winners Group Photo",
-            year: 1980,
-            hasPhoto: true,
-            photoFilename: "awardwinners1980.png"},
+  {
+    id: "54",
+    name: "Award Winners Group Photo",
+    year: 1980,
+    hasPhoto: true,
+    photoFilename: "awardwinners1980.png"
+  },
 
-            { id: "55",
-                name: "Award Winners Group Photo",
-               year: 1999,
-               hasPhoto: true,
-               photoFilename: "awardwinners1999.png"},
+  {
+    id: "55",
+    name: "Award Winners Group Photo",
+    year: 1999,
+    hasPhoto: true,
+    photoFilename: "awardwinners1999.png"
+  },
 
-              { id: "56",
-               name: "Nicole Street and Chantelle Ackland",
-               hasPhoto: true,
-                photoFilename: "nicolestreetandchanelle.png",
-                },
+  {
+    id: "56",
+    name: "Chantelle Ackland",
+    hasPhoto: true,
+    award: "Outstanding Achievement Award",
+    photoFilename: "chantelleackland.jpg",
+  },
 
-            {id: "55",
-                name: "Historical Trophies",
-                hasPhoto: true,
-                photoFilename: "Perpetualtrophies.jpg"},
+  {
+    id: "58",
+    name: "Nicole Street",
+    year: 1996,
+    hasPhoto: true,
+    award: "Outstanding Achievement Award",
+    photoFilename: "nicolestreet.jpg",
+  },
+
+  {
+    id: "57",
+    name: "Perpetual Trophies",
+    hasPhoto: true,
+    photoFilename: "Perpetualtrophies.jpg"
+  },
 
 
 
 
 
-    ]
+]
