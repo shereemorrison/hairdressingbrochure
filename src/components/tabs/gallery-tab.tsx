@@ -335,9 +335,6 @@ export default function GalleryTab({ onModalStateChange }: GalleryTabProps) {
                   <p className="text-yellow-400/80 text-base sm:text-lg md:text-xl font-medium max-w-2xl">
                     {currentSlide.groupSubtitle}
                   </p>
-                  <div className="mt-8 text-white/60 text-sm">
-                    Swipe or use navigation arrows to explore this location
-                  </div>
                 </div>
               ) : (
                 /* Image Slide */

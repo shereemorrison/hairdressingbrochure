@@ -180,9 +180,9 @@ export default function DecadesTab() {
           </motion.div>
         </div>
 
-        {/* Timeline */}
+        {/* Timeline - Desktop Only */}
         <motion.div
-          className="mb-8 sm:mb-12"
+          className="mb-8 sm:mb-12 hidden md:block"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -191,7 +191,7 @@ export default function DecadesTab() {
           <div className="py-4"></div>
           <div className="relative">
             {/* Desktop Timeline */}
-            <div className="hidden md:block">
+            <div>
               <div className="relative">
                 <div className="relative h-1 bg-white/20 rounded-full mb-8">
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/50 to-yellow-400 rounded-full" />
