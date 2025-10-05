@@ -274,7 +274,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
                   animate={contentVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  I would like to acknowledge our meeting/event/conference is being held on the lands of the Djaara people of the Dja Dja Wurrung and I wish to acknowledge them as the Traditional Owners.
+                  We would like to acknowledge our meeting/event/conference is being held on the lands of the Djaara people of the Dja Dja Wurrung and wish to acknowledge them as the Traditional Owners.
                 </motion.p>
                 <motion.p
                   className="mb-4 sm:mb-6"
@@ -282,7 +282,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
                   animate={contentVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  I pay my respects to their Elders, past and present along with other Aboriginal and Torres Strait Islander people present today.
+                  We pay our respects to their Elders, past and present, along with other Aboriginal and Torres Strait Islander people present today.
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}

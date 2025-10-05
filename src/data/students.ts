@@ -293,12 +293,12 @@ export const students: Student[] = [
     hasPhoto: false,
   },
 
-  {
-    id: "48",
-    name: "Awards Certifcates",
-    hasPhoto: true,
-    photoFilename: "awardcertificates.png"
-  },
+  // {
+  //   id: "48",
+  //   name: "Awards Certifcates",
+  //   hasPhoto: true,
+  //   photoFilename: "awardcertificates.png"
+  // },
 
   {
     id: "49",
