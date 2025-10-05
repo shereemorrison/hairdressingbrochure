@@ -10,7 +10,7 @@
       ],
       descriptions: [
         "Mundy Building - Traditional campus architecture at our original location",
-        "Main Reception - Central hub for student services in the Oakley Building",
+        "",
       ]
     },
     {
@@ -20,7 +20,7 @@
         "/assets/buildingimages/2-building-a-mcrae-st.jpg",
       ],
       descriptions: [
-        "City Campus View - Modern portable facilities in downtown location",
+        "Portable buildings were temporary facilities being Building A near McCrae St",
       ]
     },
     {
@@ -48,8 +48,8 @@
         "Students at Work - Learning through practical experience at our founding campus",
         "City Campus Interior - State-of-the-art learning spaces in temporary buildings",
         "Training Salon 1 - Hands-on learning environment in portable campus",
-        "McRae Street Campus - Historic building adapted for temporary use",
-        "Georgia Building - Heritage architecture meets modern education",
+        "",
+        "",
         "Blow Drying Station - Professional styling equipment in portable facilities",
         "Hargreaves Campus - Spacious grounds and contemporary design at 154 Hargreaves St",
         "Lotus Hair Salon - Professional training salon for students in Building G",
@@ -57,7 +57,7 @@
     },
     {
       title: "2020-2021: Charleston Rd Campus",
-      subtitle: "Portable Buildings B1, B3, B6 - Charleston Rd, Bendigo",
+      subtitle: "Charleston Rd, Bendigo",
       images: [
         "/assets/buildingimages/5a-lotus-reception-cr.jpg",
         "/assets/buildingimages/5b-tafe-salon-b6-charleston-rd.jpg",
@@ -86,7 +86,7 @@
         "Hargreaves Campus - Spacious grounds and contemporary design at 154 Hargreaves St",
         "Lotus Hair Salon - Professional training salon for students in Building G",
         "Lotus Reception Area - Welcoming entrance to our salon facilities",
-        "Loddon Campaspe Campus - Beautiful regional campus building",
+        "",
         "Modern Facilities - State-of-the-art equipment and learning spaces",
         "Current Location - Our present home at 154 Hargreaves Street",
       ]
