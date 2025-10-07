@@ -38,7 +38,37 @@ export default function TeachersTab() {
       src: "/assets/teachers/danicaorchard.jpg",
       alt: "",
       names: ["Danica Orchard"],
-    }
+    },
+    {
+      src: "/assets/teachers/breannagiddingcathyritchie.jpg",
+      alt: "",
+      names: ["Breanna Gidding & Cathay Ritchie"],
+    },
+    {
+      src: "/assets/teachers/grantmckinnon.jpg",
+      alt: "",
+      names: ["Grant McKinnon"],
+    },
+    {
+      src: "/assets/teachers/alishaweekley.png",
+      alt: "",
+      names: ["Alisha Weekley"],
+    },
+    {
+      src: "/assets/teachers/briannawatson.jpg",
+      alt: "",
+      names: ["Brianna Watson"],
+    },
+    {
+      src: "/assets/teachers/kieragwin.jpg",
+      alt: "",
+      names: ["Kiera Gwin"],
+    },
+    {
+      src: "/assets/teachers/laurenmcilrath.jpg",
+      alt: "",
+      names: ["Lauren McIlrath"],
+    },
   ]
 
   const nextSlide = () => {
