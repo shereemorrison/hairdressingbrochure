@@ -212,6 +212,7 @@ export default function MainBrochure() {
         : `${getTimeUntilUnlock("movie")} • Click to preview`,
       label: "Documentary",
       color: isTabUnlocked("movie") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
+      backgroundImage: "/assets/movie.webp",
       component: MovieTab,
       locked: !isTabUnlocked("movie"),
       specialBehavior: "clickable-preview", // Special flag for MagicBento to handle
