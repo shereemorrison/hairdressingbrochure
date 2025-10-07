@@ -49,7 +49,7 @@ export const students: Student[] = [
     year: 1989,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
     hasPhoto: true,
-    photoFilename: "JuliePanazzo.jpg",
+    photoFilename: "JuliePanazzo.webp",
   },
   {
     id: "7b",
@@ -113,7 +113,7 @@ export const students: Student[] = [
     year: 1996,
     award: "Christine Mitchell - Julie Arthur Perpetual Trophy - for outstanding achievements in Hairdressing",
     hasPhoto: true,
-    photoFilename: "reneealford.png"
+    photoFilename: "reneealford.webp"
   },
   {
     id: "16",
@@ -183,7 +183,7 @@ export const students: Student[] = [
     year: 2002,
     award: "Worldskills Australian - National winner",
     hasPhoto: true,
-    photoFilename: "AlishaMcPherson.jpeg",
+    photoFilename: "AlishaMcPherson.webp",
   },
 
   // HBIA Apprentice of the Year
@@ -200,7 +200,7 @@ export const students: Student[] = [
     year: 2004,
     award: "HBIA Apprentice of the Year",
     hasPhoto: true,
-    photoFilename: "simonerichardson.png",
+    photoFilename: "simonerichardson.webp",
   },
   {
     id: "40",
@@ -208,7 +208,7 @@ export const students: Student[] = [
     year: 2002,
     award: "HBIA Apprentice of the Year",
     hasPhoto: true,
-    photoFilename: "KateBerryman.png",
+    photoFilename: "KateBerryman.webp",
   },
 
   // Outstanding 3rd Yr Apprentice Awards
@@ -240,7 +240,7 @@ export const students: Student[] = [
     year: 2003,
     award: "Outstanding Achievement",
     hasPhoto: true,
-    photoFilename: "CindyHallywell.jpeg",
+    photoFilename: "CindyHallywell.webp",
   },
 
   {
@@ -249,7 +249,7 @@ export const students: Student[] = [
     year: 2003,
     award: "",
     hasPhoto: true,
-    photoFilename: "caitlingiddings.png",
+    photoFilename: "caitlingiddings.webp",
   },
   {
     id: "44",
@@ -257,7 +257,7 @@ export const students: Student[] = [
     year: 2003,
     award: "",
     hasPhoto: true,
-    photoFilename: "emma.png",
+    photoFilename: "emma.webp",
   },
 
   {
@@ -282,7 +282,7 @@ export const students: Student[] = [
     year: "",
     award: "",
     hasPhoto: true,
-    photoFilename: "JulieBishHairdressingMedal.jpg",
+    photoFilename: "JulieBishHairdressingMedal.webp",
   },
 
   {
@@ -297,7 +297,7 @@ export const students: Student[] = [
   //   id: "48",
   //   name: "Awards Certifcates",
   //   hasPhoto: true,
-  //   photoFilename: "awardcertificates.png"
+  //   photoFilename: "awardcertificates.webp"
   // },
 
   {
@@ -305,35 +305,35 @@ export const students: Student[] = [
     name: "Awards Winners Group Photo",
     year: 2025,
     hasPhoto: true,
-    photoFilename: "Awardscertificates2025.png"
+    photoFilename: "Awardscertificates2025.webp"
   },
 
   {
     id: "50",
     name: "Award Winners Group Photo",
     hasPhoto: true,
-    photoFilename: "awardwinners.png"
+    photoFilename: "awardwinners.webp"
   },
 
   {
     id: "51",
     name: "Award Winners Group Photo",
     hasPhoto: true,
-    photoFilename: "awardwinners3.png"
+    photoFilename: "awardwinners3.webp"
   },
 
   {
     id: "52",
     name: "Award Winners Group Photo",
     hasPhoto: true,
-    photoFilename: "awardwinners6.png"
+    photoFilename: "awardwinners6.webp"
   },
 
   {
     id: "53",
     name: "Award Winners Group Photo",
     hasPhoto: true,
-    photoFilename: "awardwinners7.png"
+    photoFilename: "awardwinners7.webp"
   },
 
   {
@@ -341,7 +341,7 @@ export const students: Student[] = [
     name: "Award Winners Group Photo",
     year: 1980,
     hasPhoto: true,
-    photoFilename: "awardwinners1980.png"
+    photoFilename: "awardwinners1980.webp"
   },
 
   {
@@ -349,7 +349,7 @@ export const students: Student[] = [
     name: "Award Winners Group Photo",
     year: 1999,
     hasPhoto: true,
-    photoFilename: "awardwinners1999.png"
+    photoFilename: "awardwinners1999.webp"
   },
 
   {
@@ -357,7 +357,7 @@ export const students: Student[] = [
     name: "Chantelle Ackland",
     hasPhoto: true,
     award: "Outstanding Achievement Award",
-    photoFilename: "chantelleackland.jpg",
+    photoFilename: "chantelleackland.webp",
   },
 
   {
@@ -366,14 +366,14 @@ export const students: Student[] = [
     year: 1996,
     hasPhoto: true,
     award: "Outstanding Achievement Award",
-    photoFilename: "nicolestreet.jpg",
+    photoFilename: "nicolestreet.webp",
   },
 
   {
     id: "57",
     name: "Perpetual Trophies",
     hasPhoto: true,
-    photoFilename: "Perpetualtrophies.jpg"
+    photoFilename: "Perpetualtrophies.webp"
   },
 
 

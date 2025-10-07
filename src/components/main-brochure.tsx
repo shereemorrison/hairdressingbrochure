@@ -12,13 +12,13 @@ import AwardsTab from "@/components/tabs/awards-tab"
 import DecadesTab from "@/components/tabs/decades-tab"
 import MovieTab from "@/components/tabs/movie-tab" // Replace with enhanced-movie-tab when ready
 import GalleryTab from "@/components/tabs/gallery-tab"
-import bendigoLogo from "@/assets/bendigoLogo.png"
-import celebrate from "@/assets/celebrate.jpg"
-import tafebuilding from "@/assets/tafebuilding.jpg"
-import group1 from "@/assets/teachers/group1.jpg"
-import award from "@/assets/award.jpg"
-import food from "@/assets/food.jpg"
-import gallery from "@/assets/gallery.jpg"
+// import bendigoLogo from "@/assets/bendigoLogo.webp"
+// import celebrate from "@/assets/celebrate.webp"
+// import tafebuilding from "@/assets/tafebuilding.webp"
+// import group1 from "@/assets/teachers/group1.webp"
+// import award from "@/assets/award.webp"
+// import food from "@/assets/food.webp"
+// import gallery from "@/assets/gallery.webp"
 import RefreshmentsTab from "@/components/tabs/refreshments-tab"
 
 
@@ -128,7 +128,7 @@ export default function MainBrochure() {
       description: "Meet our dedicated educators and staff members",
       label: "Educators",
       color: "rgba(0, 0, 0, 0.1)",
-      backgroundImage: group1,
+      backgroundImage: "/assets/teachers/group1.webp",
       component: TeachersTab,
       locked: !isTabUnlocked("teachers"),
       onClick: () => handleTabClick("teachers"),
@@ -142,7 +142,7 @@ export default function MainBrochure() {
         : getTimeUntilUnlock("awards"),
       label: "Recognition",
       color: isTabUnlocked("awards") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
-      backgroundImage: award,
+      backgroundImage: "/assets/award.webp",
       component: AwardsTab,
       locked: !isTabUnlocked("awards"),
       onClick: () => handleTabClick("awards"),
@@ -156,7 +156,7 @@ export default function MainBrochure() {
         : getTimeUntilUnlock("decades"),
       label: "History",
       color: isTabUnlocked("decades") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
-      backgroundImage: tafebuilding,
+      backgroundImage: "/assets/tafebuilding.webp",
       component: DecadesTab,
       locked: !isTabUnlocked("decades"),
       onClick: () => handleTabClick("decades"),
@@ -170,7 +170,7 @@ export default function MainBrochure() {
         : getTimeUntilUnlock("celebrate"),
       label: "Celebration",
       color: isTabUnlocked("celebrate") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
-      backgroundImage: celebrate,
+      backgroundImage: "/assets/celebrate.webp",
       component: CelebrateTab,
       locked: !isTabUnlocked("celebrate"),
       onClick: () => handleTabClick("celebrate"),
@@ -184,7 +184,7 @@ export default function MainBrochure() {
         : getTimeUntilUnlock("food"),
       label: "Food",
       color: isTabUnlocked("food") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
-      backgroundImage: food,
+      backgroundImage: "/assets/food.webp",
       component: RefreshmentsTab,
       locked: !isTabUnlocked("food"),
       onClick: () => handleTabClick("food"),
@@ -198,7 +198,7 @@ export default function MainBrochure() {
         : getTimeUntilUnlock("gallery"),
       label: "Gallery",
       color: isTabUnlocked("gallery") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
-      backgroundImage: gallery,
+      backgroundImage: "/assets/gallery.webp",
       component: GalleryTab,
       locked: !isTabUnlocked("gallery"),
       onClick: () => handleTabClick("gallery"),
@@ -242,7 +242,7 @@ export default function MainBrochure() {
 
       {/* Header with Logo */}
       <div className="relative z-20 flex justify-end p-6">
-        <img src={bendigoLogo || "/placeholder.svg"} alt="Bendigo TAFE" className="h-16 drop-shadow-lg" />
+        <img src="/assets/bendigoLogo.webp" alt="Bendigo TAFE" className="h-16 drop-shadow-lg" />
       </div>
 
       {/* Main Content */}

@@ -16,57 +16,57 @@ export default function TeachersTab() {
 
   const groupPhotos = [
     {
-      src: "/assets/teachers/staff1980.png",
+      src: "/assets/teachers/staff1980.webp",
       alt: "Staff 1980s",
       names: ["Staff from the 1980s"],
     },
     { 
-      src: "/assets/teachers/hairstaff.jpg",
+      src: "/assets/teachers/hairstaff.webp",
       alt: "Our Staff Today",
       names: ["Our Staff"],
     },
     {
-      src: "/assets/teachers/group1.jpg",
+      src: "/assets/teachers/group1.webp",
       alt: "",
       names: ["Julie M", "Alisha W", "Julie C", "Wendy", "Jacinta"],
     },
     {
-      src: "/assets/teachers/group2.png",
+      src: "/assets/teachers/group2.webp",
       alt: "",
       names: ["Sue", "Deb", "Julie", "Gayle"],
     },
     {
-      src: "/assets/teachers/danicaorchard.jpg",
+      src: "/assets/teachers/danicaorchard.webp",
       alt: "",
       names: ["Danica Orchard"],
     },
     {
-      src: "/assets/teachers/breannagiddingcathyritchie.jpg",
+      src: "/assets/teachers/breannagiddingcathyritchie.webp",
       alt: "",
       names: ["Breanna Gidding & Cathay Ritchie"],
     },
     {
-      src: "/assets/teachers/grantmckinnon.jpg",
+      src: "/assets/teachers/grantmckinnon.webp",
       alt: "",
       names: ["Grant McKinnon"],
     },
     {
-      src: "/assets/teachers/alishaweekley.png",
+      src: "/assets/teachers/alishaweekley.webp",
       alt: "",
       names: ["Alisha Weekley"],
     },
     {
-      src: "/assets/teachers/briannawatson.jpg",
+      src: "/assets/teachers/briannawatson.webp",
       alt: "",
       names: ["Brianna Watson"],
     },
     {
-      src: "/assets/teachers/kieragwin.jpg",
+      src: "/assets/teachers/kieragwin.webp",
       alt: "",
       names: ["Kiera Gwin"],
     },
     {
-      src: "/assets/teachers/laurenmcilrath.jpg",
+      src: "/assets/teachers/laurenmcilrath.webp",
       alt: "",
       names: ["Lauren McIlrath"],
     },
