@@ -12,6 +12,9 @@ export default function AwardsTab() {
   const touchStartX = useRef<number | null>(null)
   const touchEndX = useRef<number | null>(null)
   const touchStartY = useRef<number | null>(null)
+  
+  // Detect if we're on a mobile device
+  const isMobile = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
 
   // Get featured students (those with photos) and organize by category
   const allStudentsWithPhotos = students.filter((student) => student.hasPhoto)
@@ -147,14 +150,14 @@ export default function AwardsTab() {
       className="relative"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
         <div className="grid grid-cols-1 gap-6 sm:gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
           >
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
               CELEBRATING OUR
@@ -169,13 +172,13 @@ export default function AwardsTab() {
           className="mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
         >
           <motion.div
             className="text-center mb-6"
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.3 }}
           >
             <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
               Photos were not available for all award winners
@@ -212,9 +215,9 @@ export default function AwardsTab() {
                 >
                     {/* Authentic Vintage Polaroid-style frame */}
                 <div 
-                  className="polaroid-frame transform hover:rotate-0 transition-all duration-500 mx-auto w-full max-w-[280px] sm:max-w-[320px]"
+                  className={`polaroid-frame transform hover:rotate-0 transition-all duration-500 mx-auto w-full max-w-[280px] sm:max-w-[320px] ${isMobile ? 'rotate-0' : ''}`}
                   style={{
-                    transform: `rotate(${(currentSlide * 7) % 5 - 2}deg)`,
+                    transform: isMobile ? 'rotate(0deg)' : `rotate(${(currentSlide * 7) % 5 - 2}deg)`,
                     maxWidth: featuredStudents[currentSlide].name.toLowerCase().includes('group') ? 'clamp(250px, 85vw, 320px)' : 'clamp(220px, 80vw, 280px)',
                   }}
                   onTouchStart={handleTouchStart}
@@ -278,7 +281,7 @@ export default function AwardsTab() {
           className="mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          transition={{ delay: 0.4, duration: 0.3 }}
         >
           <div className="glass-card p-4 sm:p-6 rounded-lg">
             <div className="text-center">
@@ -302,7 +305,7 @@ export default function AwardsTab() {
               className="glass-card p-4 sm:p-6 rounded-xl border border-white/10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + categoryIndex * 0.1, duration: 0.5 }}
+              transition={{ delay: 0.5 + categoryIndex * 0.05, duration: 0.3 }}
             >
               <div className="flex items-start gap-3 mb-4">
                 <div className="w-1 h-12 bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-full flex-shrink-0"></div>

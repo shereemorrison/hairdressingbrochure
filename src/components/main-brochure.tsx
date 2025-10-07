@@ -319,7 +319,7 @@ export default function MainBrochure() {
                 type: "spring",
                 damping: 25,
                 stiffness: 300,
-                duration: 0.5,
+                duration: isMobile ? 0.8 : 0.5,
               }}
               onTouchStart={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
