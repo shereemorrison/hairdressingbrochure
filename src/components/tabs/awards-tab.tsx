@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { students } from "../../data/students"
 import type { Student } from "../../types/student"
@@ -33,6 +33,33 @@ export default function AwardsTab() {
   
   // Combine: perpetual trophy first, then regular awards, then other medals/historical last
   const featuredStudents = [...perpetualTrophy, ...regularAwards, ...medalsAndOtherHistorical]
+
+  // Preload ALL images like the gallery tab does
+  useEffect(() => {
+    // Preload all student images by creating hidden img elements
+    featuredStudents.forEach((student) => {
+      if (student.hasPhoto && student.photoFilename) {
+        const img = new Image()
+        img.src = `/assets/students/${student.photoFilename}`
+      }
+    })
+  }, [])
+
+  // Keyboard navigation for laptop users
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        prevSlide()
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        nextSlide()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % featuredStudents.length)

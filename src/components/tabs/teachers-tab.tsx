@@ -71,6 +71,31 @@ export default function TeachersTab() {
     },
   ]
 
+  // Preload ALL images like the gallery tab does
+  useEffect(() => {
+    // Preload all images by creating hidden img elements
+    groupPhotos.forEach((photo) => {
+      const img = new Image()
+      img.src = photo.src
+    })
+  }, [])
+
+  // Keyboard navigation for laptop users
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        prevSlide()
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        nextSlide()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % groupPhotos.length)
   }
