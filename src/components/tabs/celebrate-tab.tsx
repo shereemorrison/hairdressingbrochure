@@ -3,6 +3,12 @@
 import { motion } from "framer-motion"
 import { Calendar, MapPin, Phone, Music } from "lucide-react"
 
+interface EntertainmentItem {
+  performer: string
+  era: string
+  isAcknowledgement?: boolean
+}
+
 const eventHighlights = [
     //Maybe add more highlights once confirmed with Julie/Zeb
 ]
@@ -20,6 +26,7 @@ const entertainment = [
       { performer: "Rikki Blake", era: "1970's" },
       { performer: "Emily Eliades & Tia Webb", era: "1980's" },
       { performer: "Julianne Shelton", era: "1990's" },
+      { performer: "Supported by Vikki Frisk", era: "", isAcknowledgement: true },
     ],
   },
   {
@@ -110,8 +117,17 @@ export default function CelebrateTab() {
                 <div className="grid grid-cols-1 gap-2">
                   {section.items.map((item, itemIndex) => (
                     <div key={itemIndex} className="flex items-center justify-between py-1">
-                      <span className="text-xs text-white/90">{item.performer}</span>
-                      {item.era && <span className="text-xs text-yellow-400/70">{item.era}</span>}
+                      {item.isAcknowledgement ? (
+                        <>
+                          <span className="text-xs sm:text-sm text-transparent">{item.performer}</span>
+                          <span className="text-xs sm:text-sm text-yellow-400/70">{item.performer}</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="text-xs sm:text-sm text-white/90">{item.performer}</span>
+                          {item.era && <span className="text-xs sm:text-sm text-yellow-400/70">{item.era}</span>}
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>
