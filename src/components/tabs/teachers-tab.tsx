@@ -9,6 +9,7 @@ import type { Teacher } from "../../types/teacher"
 
 export default function TeachersTab() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const touchStartX = useRef<number | null>(null)
   const touchEndX = useRef<number | null>(null)
   const touchStartY = useRef<number | null>(null)
@@ -97,11 +98,58 @@ export default function TeachersTab() {
   }, [])
 
   const nextSlide = () => {
+    // Original desktop behavior - instant transition
     setCurrentSlide((prev) => (prev + 1) % groupPhotos.length)
   }
 
   const prevSlide = () => {
+    // Original desktop behavior - instant transition  
     setCurrentSlide((prev) => (prev - 1 + groupPhotos.length) % groupPhotos.length)
+  }
+
+  // Mobile-specific functions that wait for image loading
+  const nextSlideMobile = async () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    
+    const nextIndex = (currentSlide + 1) % groupPhotos.length
+    const nextImage = new Image()
+    nextImage.src = groupPhotos[nextIndex].src
+    
+    // Wait for image to load before transitioning
+    await new Promise((resolve) => {
+      if (nextImage.complete) {
+        resolve(true)
+      } else {
+        nextImage.onload = () => resolve(true)
+        nextImage.onerror = () => resolve(true) // Continue even if image fails
+      }
+    })
+    
+    setCurrentSlide(nextIndex)
+    setTimeout(() => setIsTransitioning(false), 300) // Allow animation to complete
+  }
+
+  const prevSlideMobile = async () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    
+    const prevIndex = (currentSlide - 1 + groupPhotos.length) % groupPhotos.length
+    const prevImage = new Image()
+    prevImage.src = groupPhotos[prevIndex].src
+    
+    // Wait for image to load before transitioning
+    await new Promise((resolve) => {
+      if (prevImage.complete) {
+        resolve(true)
+      } else {
+        prevImage.onload = () => resolve(true)
+        prevImage.onerror = () => resolve(true) // Continue even if image fails
+      }
+    })
+    
+    setCurrentSlide(prevIndex)
+    setTimeout(() => setIsTransitioning(false), 300) // Allow animation to complete
   }
 
 
@@ -143,9 +191,9 @@ export default function TeachersTab() {
       e.stopPropagation()
       
       if (isLeftSwipe) {
-        nextSlide()
+        nextSlideMobile()
       } else if (isRightSwipe) {
-        prevSlide()
+        prevSlideMobile()
       }
     }
   }
