@@ -72,7 +72,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
 
       {/* Content with swipe-up animation */}
       <motion.div
-        className="fixed inset-0 bg-black flex items-center justify-center min-h-screen"
+        className="fixed inset-0 bg-black flex items-start sm:items-center justify-center min-h-screen pt-8 sm:pt-0 pb-4 sm:pb-0"
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
@@ -84,7 +84,7 @@ export default function AcknowledgmentPage({ onEnterBrochure }: AcknowledgmentPa
         }}
       >
         <motion.div
-          className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10"
+          className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 max-h-full overflow-y-auto"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
