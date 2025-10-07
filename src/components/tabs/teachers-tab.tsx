@@ -182,7 +182,7 @@ export default function TeachersTab() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: isMobile ? 0.5 : 0.3 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
           >
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-black mb-4 sm:mb-6 leading-tight drop-shadow-lg">
               CELEBRATING OUR TEACHING
@@ -196,7 +196,7 @@ export default function TeachersTab() {
           className="text-center"
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: isMobile ? 0.5 : 0.3 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
         >
           <p className="text-sm sm:text-base font-bold text-white/90 max-w-2xl mx-auto px-4">
             Our dedicated teaching staff have shaped generations of hairdressing professionals, bringing decades of industry experience and passion for education to every salon classroom
@@ -226,7 +226,7 @@ export default function TeachersTab() {
                 key={currentSlide}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: isMobile ? 0.5 : 0.3 }}
+                transition={{ duration: 0.5 }}
               >
                 {/* Authentic Vintage Polaroid-style frame */}
                 <div 
@@ -283,7 +283,7 @@ export default function TeachersTab() {
           className="mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: isMobile ? 0.5 : 0.3 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
         >
           <div className="grid gap-6">
             {sortedYears.map((year, yearIndex) => (
