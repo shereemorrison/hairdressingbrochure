@@ -23,7 +23,7 @@ export default function RefreshmentsTab() {
               <br />
               <span className="text-yellow-400">REFRESHMENTS</span>
             </h1>
-            <p className="text-base sm:text-lg text-white/80 max-w-2xl">A selection of elegant finger food will be served between 7.30pm and 9pm</p>
+            <p className="text-base sm:text-lg text-white/80 max-w-2xl">A selection of elegant finger food will be served between 7.30pm and 9.30pm</p>
           </motion.div>
         </div>
 
@@ -39,8 +39,8 @@ export default function RefreshmentsTab() {
               <Utensils className="w-5 h-5 mr-3 text-yellow-400 flex-shrink-0" />
               <h3 className="text-lg sm:text-xl font-bold text-yellow-400">Menu</h3>
             </div>
-          
-            
+
+
             <div className="space-y-4 text-sm text-white/90">
               <div>
                 <strong className="text-yellow-400">1. Basil Bocconcini Bites (GF, V):</strong>
