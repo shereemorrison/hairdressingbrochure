@@ -518,16 +518,15 @@ const MagicBento: React.FC<BentoProps> = ({
           backgroundBlendMode: card.backgroundImage ? "overlay" : "normal",
         }}
       >
-        <div className="card__header flex justify-between items-center gap-3 relative text-white">
-          <span className="card__label text-xs font-medium opacity-80">{card.label}</span>
-          {Icon && <Icon className="w-6 h-6 text-white/80" />}
+        <div className="card__header flex justify-end items-start gap-3 relative text-white">
+          {Icon && <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />}
           {card.locked && <div className="text-lg">🔒</div>}
         </div>
-        <div className="card__content flex flex-col relative text-white pb-4">
-          <h3 className={`card__title font-semibold text-sm m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}>
+        <div className="card__content flex flex-col relative text-white pb-0 mt-auto">
+          <h3 className={`card__title font-semibold text-sm m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`} style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.4)' }}>
             {card.title}
           </h3>
-          <p className={`card__description text-xs leading-relaxed opacity-90 ${textAutoHide ? "text-clamp-2" : ""}`}>
+          <p className={`card__description text-xs leading-relaxed ${textAutoHide ? "text-clamp-2" : ""}`} style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.4)' }}>
             {card.description}
           </p>
         </div>
@@ -880,21 +879,22 @@ const MagicBento: React.FC<BentoProps> = ({
                   enableMagnetism={enableMagnetism}
                   onClick={card.onClick}
                 >
-                  <div className="card__header flex justify-between items-center gap-3 relative text-white">
-                    <span className="card__label text-xs sm:text-sm font-medium opacity-80">{card.label}</span>
-                    {Icon && <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white/80" />}
+                  <div className="card__header flex justify-end items-start gap-3 relative text-white">
+                    {Icon && <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" strokeWidth={1.5} />}
                     {card.locked && <div className="text-lg sm:text-xl">🔒</div>}
                   </div>
-                  <div className="card__content flex flex-col relative text-white pb-4">
+                  <div className="card__content flex flex-col relative text-white pb-0 mt-auto">
                     <h3
                       className={`card__title font-semibold text-sm sm:text-lg m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}
+                      style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.4)' }}
                     >
                       {card.title}
                     </h3>
                     <p
-                      className={`card__description text-xs sm:text-sm leading-relaxed opacity-90 ${
+                      className={`card__description text-xs sm:text-sm leading-relaxed ${
                         textAutoHide ? "text-clamp-2" : ""
                       }`}
+                      style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.4)' }}
                     >
                       {card.description}
                     </p>
@@ -910,21 +910,22 @@ const MagicBento: React.FC<BentoProps> = ({
                 style={cardStyle}
                 onClick={card.locked && card.specialBehavior !== "clickable-preview" ? undefined : card.onClick}
               >
-                <div className="card__header flex justify-between items-center gap-3 relative text-white">
-                  <span className="card__label text-xs sm:text-sm font-medium opacity-80">{card.label}</span>
-                  {Icon && <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white/80" />}
+                <div className="card__header flex justify-end items-start gap-3 relative text-white">
+                  {Icon && <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" strokeWidth={1.5} />}
                   {card.locked && <div className="text-lg sm:text-xl">🔒</div>}
                 </div>
-                <div className="card__content flex flex-col relative text-white pb-4">
+                <div className="card__content flex flex-col relative text-white pb-0 mt-auto">
                   <h3
                     className={`card__title font-semibold text-sm sm:text-lg m-0 mb-2 ${textAutoHide ? "text-clamp-1" : ""}`}
+                    style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.4)' }}
                   >
                     {card.title}
                   </h3>
                   <p
-                    className={`card__description text-xs sm:text-sm leading-relaxed opacity-90 ${
+                    className={`card__description text-xs sm:text-sm leading-relaxed ${
                       textAutoHide ? "text-clamp-2" : ""
                     }`}
+                    style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.4)' }}
                   >
                     {card.description}
                   </p>
