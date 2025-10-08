@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import LoadingScreen from "@/components/loading-screen"
 import AcknowledgmentPage from "@/components/acknowledgment-page"
@@ -9,9 +9,17 @@ import Preloader from "@/components/Preloader"
 
 type Stage = "preloader" | "loading" | "acknowledgment" | "brochure"
 
+const SESSION_STAGE_KEY = "hairitage-current-stage"
+
 export default function Brochure() {
-  // Start with preloader
-  const [currentStage, setCurrentStage] = useState<Stage>("preloader")
+  // Check sessionStorage to see if we're already in the brochure
+  const [currentStage, setCurrentStage] = useState<Stage>(() => {
+    if (typeof window !== "undefined") {
+      const savedStage = sessionStorage.getItem(SESSION_STAGE_KEY)
+      return savedStage === "brochure" ? "brochure" : "preloader"
+    }
+    return "preloader"
+  })
 
   // Preloader completion handler
   const handlePreloaderComplete = () => {
@@ -24,6 +32,10 @@ export default function Brochure() {
 
   const handleAcknowledgmentComplete = () => {
     setCurrentStage("brochure")
+    // Save current stage to sessionStorage (persists only during browser session)
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(SESSION_STAGE_KEY, "brochure")
+    }
   }
 
   return (
