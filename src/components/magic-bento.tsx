@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 import { useRef, useEffect, useState, useCallback } from "react"
 import { gsap } from "gsap"
@@ -15,6 +13,7 @@ export interface BentoCardProps {
   onClick?: () => void
   locked?: boolean
   backgroundImage?: string
+  specialBehavior?: string
 }
 
 export interface BentoProps {
@@ -312,7 +311,7 @@ const ParticleCard: React.FC<{
 }
 
 const GlobalSpotlight: React.FC<{
-  gridRef: React.RefObject<HTMLDivElement | null>
+  gridRef: React.RefObject<HTMLDivElement>
   disableAnimations?: boolean
   enabled?: boolean
   spotlightRadius?: number
@@ -451,7 +450,7 @@ const GlobalSpotlight: React.FC<{
 
 const BentoCardGrid: React.FC<{
   children: React.ReactNode
-  gridRef?: React.RefObject<HTMLDivElement | null>
+  gridRef?: React.RefObject<HTMLDivElement>
 }> = ({ children, gridRef }) => (
   <div
     className="bento-section grid gap-4 p-6 max-w-6xl mx-auto select-none relative"

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { createPortal } from "react-dom"
 import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Aurora from "./aurora"
@@ -10,15 +9,8 @@ import TeachersTab from "@/components/tabs/teachers-tab"
 import CelebrateTab from "@/components/tabs/celebrate-tab"
 import AwardsTab from "@/components/tabs/awards-tab"
 import DecadesTab from "@/components/tabs/decades-tab"
-import MovieTab from "@/components/tabs/movie-tab" // Replace with enhanced-movie-tab when ready
+import MovieTab from "@/components/tabs/movie-tab"
 import GalleryTab from "@/components/tabs/gallery-tab"
-// import bendigoLogo from "@/assets/bendigoLogo.webp"
-// import celebrate from "@/assets/celebrate.webp"
-// import tafebuilding from "@/assets/tafebuilding.webp"
-// import group1 from "@/assets/teachers/group1.webp"
-// import award from "@/assets/award.webp"
-// import food from "@/assets/food.webp"
-// import gallery from "@/assets/gallery.webp"
 import RefreshmentsTab from "@/components/tabs/refreshments-tab"
 
 
@@ -361,19 +353,19 @@ export default function MainBrochure() {
 
 
               {/* Floating Back Button - Hide when gallery modal is open */}
-                {!isGalleryModalOpen && (
-                  <motion.button
-                    onClick={handleBackToLanding}
-                    className="absolute top-4 right-4 z-[99998] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50  backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <span className="text-xs font-medium">Back</span>
-                    <ArrowLeft className="w-4 h-4" />
-              </motion.button>
+              {!isGalleryModalOpen && (
+                <motion.button
+                  onClick={handleBackToLanding}
+                  className="absolute top-4 right-4 z-[99998] flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 shadow-lg border border-yellow-500/50  backdrop-blur-md text-yellow-400 hover:bg-black/80 hover:border-yellow-400 text-sm"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <span className="text-xs font-medium">Back</span>
+                  <ArrowLeft className="w-4 h-4" />
+                </motion.button>
               )}
             </motion.div>
           </motion.div>
