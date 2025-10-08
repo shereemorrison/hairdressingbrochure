@@ -252,6 +252,11 @@ export default function AwardsTab() {
                         <p className="polaroid-handwriting text-center text-xs font-bold relative z-10">
                           {featuredStudents[currentSlide].award}{featuredStudents[currentSlide].year ? ` - ${featuredStudents[currentSlide].year}` : ''}
                         </p>
+                        {featuredStudents[currentSlide].award === "Dedication & Attitude to the Industry" && (
+                          <p className="polaroid-handwriting text-center text-[10px] font-normal mt-1 relative z-10 opacity-80">
+                            Donated by Helen Hickey
+                          </p>
+                        )}
                       </div>
                     </div>
                 </motion.div>
@@ -310,7 +315,10 @@ export default function AwardsTab() {
               <div className="flex items-start gap-3 mb-4">
                 <div className="w-1 h-12 bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-full flex-shrink-0"></div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{award}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-none mb-0">{award}</h3>
+                  {award === "Dedication & Attitude to the Industry" && (
+                    <p className="text-[9px] text-white/60 -mt-2">Donated by Helen Hickey</p>
+                  )}
                 </div>
               </div>
 
