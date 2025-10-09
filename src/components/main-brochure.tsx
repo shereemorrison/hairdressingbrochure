@@ -15,9 +15,9 @@ import RefreshmentsTab from "@/components/tabs/refreshments-tab"
 
 
 // COMMENTED OUT UNTIL READY TO IMPLEMENT - Enable when ready for scheduled release
-/*
+
 const UNLOCK_SCHEDULE = {
-  gallery: new Date('2025-10-10T00:00:00+11:00'),     // Friday 10 Oct - Locations/Gallery (Available immediately)
+  gallery: new Date('2025-10-09T00:00:00+11:00'),     // Friday 10 Oct - Locations/Gallery (Available immediately)
   teachers: new Date('2025-10-13T00:00:00+11:00'),   // Monday 13 Oct - Teachers names
   decades: new Date('2025-10-15T00:00:00+11:00'),    // Wed 15 Oct - Bendigo TAFE Hairdressing History
   food: new Date('2025-10-17T18:00:00+11:00'),       // Friday 17 Oct 6pm - Menu/Refreshments
@@ -25,10 +25,10 @@ const UNLOCK_SCHEDULE = {
   celebrate: new Date('2025-10-17T18:00:00+11:00'),  // Friday 17 Oct 6pm - Entertainment
   movie: new Date('2025-10-17T22:00:00+11:00'),      // Friday 17 Oct 10pm - Hair movie
 }
-*/
+
 
 // TEMPORARY: All tabs unlocked for development/testing
-const UNLOCK_SCHEDULE = {
+/*const UNLOCK_SCHEDULE = {
   teachers: new Date('2025-01-01T10:00:00+11:00'), // Available immediately
   celebrate: new Date('2025-01-02T10:00:00+11:00'), // 10am AEST
   food: new Date('2025-01-03T10:00:00+11:00'), // 10am AEST
@@ -36,7 +36,8 @@ const UNLOCK_SCHEDULE = {
   decades: new Date('2025-01-04T10:00:00+11:00'), // 10am AEST
   gallery: new Date('2025-10-08T18:10:00+11:00'), // 10am AEST
   movie: new Date('2025-10-17T21:00:00+11:00'), // 9pm AEST
-}
+
+}*/
 
 export default function MainBrochure() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
