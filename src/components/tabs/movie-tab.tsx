@@ -1,9 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Lock, Film, Calendar, Star, Play, ExternalLink } from "lucide-react"
-
-const comingSoonFeatures = []
+import { Film, Calendar, Star, ExternalLink } from "lucide-react"
 
 interface MovieTabProps {
   // Automatically controlled by unlock schedule
@@ -78,28 +76,15 @@ export default function MovieTab({
 
           {/* Video Details */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
             <div className="glass-card p-4 sm:p-6 rounded-lg">
-              <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mb-3 sm:mb-4">Featured Content</h3>
-              <div className="space-y-2 sm:space-y-3">
-                {comingSoonFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 flex-shrink-0" />
-                    <span className="text-xs sm:text-sm text-white/80">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass-card p-4 sm:p-6 rounded-lg">
               <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mb-3 sm:mb-4">Watch Options</h3>
               <div className="space-y-3 sm:space-y-4">
                 <p className="text-xs sm:text-sm text-white/80">
-                  Experience this movie in full HD quality, showcasing the rich history and evolution of hairdressing education.
+                  Experience this exclusive content showcasing the rich history and evolution of hairdressing education at Bendigo TAFE.
                 </p>
                 <a
                   href={youtubeUrl}
