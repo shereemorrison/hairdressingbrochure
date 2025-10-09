@@ -118,9 +118,7 @@ export default function MainBrochure() {
       id: "teachers",
       icon: Users,
       title: "TEACHERS",
-      description: isTabUnlocked("teachers")
-        ? "Meet our dedicated educators and staff members"
-        : getTimeUntilUnlock("teachers"),
+      description: "Meet our dedicated educators and staff members",
       label: "Educators",
       color: "rgba(0, 0, 0, 0.1)",
       backgroundImage: "/assets/teachers/group1.webp",
