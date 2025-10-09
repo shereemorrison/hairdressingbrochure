@@ -344,7 +344,7 @@ export default function MainBrochure() {
                 ) : activeSection === "movie" ? (
                   <MovieTab
                     isVideoReady={isTabUnlocked("movie")} // Automatically switches when unlocked
-                    youtubeUrl="https://www.youtube.com/watch?v=D8XPNCAkjDw"
+                    youtubeUrl="https://www.youtube.com/watch?v=G7ty1VMW0tg"
                     videoTitle="Decades of Excellence"
                   />
                 ) : (
