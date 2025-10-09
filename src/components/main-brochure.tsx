@@ -118,9 +118,11 @@ export default function MainBrochure() {
       id: "teachers",
       icon: Users,
       title: "TEACHERS",
-      description: "Meet our dedicated educators and staff members",
+      description: isTabUnlocked("teachers")
+        ? "Meet our dedicated educators and staff members"
+        : `Meet our dedicated educators and staff members • ${getTimeUntilUnlock("teachers")}`,
       label: "Educators",
-      color: "rgba(0, 0, 0, 0.1)",
+      color: isTabUnlocked("teachers") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       backgroundImage: "/assets/teachers/group1.webp",
       component: TeachersTab,
       locked: !isTabUnlocked("teachers"),
