@@ -18,11 +18,11 @@ import RefreshmentsTab from "@/components/tabs/refreshments-tab"
 
 const UNLOCK_SCHEDULE = {
   gallery: new Date('2025-10-09T00:00:00+11:00'),     // Friday 10 Oct - Locations/Gallery (Available immediately)
-  teachers: new Date('2025-10-13T00:00:00+11:00'),   // Monday 13 Oct - Teachers names
-  decades: new Date('2025-10-15T00:00:00+11:00'),    // Wed 15 Oct - Bendigo TAFE Hairdressing History
-  food: new Date('2025-10-17T18:00:00+11:00'),       // Friday 17 Oct 6pm - Menu/Refreshments
-  awards: new Date('2025-10-17T18:00:00+11:00'),     // Friday 17 Oct 6pm - Award Winners
-  celebrate: new Date('2025-10-17T18:00:00+11:00'),  // Friday 17 Oct 6pm - Entertainment
+  teachers: new Date('2025-10-13T10:00:00+11:00'),   // Monday 13 Oct 10am - Teachers names
+  decades: new Date('2025-10-15T10:00:00+11:00'),    // Wed 15 Oct 10am - Bendigo TAFE Hairdressing History
+  food: new Date('2025-10-17T17:00:00+11:00'),       // Friday 17 Oct 5pm - Menu/Refreshments
+  awards: new Date('2025-10-17T17:00:00+11:00'),     // Friday 17 Oct 5pm - Award Winners
+  celebrate: new Date('2025-10-17T17:00:00+11:00'),  // Friday 17 Oct 5pm - Entertainment
   movie: new Date('2025-10-17T22:00:00+11:00'),      // Friday 17 Oct 10pm - Hair movie
 }
 
