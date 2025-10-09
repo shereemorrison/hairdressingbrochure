@@ -120,7 +120,9 @@ export default function MainBrochure() {
       title: "TEACHERS",
       description: isTabUnlocked("teachers")
         ? "Meet our dedicated educators and staff members"
-        : `Meet our dedicated educators and staff members • ${getTimeUntilUnlock("teachers")}`,
+        : isMobile
+          ? `Meet our dedicated educators and staff members • ${getTimeUntilUnlock("teachers")}`
+          : getTimeUntilUnlock("teachers"),
       label: "Educators",
       color: isTabUnlocked("teachers") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
       backgroundImage: "/assets/teachers/group1.webp",
