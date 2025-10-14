@@ -124,7 +124,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 transition={isExiting ? { duration: 1.2, ease: "easeInOut" } : { duration: 0.6, delay: 2.0 }}
               >
                 <div className="text-right">
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-2xl">
+                  <p 
+                    className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-2xl pointer-events-auto cursor-pointer transition-all hover:scale-105 hover:text-yellow-300 active:scale-95 active:text-yellow-400"
+                    onClick={handleLanyardClick}
+                  >
                     Click your ticket
                     <br />
                     To Enter
