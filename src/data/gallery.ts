@@ -7,6 +7,7 @@
       images: [
         "/assets/buildingimages/1a-oakley-building.webp",
         "/assets/buildingimages/1b-loddon-compaspe-regional-college.webp",
+        "/assets/buildingimages/studenttearoom.webp",
       ],
       descriptions: [
         "Mundy Building - Traditional campus architecture at our original location",
