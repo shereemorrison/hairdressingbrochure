@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera } from "lucide-react"
+import { Users, Trophy, Clock, Film, Sparkles, ArrowLeft, Utensils, Camera, PartyPopper } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Aurora from "./aurora"
 import MagicBento from "./magic-bento"
@@ -12,6 +12,7 @@ import DecadesTab from "@/components/tabs/decades-tab"
 import MovieTab from "@/components/tabs/movie-tab"
 import GalleryTab from "@/components/tabs/gallery-tab"
 import RefreshmentsTab from "@/components/tabs/refreshments-tab"
+import AfterPartyTab from "@/components/tabs/after-party"
 
 
 // COMMENTED OUT UNTIL READY TO IMPLEMENT - Enable when ready for scheduled release
@@ -215,6 +216,20 @@ export default function MainBrochure() {
       specialBehavior: "clickable-preview", // Special flag for MagicBento to handle
       isActuallyLocked: !isTabUnlocked("movie"), // Track real lock status for counter
       onClick: () => handleTabClick("movie"),
+    },
+    {
+      id: "afterparty",
+      icon: PartyPopper,
+      title: "AFTER PARTY",
+      description: isTabUnlocked("afterparty")
+        ? "Relive the celebration with post party snap shots"
+        : getTimeUntilUnlock("afterparty"),
+      label: "After Party",
+      color: isTabUnlocked("afterparty") ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.4)",
+      backgroundImage: "/assets/afterparty.webp",
+      component: AfterPartyTab,
+      locked: !isTabUnlocked("afterparty"),
+      onClick: () => handleTabClick("afterparty"),
     },
   ]
 

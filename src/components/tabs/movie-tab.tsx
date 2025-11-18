@@ -74,11 +74,28 @@ export default function MovieTab({
             </div>
           </motion.div>
 
-          {/* Video Details */}
+          {/* Credits Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            <div className="glass-card p-4 sm:p-6 rounded-lg mb-6">
+              <div className="text-center">
+                <Star className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-yellow-400" />
+                <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mb-2">Credits</h3>
+                <p className="text-sm sm:text-base text-white/90">
+                  <strong>Produced by Jack Coyne with photos from Bendigo TAFE archives</strong>
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Video Details */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
           >
             <div className="glass-card p-4 sm:p-6 rounded-lg">
               <h3 className="text-lg sm:text-xl font-bold text-yellow-400 mb-3 sm:mb-4">Watch Options</h3>
