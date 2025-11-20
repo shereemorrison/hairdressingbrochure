@@ -75,8 +75,8 @@ const afterPartyPhotos: AfterPartyPhoto[] = [
     alt: "Jeremy James and Renik staff",
   },
   {
-    src: "/assets/afterparty/JessCuttingandpartner.webp",
-    alt: "Jess Cutting and partner",
+    src: "/assets/afterparty/JessClimasandpartner.webp",
+    alt: "Jess Climas and partner",
   },
   {
     src: "/assets/afterparty/JudiAnneCantwellandJanineBourke.webp",
