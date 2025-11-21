@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Camera, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react"
 
 interface AfterPartyPhoto {
   src: string
@@ -18,7 +18,7 @@ const afterPartyPhotos: AfterPartyPhoto[] = [
   },
 
   {
-    src: "/assets/afterparty/alumnikellybloomfieldjulieCandAlishaMcPherson.webp",
+    src: "/assets/afterparty/AlumniKellyBloomfieldJulieCandAlishaMcPherson.webp",
     alt: "Alumni - Kelly Bloomfield, Julie C, and Alisha McPherson",
   },
   {
@@ -26,7 +26,7 @@ const afterPartyPhotos: AfterPartyPhoto[] = [
     alt: "Alumni - Nardia Brown",
   },
   {
-    src: "/assets/afterparty/Amy & Mischa Tanavich.webp",
+    src: "/assets/afterparty/amyandmischatanavich.webp",
     alt: "Amy and Mischa Tanavich",
   },
 
@@ -110,10 +110,7 @@ const afterPartyPhotos: AfterPartyPhoto[] = [
     src: "/assets/afterparty/Leoniesdancesupportgroup.webp",
     alt: "Leonie's dance support group",
   },
-  {
-    src: "/assets/afterparty/LibbyBrandwickandpartner.webp",
-    alt: "Libby Brandwick and partner",
-  },
+
   {
     src: "/assets/afterparty/libbybrandwickandpartnerwebp.webp",
     alt: "Libby Brandwick and partner",
@@ -158,10 +155,7 @@ const afterPartyPhotos: AfterPartyPhoto[] = [
     src: "/assets/afterparty/sarahandemmashelton.webp",
     alt: "Sarah and Emma Shelton",
   },
-  {
-    src: "/assets/afterparty/TaraandToddCarringtonandHoneyeater salonstaff.webp",
-    alt: "Tara and Todd Carrington and Honeyeater Salon staff",
-  },
+
   {
     src: "/assets/afterparty/taraandtoddcarringtonandhoneyeatersalon.webp",
     alt: "Tara and Todd Carrington and Honeyeater Salon",
@@ -181,6 +175,50 @@ const afterPartyPhotos: AfterPartyPhoto[] = [
   {
     src: "/assets/afterparty/zoeandpartner.webp",
     alt: "Zoe and partner",
+  },
+  {
+    src: "/assets/afterparty/DeneveStratfordandProvenBlake.webp",
+    alt: "Deneve Stratford and Proven Blake",
+  },
+  {
+    src: "/assets/afterparty/GuestSpeakerAlishaMcPherson.webp",
+    alt: "Guest Speaker - Alisha McPherson",
+  },
+  {
+    src: "/assets/afterparty/GuestSpeakerHeathMorley-Alumni.webp",
+    alt: "Guest Speaker - Heath Morley (Alumni)",
+  },
+  {
+    src: "/assets/afterparty/JulieandAaron.webp",
+    alt: "Julie and Aaron",
+  },
+  {
+    src: "/assets/afterparty/JulieC&JulianneHargreaves.webp",
+    alt: "Julie C and Julianne Hargreaves",
+  },
+  {
+    src: "/assets/afterparty/TaraBaldwinson,CarlaMartins,BreeMangione.webp",
+    alt: "Tara Baldwinson, Carla Martins, and Bree Mangione",
+  },
+  {
+    src: "/assets/afterparty/TaraBaldwinsonCarlaMartinsBreeMangione.webp",
+    alt: "Tara Baldwinson, Carla Martins, and Bree Mangione",
+  },
+  {
+    src: "/assets/afterparty/TiaWebbandEmilyEliades.webp",
+    alt: "Tia Webb and Emily Eliades",
+  },
+  {
+    src: "/assets/afterparty/DomenicandHeikeCoia.webp",
+    alt: "Domenic and Heike Coia",
+  },
+  {
+    src: "/assets/afterparty/Hairstaff2025.webp",
+    alt: "Hair staff 2025",
+  },
+  {
+    src: "/assets/afterparty/VIPgroup.webp",
+    alt: "VIP group",
   },
   // Photos without names/companies - no descriptions
   {
@@ -221,6 +259,10 @@ const afterPartyPhotos: AfterPartyPhoto[] = [
   },
   {
     src: "/assets/afterparty/DSCF1195.webp",
+    alt: "Event photo",
+  },
+  {
+    src: "/assets/afterparty/DSCF1210.webp",
     alt: "Event photo",
   },
   {
