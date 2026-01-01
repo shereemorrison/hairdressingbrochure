@@ -14,7 +14,7 @@ Am interactive React brochure for Bendigo TAFE's hairdressing celebration.  Comp
 - Cultural acknowledgment before main content
 
 ### Loading Screen
-- Vanta Birds Background - Animated 3D bird flock with Three.js
+- Vanta Birds Background - ReactBits galaxy background
 - Interactive Lanyard - 3D ticket that falls and becomes clickable
 
 ### Tabs
@@ -51,7 +51,7 @@ npm run dev
 │   │   │   ├── refreshments-tab.tsx
 │   │   │   ├── celebrate-tab.tsx
 │   │   │   └── movie-tab.tsx
-│   │   ├── loading-screen.tsx # Vanta birds + lanyard experience
+│   │   ├── loading-screen.tsx
 │   │   ├── main-brochure.tsx  # Tab orchestration & unlock schedule
 │   │   ├── VantaBirdsBackground.tsx
 │   │   └── ui/               # Reusable UI components
@@ -75,7 +75,7 @@ npm run dev
 │   │   ├── teachers/         # Teacher photos
 │   │   └── buildingimages/   # Campus photos
 │   ├── three.min.js          # Three.js library
-│   └── vanta.birds.min.js    # Vanta.js birds effect
+│   
 ├── index.html                # Main HTML with script loading
 └── vite.config.ts           # Vite configuration
 ```
