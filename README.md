@@ -1,6 +1,6 @@
 # Celebrate Hairdressing - Digital Brochure
 
-Am interactive React brochure for Bendigo TAFE's hairdressing celebration.  Complete front end project
+An interactive React brochure for Bendigo TAFE's hairdressing celebration.  Complete front end project
 
 ## Features
 
@@ -24,6 +24,7 @@ Am interactive React brochure for Bendigo TAFE's hairdressing celebration.  Comp
 - **Refreshments Tab** - Event menu presentation with beverages section
 - **Entertainment Tab** - Event details
 - **Movie Tab** - Youtube video to be released after the event - preview content prior to this
+- **Post-Party** - Photos from the event
 
 Other features
 - Timed release of tabs and counter to count down to next section release
