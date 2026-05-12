@@ -2,24 +2,23 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Lanyard from "@/blocks/Components/Lanyard/Lanyard"
-import Galaxy from "@/components/galaxy"
-
+import VantaBirdsBackground from "@/components/VantaBirdsBackground"
 
 interface LoadingScreenProps {
   onComplete?: () => void
 }
 
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
-  const [phase, setPhase] = useState<"idle" | "background-only" | "lanyard-fall" | "lanyard-interactive" | "exiting">("idle")
+  const [phase, setPhase] = useState<"idle" | "birds-only" | "lanyard-fall" | "lanyard-interactive" | "exiting">("idle")
 
   const lanyardRef = useRef<HTMLDivElement>(null)
 
   // Phase transitions
   useEffect(() => {
     if (phase === "idle") {
-      setTimeout(() => setPhase("background-only"), 1000)
+      setTimeout(() => setPhase("birds-only"), 1000)
     }
-    if (phase === "background-only") {
+    if (phase === "birds-only") {
       setTimeout(() => setPhase("lanyard-fall"), 5000)
     }
     if (phase === "lanyard-fall") {
@@ -38,7 +37,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     setPhase("exiting")
   }
 
-  const showMainScene = ["background-only", "lanyard-fall", "lanyard-interactive", "exiting"].includes(phase)
+  const showMainScene = ["birds-only", "lanyard-fall", "lanyard-interactive", "exiting"].includes(phase)
   const showLanyard = ["lanyard-fall", "lanyard-interactive", "exiting"].includes(phase)
   const lanyardFallen = ["lanyard-interactive"].includes(phase)
   const isExiting = phase === "exiting"
@@ -65,17 +64,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             exit={{ opacity: 0 }}
             transition={isExiting ? { duration: 1.5, ease: "easeInOut" } : { duration: 0.5 }}
           >
-            {/* Galaxy background */}
-            <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, zIndex: 1, transform: 'translateZ(0)', willChange: 'contents' }}>
-              <Galaxy
-                key="galaxy-background"
-                hueShift={0}
-                glowIntensity={0.6}
-                saturation={1.0}
-                mouseInteraction={false}
-                transparent={true}
-              />
-            </div>
+            <VantaBirdsBackground className="absolute inset-0" />
 
             {/* Left side text */}
             <div className="absolute inset-0 z-50 pointer-events-none">
